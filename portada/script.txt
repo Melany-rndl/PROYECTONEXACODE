@@ -1,0 +1,83 @@
+CREATE DATABASE IF NOT EXISTS p25 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE p25;
+
+-- Elimina todas las tablas en el orden correcto para evitar errores de claves foráneas
+DROP TABLE IF EXISTS publicacion;
+DROP TABLE IF EXISTS cuenta_has_clase;
+DROP TABLE IF EXISTS clase;
+DROP TABLE IF EXISTS informacion;
+DROP TABLE IF EXISTS cuenta;
+
+-- Tabla de cuentas (usuarios y roles)
+CREATE TABLE cuenta (
+  id_cuenta INT(11) NOT NULL AUTO_INCREMENT,
+  usuario VARCHAR(20) NOT NULL,
+  clave VARCHAR(255) NOT NULL,
+  rol ENUM('profesor','estudiante') NOT NULL,
+  PRIMARY KEY (id_cuenta),
+  UNIQUE KEY usuario_UNIQUE (usuario)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla de información personal del usuario
+CREATE TABLE informacion (
+  id_info INT(11) NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(20) NOT NULL,
+  apellido VARCHAR(20) NOT NULL,
+  direccion VARCHAR(30) NOT NULL,
+  fecha_nac DATE NOT NULL,
+  telefono VARCHAR(8) NOT NULL,
+  ci VARCHAR(15) NOT NULL,
+  cuenta_id_cuenta INT(11) NOT NULL,
+  PRIMARY KEY (id_info),
+  UNIQUE KEY ci_UNIQUE (ci),
+  KEY cuenta_id_cuenta_idx (cuenta_id_cuenta),
+  CONSTRAINT fk_info_cuenta FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla de clases (ahora con columna 'grado')
+CREATE TABLE clase (
+  id_clase INT(11) NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
+  codigo VARCHAR(10) NOT NULL,
+  id_profesor INT(11) NOT NULL,
+  grado VARCHAR(30) DEFAULT NULL,
+  PRIMARY KEY (id_clase),
+  UNIQUE KEY codigo_UNIQUE (codigo),
+  KEY id_profesor_idx (id_profesor),
+  CONSTRAINT fk_clase_profesor FOREIGN KEY (id_profesor) REFERENCES cuenta (id_cuenta)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla de relación usuario-clase
+CREATE TABLE cuenta_has_clase (
+  id_chc INT(11) NOT NULL AUTO_INCREMENT,
+  clase_id_clase INT(11) NOT NULL,
+  cuenta_id_cuenta INT(11) NOT NULL,
+  PRIMARY KEY (id_chc),
+  UNIQUE KEY unico_usuario_clase (clase_id_clase, cuenta_id_cuenta),
+  KEY clase_id_clase_idx (clase_id_clase),
+  KEY cuenta_id_cuenta_idx (cuenta_id_cuenta),
+  CONSTRAINT fk_chc_clase FOREIGN KEY (clase_id_clase) REFERENCES clase (id_clase)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_chc_cuenta FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Tabla de publicaciones (posts/tareas/comentarios) con columna para fecha de edición
+CREATE TABLE publicacion (
+  id_publicacion INT(11) NOT NULL AUTO_INCREMENT,
+  asunto VARCHAR(80) NOT NULL,
+  contenido TEXT NOT NULL,
+  fecha DATETIME NOT NULL,
+  fecha_edicion DATETIME NULL,
+  cuenta_id_cuenta INT(11) NOT NULL,
+  clase_id_clase INT(11) NOT NULL,
+  PRIMARY KEY (id_publicacion),
+  KEY cuenta_id_cuenta_idx (cuenta_id_cuenta),
+  KEY clase_id_clase_idx (clase_id_clase),
+  CONSTRAINT fk_publicacion_cuenta FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_publicacion_clase FOREIGN KEY (clase_id_clase) REFERENCES clase (id_clase)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

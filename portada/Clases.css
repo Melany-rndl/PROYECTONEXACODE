@@ -1,0 +1,121 @@
+:root {
+  --celeste: rgb(80, 150, 255);
+  --gris-claro: #f4f4f4;
+  --gris-oscuro: #3d3d3d;
+  --azul: rgb(50, 115, 255);
+  --negro: #1c1c1c;
+  --morado: rgb(35, 91, 245);
+  --blanco: #fff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: arial,sans-serif; background-color: var(--gris-claro); color: #333; }
+header {
+  background-color: var(--negro);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 { font-size: 2rem; }
+.menu-toggle { display: none; background: none; border: none; font-size: 2rem; color: white; cursor: pointer; }
+nav {
+  background-color: var(--azul);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+nav a:hover { transform: scale(1.1); }
+.hero {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--azul);
+  color: white;
+}
+.hero .class-color {
+  display: inline-block;
+  width: 22px; height: 22px; border-radius: 50%;
+  margin-right: 7px;
+  vertical-align: middle;
+  border: 2px solid #fff;
+}
+.mate { background: linear-gradient(to bottom,  #6eb8c2,  #5ea1aa , #3e6d72); }
+.fisica { background: linear-gradient(to bottom, #679dcf, #92c0e6 , #2a578f); }
+.lenguaje { background: linear-gradient(to bottom,  #b091d3, #b68fd6 , #633f7e); }
+.biologia{ background: linear-gradient(to bottom,  #99b75e, #a1c777 , #435331); }
+.sociales { background: linear-gradient(to bottom,  #7f9f70, #749a62 , #3d5632);}
+.quimica { background: linear-gradient(to bottom,  #efb36d, #eabc87 , #bc7a2e); }
+.religion { background: linear-gradient(to bottom,  #f9df82, #f3db84 ,#eec834); }
+.musica { background: linear-gradient(to bottom,  #e9a0d7,#f2a9e0, #c967b2); }
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 2rem;
+}
+.class-card, .materials, .tasks {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.class-card h3, .materials h3, .tasks h3 { color: var(--celeste); margin-bottom: 1rem; }
+.comment-box { display: grid; grid-template-columns: 1fr auto; gap: 1rem;}
+.comment-box textarea {
+  padding: 0.6rem;
+  height: 60px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-family: 'Roboto', arial, sans-serif;
+}
+.comment-box button {
+  background-color: var(--azul);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.comment-box button:hover { background-color: var(--morado);}
+.comment-list { margin-top: 1rem; display: grid; gap: 1rem;}
+.comment-item {
+  background-color: var(--gris-claro);
+  padding: 1rem;
+  border-left: 4px solid var(--azul);
+  border-radius: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.material-item, .task-item {
+  background-color: var(--gris-claro);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+footer {
+  background-color: var(--gris-oscuro);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  nav { flex-direction: column; align-items: center; display: none;}
+  nav.active { display: flex;}
+}

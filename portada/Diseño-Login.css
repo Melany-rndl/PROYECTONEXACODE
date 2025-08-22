@@ -1,0 +1,107 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #2c2c2c;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(118, 199, 240, 0.2);
+    width: 350px;
+}
+
+h1 {
+    text-align: center;
+    color: #76c7f0;
+}
+
+label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    width: 48%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #76c7f0;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+a {
+    color: #76c7f0;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.Bienvenida {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+.Datos p{
+    background-color: #2c2c2c;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+
+}
+.Cerrar-Sesion-Link{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #2c2c2c;
+    border-radius: 5px;
+}
+.Empezar{
+    background-color: #76c7f0;
+    padding: 15px 60px;
+    color: rgb(94, 26, 26);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+}
+.Empezar a{
+    font-size: 20px;
+    color: white;
+}
+
