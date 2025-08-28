@@ -13,7 +13,7 @@ $res = mysqli_query($conexion, $sql);
 
 $colores = ['celeste', 'azul', 'morado', 'verde', 'verdeO', 'naranja', 'amarillo', 'rosa'];
 function colorClase($nombre, $colores): mixed {
-    return $colores[abs(crc32(strtolower($nombre))) % count($colores)];
+    return $colores[abs(num: crc32(string: strtolower(string: $nombre))) % count(value: $colores)];
 }
 
 $clases_usuario = [];
