@@ -90,36 +90,6 @@
       height: 450px;
       overflow: hidden;
     }
-
-    .carousel {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      opacity: 0;
-      animation: carouselFade 24s infinite;
-    }
-
-    .carousel img:nth-child(1) { animation-delay: 0s; }
-    .carousel img:nth-child(2) { animation-delay: 8s; }
-    .carousel img:nth-child(3) { animation-delay: 16s; }
-
-    @keyframes carouselFade {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      30% { opacity: 1; }
-      40% { opacity: 0; }
-      100% { opacity: 0; }
-    }
     .section {
       max-width: 1200px;
       margin: 0 auto;
@@ -175,37 +145,6 @@
       line-height: 1.4;
     }
 
-    footer {
-      background-color: var(--azul-institucional);
-      color: white;
-      padding: 3rem 2rem;
-    }
-
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
-      gap: 2rem;
-    }
-
-    .footer-container h3,
-    .footer-container h4 {
-      font-family: 'Georgia', serif;
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-container a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .footer-container a:hover {
-      text-decoration: underline;
-    }
-
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -239,15 +178,15 @@
   <section class="section">
     <h2>Últimas Noticias</h2>
     <div class="noticias-grid">
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Feria Científica Escolar 2025</h3><p>Los estudiantes presentaron proyectos innovadores en ciencia, tecnología y medio ambiente.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Celebración del Día del Maestro</h3><p>El colegio rindió homenaje a los docentes con actos y reconocimientos especiales.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Semana de la Lectura</h3><p>Actividades de fomento a la lectura con participación de escritores locales.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Competencia Intercolegial de Matemáticas</h3><p>Estudiantes de secundaria obtuvieron el primer lugar en el torneo regional.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Campaña de Reciclaje</h3><p>El colegio recolectó más de 300 kg de residuos reutilizables en una semana.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Convivencia Estudiantil</h3><p>Jornada de integración para fortalecer los lazos entre estudiantes y profesores.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Festival de Teatro Escolar</h3><p>Los cursos presentaron obras teatrales promoviendo el arte y la expresión cultural.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Visita de la Banda Bojanowski</h3><p>La banda del colegio deleitó con una presentación especial para toda la comunidad.</p></div></div>
-      <div class="noticia"><img src="https://www.infobae.com/resizer/v2/GM56NUAQ3RBQ7FQOHB3CKS53RI.jpg?auth=2f354fbf194997e330c7a351e5bf498b8a844ae5add44541ea9604e74736d83d&smart=true&width=1200&height=1200&quality=85" /><div class="noticia-content"><h3>Expo Arte y Cultura</h3><p>Los estudiantes expusieron trabajos de arte, música y danza inspirados en la identidad nacional.</p></div></div>
+      <div class="noticia"><img src="../imagenespro/patio5.jpg" /><div class="noticia-content"><h3>Feria Científica Escolar 2025</h3><p>Los estudiantes presentaron proyectos innovadores en ciencia, tecnología y medio ambiente.</p></div></div>
+      <div class="noticia"><img src="../imagenespro/edufisica.jpg" /><div class="noticia-content"><h3>Celebración del Día del Maestro</h3><p>El colegio rindió homenaje a los docentes con actos y reconocimientos especiales.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Semana de la Lectura</h3><p>Actividades de fomento a la lectura con participación de escritores locales.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Competencia Intercolegial de Matemáticas</h3><p>Estudiantes de secundaria obtuvieron el primer lugar en el torneo regional.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Campaña de Reciclaje</h3><p>El colegio recolectó más de 300 kg de residuos reutilizables en una semana.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Convivencia Estudiantil</h3><p>Jornada de integración para fortalecer los lazos entre estudiantes y profesores.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Festival de Teatro Escolar</h3><p>Los cursos presentaron obras teatrales promoviendo el arte y la expresión cultural.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Visita de la Banda Bojanowski</h3><p>La banda del colegio deleitó con una presentación especial para toda la comunidad.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Expo Arte y Cultura</h3><p>Los estudiantes expusieron trabajos de arte, música y danza inspirados en la identidad nacional.</p></div></div>
     </div>
   </section>
 <?php include 'footer.php'; ?>
