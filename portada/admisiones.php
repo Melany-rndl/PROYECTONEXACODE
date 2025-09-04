@@ -92,36 +92,6 @@
       overflow: hidden;
     }
 
-    .carousel {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      opacity: 0;
-      animation: carouselFade 24s infinite;
-    }
-
-    .carousel img:nth-child(1) { animation-delay: 0s; }
-    .carousel img:nth-child(2) { animation-delay: 8s; }
-    .carousel img:nth-child(3) { animation-delay: 16s; }
-
-    @keyframes carouselFade {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      30% { opacity: 1; }
-      40% { opacity: 0; }
-      100% { opacity: 0; }
-    }
-
     .section {
       padding: 4rem 2rem;
       max-width: 1200px;

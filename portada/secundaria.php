@@ -272,7 +272,7 @@
       nav.classList.toggle('active');
     }
 
-
+</script>
 </body>
 </html>
 
