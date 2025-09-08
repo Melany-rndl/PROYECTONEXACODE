@@ -28,10 +28,6 @@
         <label for="contrasena">Contraseña</label>
         <input type="password" name="contrasena" id="contrasena"><br><br>
 
-        <label>Rol</label><br>
-        <label><input type="radio" name="rol" value="profesor"> Profesor</label>
-        <label><input type="radio" name="rol" value="estudiante"> Estudiante</label><br><br>
-
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre"><br><br>
 
@@ -67,9 +63,6 @@ $(document).ready(function() {
             contrasena: {
                 required: true,
                 minlength: 6
-            },
-            rol: {
-                required: true
             },
             nombre: {
                 required: true,
@@ -110,9 +103,7 @@ $(document).ready(function() {
                 required: "La contraseña es obligatoria",
                 minlength: "Debe tener al menos 6 caracteres"
             },
-            rol: {
-                required: "Debes elegir un rol obligatoriamente"
-            },
+            
             nombre: {
                 required: "El nombre es obligatorio",
                 minlength: "Debe tener al menos 3 letras",
