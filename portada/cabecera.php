@@ -1,18 +1,14 @@
 <?php
-// Inicia la sesión solo si no está iniciada
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Si no hay usuario logueado, redirige
 if (!isset($_SESSION['id_cuenta'])) {
     header("Location: Logueo.php");
     exit();
 }
 
-// Si la variable $rol no está definida, intentalo obtener automáticamente
 if (!isset($rol)) {
-    // Si tienes conexión ya abierta, úsala, si no, ábrela aquí
     if (!isset($conexion)) {
         $conexion = mysqli_connect("localhost", "root", "", "p25");
     }
@@ -21,7 +17,6 @@ if (!isset($rol)) {
     $rol = ($row = mysqli_fetch_assoc($obtener_rol)) ? $row['rol'] : '';
 }
 
-// Si no hay materias definidas, define un array vacío para evitar errores
 if (!isset($materias_menu)) {
     $materias_menu = [];
 }
@@ -291,4 +286,5 @@ if (!isset($materias_menu)) {
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
+
 </section>
