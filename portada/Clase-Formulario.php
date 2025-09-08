@@ -91,9 +91,10 @@ if ($id_clase > 0) {
     <nav>
         <button class="boton-superior-menu" onclick="window.location.href='Pagina-Principal.php'">Inicio</button>
         <button class="boton-superior-menu" onclick="window.location.href='Pagina-Principal.php'">Mis cursos</button>
+        <button class="boton-superior-menu" onclick="window.location.href='Tareas-Formulario.php?id=<?= $id_clase ?>'">Tareas</button>
     </nav>
 </header>
-<div class="seccion-hero-clase <?= $color ?>">
+<div class="seccion-hero-clase <?= $color ?>">  
     <?php if ($clase_actual): ?>
         <span class="color-clase-circulo <?= $color ?>"></span>
         <div>
@@ -112,7 +113,6 @@ if ($id_clase > 0) {
             <div class="menu-materias-lateral"></div>
         </div>
 
-        <!-- CUADRO DE MENSAJES DE LA CLASE (COMENTARIOS) -->
         <div class="mensajes-publicaciones">
             <h3>Mensajes de la clase</h3>
             <form class="caja-comentario-mensajes" method="post" action="">
