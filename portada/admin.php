@@ -21,7 +21,7 @@
         $direccion="localhost";
         $usuario="root";
         $contrasena="";
-        $dbname="proyecto3"; 
+        $dbname="p25"; 
         session_start();
         
         $conexion= new mysqli($direccion,$usuario,$contrasena,$dbname);
@@ -33,17 +33,14 @@
 <body>
    <?php
      if($_SESSION['rol']==2 ){
-           include("inicio2.php");  
+           include("Pagina-Principal.php");  
         }else{
             if($_SESSION['rol']==1 ){
-            include("inicio1.php");
+            include("Pagina-Principal.php");
         }
         }
   ?>
   <div class="n">
-      <?php
-         include("submenudeaula.php"); 
-      ?>
       <div class="tablapersonas">
       <center>
          <table border="1">
@@ -59,7 +56,7 @@
                </tr>
                <?php
                $ID=$_GET['ID'];   
-               $sql=" SELECT * FROM clases_has_cuenta WHERE Clases_ID='$ID' ";
+               $sql=" SELECT * FROM clases_has_cuenta WHERE Clases_ID='$id_clase' ";
                $resultado=$conexion->query($sql);
                if($resultado -> num_rows >0){
                   While($fila=$resultado ->fetch_assoc()){
