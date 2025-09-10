@@ -13,9 +13,6 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
     header("Location: login.php"); 
     exit;
 }
-
-
-
 // Traer todos los usuarios con su información
 $sql = "SELECT c.id_cuenta, c.usuario, c.rol,
                i.nombre, i.apellido, i.direccion, i.fecha_nac, i.telefono, i.ci
@@ -23,7 +20,6 @@ $sql = "SELECT c.id_cuenta, c.usuario, c.rol,
         LEFT JOIN informacion i ON c.id_cuenta = i.cuenta_id_cuenta";
 $result = $conn->query($sql);
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>

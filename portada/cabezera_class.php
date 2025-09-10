@@ -12,7 +12,6 @@
     font-size: 26px;
   color: #4e4c7f;
   text-shadow: 2px 2px 4px #797878;
- 
 }
 nav{
     padding: 20px;
@@ -36,14 +35,6 @@ nav{
 #es{
     color: rgb(107, 46, 134);
 }
-
-
-
-
-
-
-
-
 #mas{
     background-color:white ;
     color: #3f3e57;
@@ -52,7 +43,7 @@ nav{
   position: absolute;
   margin-left: 1350px;
  cursor: pointer;  
-   
+  
 }
 #let{
      width: 40px;
@@ -68,18 +59,11 @@ nav{
   margin-left: 1400px;
   margin-top: 10px;
   cursor: pointer;
-
-
 }
-
 h2{
     color: #42334d;
     font-family: arial;
  }
-
-
-
-
 .botonesuperior{
    background-color: white;
             border:none;
@@ -108,7 +92,6 @@ h2{
   font-family: arial;
   font-size: 16px;
   color: #3f3e57;
- 
 }
     </style>
 </head>

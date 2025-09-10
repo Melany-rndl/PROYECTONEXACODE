@@ -8,7 +8,6 @@ $conexion = mysqli_connect(hostname: "localhost", username: "root", password: ""
 if (!$conexion) {
     die("Error al conectar a la base de datos: " . mysqli_connect_error());
 }
-
 $id_cuenta = $_SESSION['id_cuenta'];
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];

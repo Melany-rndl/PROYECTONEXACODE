@@ -10,7 +10,6 @@ $conexion = new mysqli("localhost", "root", "", "p25");
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
-
 $sql = "SELECT c.id_cuenta, c.usuario, c.rol, c.estado,
                i.nombre, i.apellido, i.direccion, i.fecha_nac, i.telefono, i.ci
         FROM cuenta c
