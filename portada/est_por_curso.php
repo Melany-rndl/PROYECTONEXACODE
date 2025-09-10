@@ -7,7 +7,7 @@
   <style>
     body {
        display: grid;
-            grid-template-rows: 80px 300px  650px ;
+            grid-template-rows: 95px 300px  650px ;
             grid-template-columns:4% 96% ;
             grid-template-areas:
             "iz pag"
@@ -22,148 +22,7 @@
     }
       
     
-    header{
-         border-bottom: 2px solid #666565;
-        background-color: white;
-    grid-area: pag;
-    font-size: 26px;
-  color: #4e4c7f;
-  text-shadow: 2px 2px 4px #797878;
- 
-}
-nav{
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 20px;
-    flex-direction: row reverse;
-}
-#estudiante{
-  color: white;
-            background:white;
-            border: 2px solid rgb(107, 46, 134);
-            border-radius: 5px;
-            padding: 8px;
-            font-size: 17px;
-  position: absolute;
-  margin-left: 1100px;
-  margin-top: 10px;
-             cursor: pointer;
-}
-#es{
-    color: rgb(107, 46, 134);
-}
-
-
-
-#mas{
-    background-color:white ;
-    color: #3f3e57;
-    border: none;
-    font-size: 50px;
-  position: absolute;
-  margin-left: 1350px;
- cursor: pointer;  
    
-}
-#let{
-     width: 40px;
-  height: 40px;
-    padding: 10px;
-    background-color:rgb(70, 130, 208) ;
-    border: rgb(70, 130, 208);
-    color: #f9f9f9;
-    border-radius: 50%;
-    font-family: arial;
-    font-size: 18px;
-  position: absolute;
-  margin-left: 1400px;
-  margin-top: 10px;
-  cursor: pointer;
-
-
-}
- h2{
-    color: #42334d;
-    font-family: arial;
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.botonesuperior{
-   background-color: white;
-            border:none;
-            font-family: Arial;
-            font-size: 18px;
-            color: #4e4c7f;
-             cursor: pointer;
-}
-
-
- #iz{
-            grid-area: iz;
-             
- 
-        }
-        .iconomenu{
-    background-color: white;
-    border: none;
-    font-size: 25px;
-    color: #3f3e57;
-    cursor: pointer;
-}
-
-
-
-
-#menuLateral {
-  display: none;
-  flex-direction: column;
-  background-color: #f4f4f4;
-  border-right: 2px solid #ccc;
-  padding: 20px;
-  position: absolute;
-  top: 80px;
-  left: 0;
-  width: 200px;
-  height: calc(100vh - 80px);
-  z-index: 1000;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-}
-
-
-
-
-#menuLateral a {
-  text-decoration: none;
-  color: #3d3d3d;
-  font-family: Arial, sans-serif;
-  padding: 10px 0;
-  font-size: 18px;
-  border-bottom: 1px solid #ccc;
-}
-
-
-
-
-#menuLateral a:hover {
-  color: #385da8;
-}
-
     h2 {
       margin-bottom: 10px;
       color: #333;
@@ -249,29 +108,12 @@ nav{
 </head>
 <body>
      <header id="pag">
-       
-        <strong>NEXA CLASS </strong>  
-        <button Id="estudiante">👤<a id="es">ESTUDIANTE</a></button>
-        <button id="let">E</button>
-        <button id="mas">+</button>
-        <nav>
-           
-        <button class="botonesuperior">Inicio</button>
-         <button class="botonesuperior">Mis cursos</button>
-          <button class="botonesuperior">Tablón</button>
-           <button class="botonesuperior">Trabajo de clase</button>
-        </nav>
-    </header>
-    <section id="iz">
-  <button class="iconomenu" onclick="toggleMenu()">☰</button>
+        <?php  include ("cabezera.php")?>
+        </header>
+        <section id="iz">
+          <?php  include ("estilo_menu.php")?>
   <div id="menuLateral">
-    <a href="#"> Matemáticas</a>
-    <a href="#"> Química</a>
-    <a href="#"> Geografía</a>
-    <a href="#"> Literatura</a>
-    <a href="#"> Informática</a>
-  </div>
-</section>
+   </section>
   <!-- Sección Profesores -->
   <section id="profesores">
     <h2>Profesores</h2>
@@ -326,12 +168,6 @@ nav{
       <li><span>Molina Vidaurre Denira</span> <a href="#">Invitar a padres</a></li>
     </ul>
   </section>
-  <script>
-     function toggleMenu() {
-  const menu = document.getElementById("menuLateral");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-}
-    
-</script>
+  
 </body>
 </html>

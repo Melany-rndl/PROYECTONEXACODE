@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-
-header{
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #pag{
          border-bottom: 2px solid #666565;
         background-color: white;
     grid-area: pag;
@@ -147,11 +146,10 @@ nav{
 #menuLateral a:hover {
   color: #385da8;
 }
-
-</style>
+    </style>
 </head>
 <body>
-  <header id="pag">
+     <header id="pag">
        
         <strong>NEXA CLASS </strong>  
         <button Id="estudiante">👤<a id="es">ESTUDIANTE</a></button>
@@ -165,25 +163,6 @@ nav{
            <button class="botonesuperior">Trabajo de clase</button>
         </nav>
     </header>
-    <section id="iz">
-  <button class="iconomenu" onclick="toggleMenu()">☰</button>
-  <div id="menuLateral">
-    <a href="#"> Matemáticas</a>
-    <a href="#"> Química</a>
-    <a href="#"> Geografía</a>
-    <a href="#"> Literatura</a>
-    <a href="#"> Informática</a>
-  </div>
-</section>
-<script>
- function toggleMenu() {
-  const menu = document.getElementById("menuLateral");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-}
-</script>
-
 </body>
 </html>
-
-
-       
+        

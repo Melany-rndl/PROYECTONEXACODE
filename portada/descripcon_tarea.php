@@ -18,7 +18,7 @@
 
           body{
             display: grid;
-    grid-template-rows: 80px 300px 280px 300px ;
+    grid-template-rows: 90px 300px 280px 300px ;
     grid-template-columns: 4% 71% 24% ;
     grid-template-areas:
     "iz pag pag"
@@ -27,7 +27,7 @@
     "iz pie general "
    
     ;
-   
+   gap:10px;
         }
 
       @media(max-width:730px){
@@ -45,7 +45,7 @@
    
    
        }
-
+ 
 
 }
        
@@ -62,7 +62,7 @@
 
         #iz{
             grid-area: iz;
-            background-color: white;
+           
         }
 
  
@@ -77,7 +77,7 @@
 
     #pag{
         grid-area: pag;
-        background-color: white;
+   
     }
    
 
@@ -315,13 +315,12 @@
 </head>
 <body>
     <header id="pag">
-        <?php  include (cabezera_class.php)?>
+        <?php  include ("cabezera.php")?>
         </header>
         <section id="iz">
+          <?php  include ("estilo_menu.php")?>
   <div id="menuLateral">
-   
-  </div>
-</section>
+   </section>
    <section id="barratextouno">
       <button id="t">📝</button> <strong id="nomtarea">NOMBRE DE LA TAREA</strong>
       <p id="nomprof">nombre del profesor</p><p id="fechapublicacion">• fecha publicadion</p>
