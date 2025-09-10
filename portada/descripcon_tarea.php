@@ -79,111 +79,7 @@
         grid-area: pag;
         background-color: white;
     }
-    header{
-         border-bottom: 2px solid #666565;
-        background-color: white;
-    grid-area: pag;
-    font-size: 26px;
-  color: #4e4c7f;
-  text-shadow: 2px 2px 4px #797878;
- 
-}
-nav{
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-  
-}
-#estudiante{
-  color: white;
-            background:white;
-            border: 2px solid rgb(107, 46, 134);
-            border-radius: 5px;
-            padding: 8px;
-            font-size: 17px;
-  position: absolute;
-  margin-left: 1100px;
-  margin-top: 10px;
-             cursor: pointer;
-}
-#es{
-    color: rgb(107, 46, 134);
-}
-
-
-
-
-
-
-
-
-#mas{
-    background-color:white ;
-    color: #3f3e57;
-    border: none;
-    font-size: 50px;
-  position: absolute;
-  margin-left: 1350px;
- cursor: pointer;  
    
-}
-#let{
-     width: 40px;
-  height: 40px;
-    padding: 10px;
-    background-color:rgb(70, 130, 208) ;
-    border: rgb(70, 130, 208);
-    color: #f9f9f9;
-    border-radius: 50%;
-    font-family: arial;
-    font-size: 18px;
-  position: absolute;
-  margin-left: 1400px;
-  margin-top: 10px;
-  cursor: pointer;
-
-
-}
-
-h2{
-    color: #42334d;
-    font-family: arial;
- }
-
-
-
-
-.botonesuperior{
-   background-color: white;
-            border:none;
-            font-family: Arial;
-            font-size: 18px;
-            color: #4e4c7f;
-             cursor: pointer;
-}
-.iconomenu{
-    background-color: white;
-    border: none;
-    font-size: 25px;
-    color: #3f3e57;
-    cursor: pointer;
-}
-#nomtarea{
- font-family:  Monospace;
- font-size: 50px;   
- color: #3f3e57;
-}
-.menu-materias {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  font-family: arial;
-  font-size: 16px;
-  color: #3f3e57;
- 
-}
 
 
 
@@ -419,27 +315,11 @@ h2{
 </head>
 <body>
     <header id="pag">
-        <strong >  NEXA CLASS </strong>  
-        <button Id="estudiante">👤<a id="es">ESTUDIANTE</a></button>
-        <button id="let">E</button>
-        <button id="mas">+</button>
-        <nav>
-           
-        <button class="botonesuperior">Inicio
-        </button>
-         <button class="botonesuperior">Mis cursos</button>
-          <button class="botonesuperior">Tablón</button>
-           <button class="botonesuperior">Trabajo de clase</button>
-        </nav>
+        <?php  include (cabezera_class.php)?>
         </header>
         <section id="iz">
-  <button class="iconomenu" onclick="toggleMenu()">☰</button>
   <div id="menuLateral">
-    <a href="#"> Matemáticas</a>
-    <a href="#"> Química</a>
-    <a href="#"> Geografía</a>
-    <a href="#"> Literatura</a>
-    <a href="#"> Informática</a>
+   
   </div>
 </section>
    <section id="barratextouno">
@@ -497,11 +377,7 @@ h2{
       }
     }
 
-    function toggleMenu() {
-  const menu = document.getElementById("menuLateral");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-}
-    
+     
   </script>
 
 </body>
