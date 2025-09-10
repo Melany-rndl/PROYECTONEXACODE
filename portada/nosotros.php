@@ -124,40 +124,6 @@
     .submenu:hover .submenu-content {
       display: block;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     nav {
       display: flex;
       gap: 1.5rem;
@@ -232,18 +198,6 @@
     .section:hover{
         background-color: rgb(157, 223, 245);
     }
-
-
-
-
-
-
-
-
-
-
-
-
     .section h2 {
       font-family: 'Georgia', serif;
       font-size: 2.2rem;
@@ -252,10 +206,7 @@
       text-align: center;
      
     }
- 
 
-
-   
     .nivel {
       display: flex;
       flex-wrap: wrap;
@@ -277,25 +228,18 @@
      
     }
 
-
     .nivel img:hover{
          transform: scale(1.03);
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
-
-
     .nivel-texto {
       flex: 2;
     }
-
-
     footer {
       background-color: var(--azul-institucional);
       color: white;
       padding: 3rem 2rem;
     }
-
-
     .footer-container {
       display: flex;
       justify-content: space-between;
@@ -304,8 +248,6 @@
       margin: 0 auto;
       gap: 2rem;
     }
-
-
     .footer-container h3,
     .footer-container h4 {
       font-family: 'Georgia', serif;
