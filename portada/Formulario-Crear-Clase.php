@@ -27,5 +27,32 @@
         </select>
         <input type="submit" value="Crear Clase">
     </form>
+    <script>
+$(document).ready(function() {
+    $("#form-login").validate({
+        rules: {
+            nombre_clase: {
+                required: true,
+                minlength: 3,
+                maxlength: 20
+            },
+            grado: {
+                required: true,
+            }
+        },
+        messages: {
+            usuario: {
+                required: "Necesitas poner un nombre a la clase",
+                minlength: "Debe tener al menos 3 caracteres",
+                maxlength: "No debe superar 20 caracteres"
+            },
+            contraseña: {
+                required: "Selecciona un grando",
+            }
+        }
+    });
+});
+</script>
 </body>
+</html>
 </html>

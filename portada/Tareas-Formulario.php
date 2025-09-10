@@ -7,6 +7,17 @@ $id_cuenta = $_SESSION['id_cuenta'];
 $id_clase = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id_clase <= 0) { echo "Clase no encontrada."; exit(); }
 
+$res_rol = mysqli_query($conexion, "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
+$rol = ($row = mysqli_fetch_assoc($res_rol)) ? $row['rol'] : '';
+$materias_menu = [];
+$res_materias = mysqli_query($conexion, 
+    "SELECT clase.nombre FROM clase 
+     JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase 
+     WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC");
+while ($row = mysqli_fetch_assoc($res_materias)) {
+    $materias_menu[strtolower($row['nombre'])] = ucfirst($row['nombre']);
+}
+
 $sql = "SELECT clase.*, cuenta.usuario AS profesor, clase.id_profesor 
         FROM clase
         JOIN cuenta ON clase.id_profesor = cuenta.id_cuenta
@@ -17,16 +28,14 @@ $clase = mysqli_fetch_assoc($res);
 if (!$clase) { echo "No tienes acceso a esta clase."; exit(); }
 $soy_profesor = ($clase['id_profesor'] == $id_cuenta);
 
-
-$sql_pub = "SELECT publicacion.id_publicacion, asunto AS titulo, contenido AS contenido, fecha, cuenta.usuario AS autor
-            FROM publicacion
-            JOIN cuenta ON publicacion.cuenta_id_cuenta = cuenta.id_cuenta
-            WHERE publicacion.clase_id_clase = '$id_clase'
-            ORDER BY publicacion.fecha DESC";
-$res_pub = mysqli_query($conexion, $sql_pub);
-$publicaciones = [];
-while ($row = mysqli_fetch_assoc($res_pub)) {
-    $publicaciones[] = $row;
+$sql_tareas = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota, t.clase_id_clase
+               FROM tarea t
+               WHERE t.clase_id_clase = '$id_clase'
+               ORDER BY t.id_tarea DESC";
+$res_tareas = mysqli_query($conexion, $sql_tareas);
+$tareas = [];
+while ($row = mysqli_fetch_assoc($res_tareas)) {
+    $tareas[] = $row;
 }
 ?>
 <!DOCTYPE html>
@@ -34,135 +43,175 @@ while ($row = mysqli_fetch_assoc($res_pub)) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Publicaciones - <?= htmlspecialchars($clase['nombre']); ?> - Nexa Classroom</title>
-  <link rel="stylesheet" href="Clases.css">
+  <title>Tareas - <?= htmlspecialchars($clase['nombre']); ?> - Nexa Classroom</title>
   <style>
-    .publicaciones-lista {
-      display: flex;
-      flex-direction: column;
-      gap: 1.3rem;
-      margin: 2.5rem auto;
-      max-width: 700px;
+    .contenedor-cuerpo-tareas {
+      max-width: 1400px;
+      width: 100%;
+      margin: 40px auto 0 auto;
+      padding: 0 8px 30px 8px;
+      min-height: 300px;
     }
-    .publicacion-card {
-      background: var(--blanco, #fff);
-      border-radius: 13px;
-      box-shadow: 0 2px 6px rgba(50,115,255,0.08);
-      padding: 1.2rem 1.7rem;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      transition: box-shadow .2s, transform .2s;
-      border-left: 6px solid var(--celeste, #5096ff);
-      text-decoration: none;
-    }
-    .publicacion-card:hover {
-      box-shadow: 0 4px 20px rgba(50,115,255,0.18);
-      transform: translateY(-2px) scale(1.015);
-      border-left: 8px solid var(--azul, #3273ff);
-    }
-    .publicacion-titulo {
-      font-size: 1.15rem;
-      font-weight: bold;
-      color: var(--azul, #3273ff);
-      margin-bottom: 0.1em;
-    }
-    .publicacion-info {
-      font-size: 0.92rem;
-      color: #888;
-      margin-bottom: 0.25em;
-    }
-    .publicacion-contenido-preview {
-      font-size: 1.02rem;
-      color: #222;
-      white-space: pre-line;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-height: 3.7em;
-      margin-bottom: 0.18em;
-    }
-    .no-publicaciones {
-      text-align: center;
-      font-size: 1.15rem;
-      color: #3d3d3d;
-      background: #f3f7ff;
-      border-radius: 16px;
-      padding: 2.3em 1em;
-      margin: 2.5em auto;
+    .boton-crear-tarea {
+      display: block;
+      width: 100%;
       max-width: 500px;
-      box-shadow: 0 1px 7px rgba(50,115,255,0.06);
-    }
-    .crear-publicacion-btn {
-      display: inline-block;
-      background: var(--azul, #3273ff);
+      margin: 0 auto 30px auto;
+      padding: 18px 0;
+      background: #3c328f;
       color: #fff;
-      font-weight: bold;
+      font-size: 1.4rem;
       border: none;
       border-radius: 8px;
-      padding: 0.7em 1.6em;
-      font-size: 1.06rem;
-      margin: 2.1em auto 0 auto;
       cursor: pointer;
-      transition: background .2s, box-shadow .2s;
-      box-shadow: 0 2px 7px rgba(50,115,255,0.07);
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px #0002;
       text-decoration: none;
+      text-align: center;
+      font-family: inherit;
     }
-    .crear-publicacion-btn:hover {
-      background: var(--morado, #235bf5);
-      box-shadow: 0 4px 12px rgba(35,91,245,0.12);
+    .boton-crear-tarea:hover {
+      background: #5743c6;
     }
-    @media (max-width: 800px) {
-      .publicaciones-lista { max-width: 98vw; }
-      .no-publicaciones { max-width: 95vw; }
+    .tarea-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      padding: 18px 12px;
+      box-shadow: 0 2px 8px #0001;
+      transition: box-shadow 0.2s;
+      text-decoration: none;
+      color: #232323;
+      display: block;
+      position: relative;
+      min-height: 80px;
+    }
+    .tarea-card:hover {
+      box-shadow: 0 4px 16px #0002;
+      background: #f8f8ff;
+    }
+    .tarea-titulo {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #3c328f;
+    }
+    .tarea-info {
+      font-size: 20px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+    .tarea-preview {
+      font-size: 22px;
+      color: #444;
+      white-space: pre-line;
+    }
+    .sin-tareas {
+      text-align: center;
+      color: #888;
+      margin-top: 50px;
+      font-size: 20px;
+    }
+    .editar-tarea-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: #3c328f;
+      z-index: 2;
+      padding: 0;
+    }
+    .editar-tarea-btn:hover {
+      color: #5743c6;
+      background: #e9e9fc;
+      border-radius: 50%;
+    }
+    /* Botón de entrega */
+    .entregar-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 11px 20px;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .entregar-btn:hover {
+      background: #1976d2;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Nexa Classroom</h1>
-    <button class="menu-toggle" type="button" onclick="toggleMenu()">☰</button>
-  </header>
-  <nav id="mainMenu">
-    <a href="Clase-Formulario.php?id=<?= $id_clase ?>">Tablero</a>
-    <a href="Tareas-Formulario.php?id=<?= $id_clase ?>">Publicaciones</a>
-    <a href="#">Personas</a>
-    <a href="#">Calificaciones</a>
-    <a href="Pagina-Principal.php">Volver a cursos</a>
-  </nav>
-  <div class="hero">
-    <span class="class-color <?= $clase['nombre'] ?>"></span>
-    <span style="font-size:1.5rem;vertical-align:middle;"><?= htmlspecialchars($clase['nombre']) ?></span>
-    <p><?= htmlspecialchars($clase['profesor']) ?></p>
-  </div>
-  <div class="container">
+<?php include 'cabecera.php'; ?>
+
+<div class="contenedor-cuerpo-tareas">
     <?php if ($soy_profesor): ?>
-      <a href="Formulario-Crear-Publicacion.php?id=<?= $id_clase ?>" class="crear-publicacion-btn">+ Crear publicación</a>
+      <a class="boton-crear-tarea" href="Formulario-Crear-Publicacion.php?id=<?= $id_clase ?>">+ Crear tarea</a>
     <?php endif; ?>
-    <?php if (count($publicaciones) == 0): ?>
-      <div class="no-publicaciones">
-        No hay publicaciones aún para esta clase.
-      </div>
+
+    <?php if (count($tareas) == 0): ?>
+      <div class="sin-tareas">No hay tareas aún para esta clase.</div>
     <?php else: ?>
-      <div class="publicaciones-lista">
-        <?php foreach($publicaciones as $pub): ?>
-          <a href="Publicacion.php?id=<?= $pub['id_publicacion'] ?>" class="publicacion-card">
-            <div class="publicacion-titulo"><?= htmlspecialchars($pub['titulo']) ?></div>
-            <div class="publicacion-info">Por <?= htmlspecialchars($pub['autor']) ?> | <?= date("d/m/Y H:i", strtotime($pub['fecha'])) ?></div>
-            <div class="publicacion-contenido-preview">
-              <?= htmlspecialchars(mb_strimwidth($pub['contenido'], 0, 130, (mb_strlen($pub['contenido']) > 130 ? '...' : ''))) ?>
-            </div>
-          </a>
-        <?php endforeach; ?>
-      </div>
+      <?php foreach($tareas as $tarea): ?>
+        <div class="tarea-card">
+          <?php if ($soy_profesor): ?>
+            <a class="editar-tarea-btn" title="Editar tarea" href="Editar-Tareas.php?id_tarea=<?= $tarea['id_tarea'] ?>">✏️</a>
+          <?php endif; ?>
+          <div class="tarea-titulo"><?= htmlspecialchars($tarea['titulo']) ?></div>
+          <?php if (trim($tarea['tema'])): ?>
+            <div class="tarea-info">Tema: <?= htmlspecialchars($tarea['tema']) ?></div>
+          <?php endif; ?>
+          <?php if ($tarea['nota'] !== null): ?>
+            <div class="tarea-info">Nota máxima: <?= htmlspecialchars($tarea['nota']) ?></div>
+          <?php endif; ?>
+          <div class="tarea-preview">
+            <?= htmlspecialchars(mb_strimwidth($tarea['descripcion'], 0, 170, (mb_strlen($tarea['descripcion']) > 170 ? '...' : ''))) ?>
+          </div>
+          <!-- BOTÓN DE ENTREGA (visible solo para alumnos) -->
+          <?php if (!$soy_profesor): ?>
+            <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['clase_id_clase']) ?>">
+              Subir mi entrega
+            </a>
+          <?php endif; ?>
+        </div>
+      <?php endforeach; ?>
     <?php endif; ?>
-  </div>
-  <footer>
-    © 2025 Nexa Classroom. Todos los derechos reservados.
-  </footer>
+</div>
+
 <script>
-function toggleMenu() {
-  var menu = document.getElementById('mainMenu');
-  menu.classList.toggle('active');
+const botonMenuMaterias = document.querySelector('.iconomenu');
+const menuMaterias = document.getElementById('menuMaterias');
+if (botonMenuMaterias && menuMaterias) {
+  botonMenuMaterias.onclick = function() {
+    menuMaterias.classList.toggle('visible');
+    menuMaterias.classList.toggle('oculto');
+  }
+}
+
+const botonMenuProfesor = document.getElementById('accion-profesor-btn');
+const menuAccionProfesor = document.getElementById('menu-accion-profesor');
+if (botonMenuProfesor && menuAccionProfesor) {
+  botonMenuProfesor.onclick = function(e) {
+    menuAccionProfesor.style.display = (menuAccionProfesor.style.display === 'block') ? 'none' : 'block';
+    e.stopPropagation();
+  }
+  document.onclick = function(e) {
+    if (
+      menuAccionProfesor.style.display === 'block' &&
+      !menuAccionProfesor.contains(e.target) && e.target !== botonMenuProfesor
+    ) {
+      menuAccionProfesor.style.display = 'none';
+    }
+  }
 }
 </script>
 </body>

@@ -7,7 +7,6 @@ if (!$conexion) {
 if (
     isset($_POST['usuario']) && trim($_POST['usuario']) !== "" &&
     isset($_POST['contrasena']) && trim($_POST['contrasena']) !== "" &&
-    isset($_POST['rol']) && trim($_POST['rol']) !== "" &&
     isset($_POST['nombre']) && trim($_POST['nombre']) !== "" &&
     isset($_POST['apellido']) && trim($_POST['apellido']) !== "" &&
     isset($_POST['direccion']) && trim($_POST['direccion']) !== "" &&
@@ -17,7 +16,7 @@ if (
 ) {
     $usuario    = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
-    $rol        = $_POST['rol'];
+    $rol        = 'estudiante';
     $nombre     = $_POST['nombre'];
     $apellido   = $_POST['apellido'];
     $direccion  = $_POST['direccion'];
