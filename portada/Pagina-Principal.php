@@ -7,6 +7,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
 
 $obtener_rol = mysqli_query(mysql: $conexion, query: "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
 $rol = ($row = mysqli_fetch_assoc(result: $obtener_rol)) ? $row['rol'] : '';
+$_SESSION['rol'] = $rol;
 
 $sql = "SELECT clase.*, cuenta.usuario AS profesor FROM clase JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase JOIN cuenta ON clase.id_profesor = cuenta.id_cuenta WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC";
 $res = mysqli_query(mysql: $conexion, query: $sql);
@@ -42,6 +43,8 @@ $grid_ids = ["uno", "dos", "tres", "mun", "cuatro", "cinco", "seis", "mdo", "sie
         <button id="botonuno" onclick="window.location.href='Formulario-Unirse-Clase.php'">Unirse a una Clase</button>
     <?php elseif($rol === 'profesor'): ?>
         <button id="botonuno" onclick="window.location.href='Menu-Profesor.php'">Crear/Unirse a Clase</button>
+         <?php elseif($rol === 'admin'): ?>
+        <button id="botonuno" onclick="window.location.href='admin.php'">Ver Personas </button>
     <?php endif; ?>
     <button id="botondos" onclick="window.location.href='uno.php'">Ver página web</button>
 </section>
