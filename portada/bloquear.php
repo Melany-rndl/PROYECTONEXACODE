@@ -1,10 +1,18 @@
 <?php
-$id_cuenta=$_GET['ci'];
+include("conexion.php");
 
-$sql = "UPDATE cuenta SET bloqueado=1 WHERE id_cuenta='$id_cuenta'";
-if (mysqli_query($conn, $sql)){
-    header("Location: narda.php");
+$ci = $_GET['ci'];
 
-}else{
-    echo"Error:" .mysqli_error($conn);
+$sql = "UPDATE cuenta 
+        SET bloqueado = 1 
+        WHERE id_cuenta = (
+            SELECT id_cuenta FROM informacion WHERE ci='$ci' LIMIT 1
+        )
+        AND rol != 'admin'";
+
+if (mysqli_query($conn, $sql)) {
+    header("Location: admin.php");
+} else {
+    echo "Error: " . mysqli_error($conn);
 }
+?>
