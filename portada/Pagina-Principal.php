@@ -1,16 +1,16 @@
 <?php
 session_start();
-if (!isset($_SESSION['id_cuenta'])) { header(header: "Location: Logueo.php"); exit(); }
-$conexion = mysqli_connect(hostname: "localhost", username: "root", password: "", database: "p25");
+if (!isset($_SESSION['id_cuenta'])) { header("Location: Logueo.php"); exit(); }
+$conexion = mysqli_connect("localhost","root", "",  "p25");
 if (!$conexion) die("Error de conexión");
 $id_cuenta = $_SESSION['id_cuenta'];
 
-$obtener_rol = mysqli_query(mysql: $conexion, query: "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
-$rol = ($row = mysqli_fetch_assoc(result: $obtener_rol)) ? $row['rol'] : '';
+$obtener_rol = mysqli_query($conexion,  "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
+$rol = ($row = mysqli_fetch_assoc( $obtener_rol)) ? $row['rol'] : '';
 $_SESSION['rol'] = $rol;
 
 $sql = "SELECT clase.*, cuenta.usuario AS profesor FROM clase JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase JOIN cuenta ON clase.id_profesor = cuenta.id_cuenta WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC";
-$res = mysqli_query(mysql: $conexion, query: $sql);
+$res = mysqli_query($conexion, $sql);
 
 $colores = ['celeste', 'azul', 'morado', 'verde', 'verdeO', 'naranja', 'amarillo', 'rosa'];
 function colorClase($nombre, $colores): mixed {
@@ -19,7 +19,7 @@ function colorClase($nombre, $colores): mixed {
 
 $clases_usuario = [];
 $materias_menu = [];
-while ($clase = mysqli_fetch_assoc(result: $res)) {
+while ($clase = mysqli_fetch_assoc($res)) {
     $clases_usuario[] = $clase;
     $materias_menu[strtolower(string: $clase['nombre'])] = ucfirst(string: $clase['nombre']);
 }

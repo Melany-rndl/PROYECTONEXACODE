@@ -1,15 +1,19 @@
 <?php
-include("conexion.php");
+$direccion="localhost";
+$usuario="root";
+$contrasena="";
+$dbname="p25"; 
 
-$ci = $_GET['ci'];
-$rol = $_GET['rol'];
+$conn = new mysqli($direccion, $usuario, $contrasena, $dbname);
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
 
-// Evitamos que el admin sea modificado
-$sql = "UPDATE cuenta  SET rol = '$rol' WHERE id_cuenta = (SELECT id_cuenta FROM informacion WHERE ci='$ci' LIMIT 1 )AND rol != 'admin'";
-
-if (mysqli_query($conn, $sql)) {
+$id_cuenta = $_GET['id']; 
+$rol = $_GET['rol']; 
+$sql = "UPDATE cuenta SET rol='$rol' WHERE id_cuenta='$id_cuenta'";
+if ($conn->query($sql)) {
     header("Location: admin.php");
 } else {
-    echo "Error: " . mysqli_error($conn);
+    echo "Error: " . $conn->error;
 }
-?>

@@ -1,18 +1,24 @@
 <?php
-include("conexion.php");
+$direccion="localhost";
+$usuario="root";
+$contrasena="";
+$dbname="p25"; 
+$conn = new mysqli($direccion, $usuario, $contrasena, $dbname);
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
 
 $ci = $_GET['ci'];
 
-$sql = "UPDATE cuenta 
-        SET bloqueado = 1 
-        WHERE id_cuenta = (
-            SELECT id_cuenta FROM informacion WHERE ci='$ci' LIMIT 1
-        )
-        AND rol != 'admin'";
+$sql = "UPDATE cuenta c
+        INNER JOIN informacion i ON c.id_cuenta = i.cuenta_id_cuenta
+        SET c.bloqueado = 1
+        WHERE i.ci = ?";
 
-if (mysqli_query($conn, $sql)) {
-    header("Location: admin.php");
-} else {
-    echo "Error: " . mysqli_error($conn);
-}
-?>
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $ci);
+$stmt->execute();
+
+header("Location: admin.php");
+exit;
