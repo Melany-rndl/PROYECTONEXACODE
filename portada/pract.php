@@ -114,9 +114,6 @@
         position: absolute;
         top:400px;
         left:1500px;
-       
-        width: 50;
-  height: 50;
     }
 
 
@@ -125,7 +122,40 @@
 
 
 
-   
+    #dato_uno {
+  grid-area: dato_uno;
+  border: 3px solid #585858;
+  background-color: white;
+  border-radius: 50px;
+  padding: 20px;
+}
+
+.d_uno {
+  font-family: arial;
+  font-size: 28px;
+  margin-left: 10px;
+  color: #385da8;
+  margin-bottom: 20px;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  font-family: arial;
+  font-size: 18px;
+  margin: 8px 10px;
+  color: #282727;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.etiqueta {
+  color: #282727;
+}
+
+.valor {
+  color: #585858;
+}
    
  </style>
 </head>
@@ -150,25 +180,61 @@
       <p class="t_cinco">activo</p>
 
       <div id="personita">
-  <img src="icono_personas.jpg" alt="imag icono persona" >
-</div>
+     <img src='icono_persona.jpg' alt="imag icono persona" />
+  </div>
 
 </section>
 
 
 
-    <section id="dato_uno"><p class="d_uno">Datos basicos </p>
-   
-    <p class="dere">Tipo de usuario <a class="is"> Resp Con accesor</a></p>
-     <p class="dere">Codigo de usuario <a class="is"> Resp Con accesor</a></p>
-      <p class="dere">Usuario de acceso <a class="is"> Resp Con accesor</a></p>
-       <p class="dere">Usuario  <a class="is"> Resp Con accesor</a></p>
-         <p class="dere">Genero <a class="is"> Resp Con accesor</a></p>
-        <p class="dere">Cedula de identidad <a class="is"> Resp Con accesor</a></p>
-         <p class="dere">Correo <a class="is"> Resp Con accesor</a></p>
-          <p class="dere">Ubicacion<a class="is"> Resp Con accesor</a></p>
-             <p class="dere">Cuenta vinculada<a class="is"> Resp Con accesor</a></p>
-        </section>
+   <section id="dato_uno">
+  <p class="d_uno">Datos básicos</p>
+
+  <div class="fila">
+    <span class="etiqueta">Tipo de usuario</span>
+    <span class="valor">Resp Con accesor</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Código de usuario</span>
+    <span class="valor">123456789</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Usuario de acceso</span>
+    <span class="valor">usuario123</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Usuario</span>
+    <span class="valor">IngridV</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Género</span>
+    <span class="valor">Femenino</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Cédula de identidad</span>
+    <span class="valor">V-12345678</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Correo</span>
+    <span class="valor">correo@example.com</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Ubicación</span>
+    <span class="valor">Caracas</span>
+  </div>
+
+  <div class="fila">
+    <span class="etiqueta">Cuenta vinculada</span>
+    <span class="valor">Sí</span>
+  </div>
+</section>
    
     
  
