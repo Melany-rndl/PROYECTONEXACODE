@@ -216,3 +216,64 @@ if (botonMenuProfesor && menuAccionProfesor) {
 </script>
 </body>
 </html>
+<?php
+include("Conexion-Clase.php");
+
+// obtener clases disponibles
+$clases = mysqli_query($conn, "SELECT id_clase, nombre, codigo FROM clase");
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Tarea</title>
+    <link rel="stylesheet" href="Tareas.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h2>Crear Tarea</h2>
+
+<form id="formTarea" method="POST" action="Guardar-Tarea.php">
+    <label for="titulo">Título*:</label><br>
+    <input type="text" id="titulo" name="titulo"><br><br>
+
+    <label for="descripcion">Descripción*:</label><br>
+    <textarea id="descripcion" name="descripcion"></textarea><br><br>
+
+    <label for="tema">Tema:</label><br>
+    <input type="text" id="tema" name="tema"><br><br>
+
+    <label for="nota">Nota máxima:</label><br>
+    <input type="number" step="0.01" id="nota" name="nota"><br><br>
+
+    <label for="clase">Clase*:</label><br>
+    <select id="clase" name="clase_id_clase">
+        <option value="">Seleccione una clase</option>
+        <?php while($row = mysqli_fetch_assoc($clases)) { ?>
+            <option value="<?php echo $row['id_clase']; ?>">
+                <?php echo $row['nombre'] ?: 'Sin nombre'; ?> (<?php echo $row['codigo']; ?>)
+            </option>
+        <?php } ?>
+    </select><br><br>
+
+    <button type="submit">Guardar Tarea</button>
+</form>
+
+<script>
+$(document).ready(function(){
+    $("#formTarea").on("submit", function(e){
+        let titulo = $("#titulo").val().trim();
+        let descripcion = $("#descripcion").val().trim();
+        let clase = $("#clase").val();
+
+        if(titulo === "" || descripcion === "" || clase === ""){
+            alert("Título, descripción y clase son obligatorios.");
+            e.preventDefault();
+        }
+    });
+});
+</script>
+
+</body>
+</html>
