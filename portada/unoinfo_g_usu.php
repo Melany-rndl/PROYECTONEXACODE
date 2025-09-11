@@ -20,7 +20,7 @@
         }
     @media  (max-width: 768px) {
   body {
-    grid-template-rows: 105px 300px 400px ;
+    grid-template-rows: 100px 300px 400px ;
     grid-template-columns: 99%;
     grid-template-areas:
      " pag"

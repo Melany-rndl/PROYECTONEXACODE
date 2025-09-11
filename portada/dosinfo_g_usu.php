@@ -8,13 +8,13 @@
    
      body{
             display: grid;
-            grid-template-rows: 80px 150px 300px 450px ;
+            grid-template-rows: 80px 150px 340px 440px ;
             grid-template-columns:4% 96% ;
             grid-template-areas:
             "iz pag"
             "iz tit "
-             "iz presentacion "
-            "iz datos"
+             "iz cont "
+            "iz dato_uno"
            
            
             ;
@@ -64,19 +64,7 @@
         margin-left: 30px;
         color: #585858;
     }
-      #datos{
-        grid-area: datos;
-        display: grid;
-            grid-template-rows: 460px ;
-            grid-template-columns:48% 48%;
-            grid-template-areas:
-            "dato_uno dato_dos"
-           
-           
-           
-            ;
-            gap: 60px;
-    }  
+      
        
        
        #dato_uno{
@@ -90,6 +78,7 @@
         border: 3px solid #585858;
     background-color: white;
     border-radius: 50px;
+    
     }  
     .d_uno{
         font-family: arial;
@@ -100,7 +89,7 @@
     .dere{
          font-family: arial;
         font-size: 18px;
-        margin-left: 14px;
+        margin-left: 40px;
         color: #282727;
     }
     .is{
@@ -109,6 +98,30 @@
         margin-left: 434px;
         color: #585858;
     }
+    #personita{
+        position: relative;
+        top:20px;
+        left:1000px;
+    }
+    #cont{
+        grid-area: cont;
+
+         display: grid;
+            grid-template-rows: 340px 340px  ;
+            grid-template-columns:50% 50% ;
+            grid-template-areas:
+            "presentacion seccion_p"
+            
+           
+           
+            ;
+    }
+
+
+     #seccion_p{
+        grid-area: seccion_p;
+    }
+
    
  </style>
 </head>
@@ -126,15 +139,21 @@
     <p id =t_dos>Creado:Nombre del creador  Fecha 00/00/00 <a id="t_tres">Modificado:Nombre del creador  Fecha 00/00/00</a></p>
 </section>
 
-
+<main id="cont">
 <section id="presentacion">
     <p class="t_cinco">Ingrid Vazquez</p>
      <p class="t_cinco">Analista contable</p>
       <p class="t_cinco">activo</p>
+       
+</section>
+<section id="seccion_p">
+<div id="personita">
+     <img src="icono_persona.jpg" alt="imag icono persona" />
+  </div>
 </section>
 
+</main>
 
-<main id="datos">
     <section id="dato_uno"><p class="d_uno">Datos basicos </p>
    
     <p class="dere">Tipo de usuario <a class="is"> Resp Con accesor</a></p>
@@ -148,24 +167,11 @@
              <p class="dere">Cuenta vinculada<a class="is"> Resp Con accesor</a></p>
         </section>
    
-    <section id="dato_dos">
-        <p class="d_uno">Datos de oficina </p>
-
-
-          <p class="dere">Tipo de usuario <a class="is"> Resp Con accesor</a></p>
-     <p class="dere">Codigo de usuario <a class="is"> Resp Con accesor</a></p>
-      <p class="dere">Usuario de acceso <a class="is"> Resp Con accesor</a></p>
-       <p class="dere">Usuario  <a class="is"> Resp Con accesor</a></p>
-         <p class="dere">Genero <a class="is"> Resp Con accesor</a></p>
-        <p class="dere">Cedula de identidad <a class="is"> Resp Con accesor</a></p>
-         <p class="dere">Correo <a class="is"> Resp Con accesor</a></p>
-          <p class="dere">Ubicacion<a class="is"> Resp Con accesor</a></p>
-             <p class="dere">Cuenta vinculada<a class="is"> Resp Con accesor</a></p>
-        </section>
+   
     </section>
  
    
-</main>
+
 
 
 
