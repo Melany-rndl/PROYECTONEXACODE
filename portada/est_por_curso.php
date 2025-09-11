@@ -7,26 +7,29 @@
   <style>
     body {
        display: grid;
-            grid-template-rows: 95px 300px  650px ;
+            grid-template-rows: 90px 300px  650px ;
             grid-template-columns:4% 96% ;
             grid-template-areas:
             "iz pag"
             "iz alumnos "
             "iz profesores"
-            
-            
+           
+           
             ;
         font-family: Arial;
       background: white;
-      
+     
     }
-      
-    
+     
    
+   
+
+
     h2 {
       margin-bottom: 10px;
       color: #333;
     }
+
 
     section {
       background: #fff;
@@ -35,6 +38,7 @@
       margin-bottom: 30px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
+
 
     /* ===== PROFESORES ===== */
     #profesores ul {
@@ -45,6 +49,7 @@
       list-style: none;
     }
 
+
     #profesores li {
       display: flex;
       justify-content: space-between;
@@ -54,11 +59,13 @@
       border-radius: 6px;
     }
 
+
     #profesores a, #profesores button {
       margin-top: 15px;
       display: inline-block;
       text-decoration: none;
     }
+
 
     button {
       background: #4285f4;
@@ -69,6 +76,7 @@
       cursor: pointer;
     }
 
+
     /* ===== ALUMNOS ===== */
     #alumnos header {
       display: flex;
@@ -77,6 +85,7 @@
       margin-bottom: 15px;
     }
 
+
     #alumnos ul {
       display: flex;
       flex-direction: column;
@@ -84,6 +93,7 @@
       list-style: none;
       padding: 0;
     }
+
 
     #alumnos li {
       display: flex;
@@ -94,26 +104,30 @@
       border-radius: 6px;
     }
 
+
     #alumnos li a {
       color: #4285f4;
       text-decoration: none;
       font-size: 0.9em;
     }
 
+
     #alumnos li a:hover {
       text-decoration: underline;
     }
+
 
   </style>
 </head>
 <body>
      <header id="pag">
-        <?php  include ("cabezera.php")?>
+        <?php  include ("dis_cabezera.php")?>
         </header>
         <section id="iz">
-          <?php  include ("estilo_menu.php")?>
+            <?php  include ("dis_menu.php")?>
   <div id="menuLateral">
-   </section>
+  </div>
+</section>
   <!-- Sección Profesores -->
   <section id="profesores">
     <h2>Profesores</h2>
@@ -125,6 +139,7 @@
     <a href="#">Ver todo</a><br>
     <button>Habilitar el acceso para padres, madres o tutores</button>
   </section>
+
 
   <!-- Sección Alumnos -->
   <section id="alumnos">
@@ -140,11 +155,24 @@
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+   
    
       <h2>Alumnos</h2>
       <p>38 alumnos</p>
-    
+   
+
 
     <form>
       <label>
@@ -152,6 +180,7 @@
       </label>
       <button type="submit">Acciones</button>
     </form>
+
 
     <ul>
       <li><span>Alvarez Tejada Alejandro</span> <a href="#">Invitar a padres</a></li>
@@ -168,6 +197,6 @@
       <li><span>Molina Vidaurre Denira</span> <a href="#">Invitar a padres</a></li>
     </ul>
   </section>
-  
+ 
 </body>
 </html>

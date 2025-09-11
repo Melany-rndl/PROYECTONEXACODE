@@ -6,6 +6,7 @@
     <title>Document</title>
     <style>
 
+
 :root {
       --celeste: #385da8;
       --gris-claro: #f4f4f4;
@@ -16,28 +17,32 @@
       --morado: rgb(35, 91, 245);
     }
 
+
           body{
             display: grid;
-    grid-template-rows: 90px 300px 280px 300px ;
+    grid-template-rows: 95px 210px 200px 280px 300px ;
     grid-template-columns: 4% 71% 24% ;
     grid-template-areas:
     "iz pag pag"
     "iz barratextouno general"
+    "iz espacio general"
     "iz barratextodos general   "
     "iz pie general "
    
     ;
-   gap:10px;
+   
         }
+
 
       @media(max-width:730px){
     body{
     display: grid;
-    grid-template-rows: 100px 200px 300px 40px;
+    grid-template-rows: 100px 200px 200px 300px 40px;
     grid-template-columns:  1% 99%;
     grid-template-areas:
     " iz pag "
     " iz barratextouno  "
+    "  iz espacio "
     "  iz barratextodos "
     " iz general "
     " iz general  "
@@ -45,41 +50,34 @@
    
    
        }
- 
+
+
+
 
 }
        
 
-      
-    
 
-
-
-
-
-
-
-
-        #iz{
-            grid-area: iz;
-           
-        }
-
- 
-
-
-
-
-
-
-
-
-
-    #pag{
-        grid-area: pag;
+     
    
-    }
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
 
 
 
@@ -89,12 +87,13 @@
         border-bottom: 2px solid #666565;
     }
     #t{
-      font-size: 36px; 
-      border: none; 
+      font-size: 36px;
+      border: none;
       background-color: white;
        margin-top: 30px;
        margin-left: 28px;
     }
+
 
     #nomprof{
         font-family: arial;
@@ -106,16 +105,27 @@
     font-family: arial;
         color: #666565;
         font-size: 20px;
-        margin-left: 230px;
-        position: absolute;
-        top: 170px;
+        margin-left: 130px;
+       
    }
    #fechaentrega{
      font-family: arial;
         color: #385da8;
         font-size: 20px;
-        margin-left: 1030px;
+        margin-left: 900px;
    }
+
+
+   #espacio{
+    grid-area:espacio;
+   }
+   #ins{
+    font-family: arial;
+        color: #666565;
+        font-size: 20px;
+        margin-left: 30px;
+   }
+
 
     #barratextodos{
         grid-area: barratextodos;
@@ -129,7 +139,7 @@
     grid-template-areas:
     "cajauno"
     "cajados"
-    
+   
     ;
      gap: 50px;
         }
@@ -156,11 +166,26 @@
             border-radius: 20px ;
             font-size: 20px;
             padding: 15px;
-             margin-left: 90px;
+             margin-left: 40px;
+             margin-top: 0px;
              cursor: pointer;
+             transition: all 3s ;
              
     }
-    
+     #adjunt:hover{
+       color:white;
+       background-color:  rgb(86, 59, 98);
+     }
+    #arch{
+          margin-left: 24px;
+          margin-top:40px;
+        padding: 40px;
+         border: 2px solid rgba(88, 86, 88, 1) ;
+        padding-left: 390px;
+        padding-top: 60px;
+        border-radius:30px;
+    }
+   
     #marcar{
         color: white;
             background:rgb(86, 59, 98);
@@ -168,12 +193,27 @@
             border-radius: 20px;
             font-size: 20px;
             padding: 15px;
-             margin-left: 58px;
+             margin-left: 30px;
+             margin-right: 30px;
              cursor: pointer;
              margin-top: 10px;
+              transition: all 3s ;
     }
 
- 
+
+    #marcar:hover{
+color:  rgb(86, 59, 98);
+ background-color:white;
+
+
+    }
+
+
+
+
+
+
+
 
 
 
@@ -184,27 +224,31 @@
      #cajados{
         grid-area: cajados;
          margin-left: 40px;
-          background-color: #9fbad5;
-  border: 2px solid #949393;
+          background-color: white;
+  border: 3px solid rgb(94, 44, 116);
   border-radius: 16px;
+   transition: all 3s ;
+    }
+    #cajados:hover{
+        background-color: rgba(184, 162, 216, 1);
     }
     #puntaje{
         font-family: arial;
         font-size: 28px;
         color: rgb(95, 37, 112);
-        margin-left: 80px;
+        margin-left: 60px;
     }
     #vale{
         font-family: arial;
         font-size: 28px;
         color: #3c3c3c;
-        margin-left: 90px;
+        margin-left: 60px;
     }
     #puntos{
         font-family: arial;
         font-size: 28px;
         color: #3c3c3c;
-        margin-left: 90px;
+        margin-left: 60px;
     }
     #pie{
         grid-area: pie;
@@ -220,12 +264,14 @@
       gap: 2rem;
     }
 
+
     .class-card, .materials, .tasks {
       background-color: white;
       border-radius: 12px;
       padding: 1.5rem;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
+
 
     .class-card h3,
     .materials h3,
@@ -234,11 +280,13 @@
       margin-bottom: 1rem;
     }
 
+
     .comment-box {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 1rem;
     }
+
 
     .comment-box textarea {
       padding: 0.6rem;
@@ -248,6 +296,7 @@
       resize: vertical;
       font-family: 'Roboto', sans-serif;
     }
+
 
     .comment-box button {
       background-color: var(--azul);
@@ -259,15 +308,18 @@
       font-weight: bold;
     }
 
+
     .comment-box button:hover {
       background-color: var(--morado);
     }
+
 
     .comment-list {
       margin-top: 1rem;
       display: grid;
       gap: 1rem;
     }
+
 
     .comment-item {
       background-color: var(--gris-claro);
@@ -281,6 +333,8 @@
       width: 100%;
       overflow: hidden;
     }
+
+
 
 
 #menuLateral {
@@ -298,6 +352,7 @@
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
+
 #menuLateral a {
   text-decoration: none;
   color: #3d3d3d;
@@ -307,28 +362,40 @@
   border-bottom: 1px solid #ccc;
 }
 
+
 #menuLateral a:hover {
   color: #385da8;
 }
 
+
     </style>
 </head>
 <body>
-    <header id="pag">
-        <?php  include ("cabezera.php")?>
+   <header id="pag">
+        <?php  include ("dis_cabezera.php")?>
         </header>
         <section id="iz">
-          <?php  include ("estilo_menu.php")?>
+            <?php  include ("dis_menu.php")?>
   <div id="menuLateral">
-   </section>
+  </div>
+</section>
    <section id="barratextouno">
       <button id="t">📝</button> <strong id="nomtarea">NOMBRE DE LA TAREA</strong>
-      <p id="nomprof">nombre del profesor</p><p id="fechapublicacion">• fecha publicadion</p>
+      <p id="nomprof">nombre del profesor  <a id="fechapublicacion">• fecha publicadion</a></p>
       <p id="fechaentrega"><strong>fecha de entrega : 15 de ago</strong> </p>
+    </section>
+    <section id="espacio">
+        <p id="ins"> Instrucciones de la tarea</p><br>
+        <br>
+        <br>
+       
+        <buton id="arch"></buton>
     </section>
    <section id="barratextodos">
 
+
    <div class="container">
+
 
     <div class="class-card">
       <h3>👥 nombre de la persona</h3><h3>• fecha publicadion</h3>
@@ -339,6 +406,9 @@
       </div>
       <div class="comment-list" id="listaComentarios"></div>
     </div>
+
+
+
 
 
 
@@ -354,13 +424,16 @@
     <p id="vale">vale por :</p>
     <p id="puntos">100 puntos</p>
     </section>
-    
+   
    </main>
    <footer id="pie">
     © 2025 Nexa Classroom. Todos los derechos reservados.
   </footer>
 
+
  
+
+
 
 
   <script>
@@ -376,8 +449,11 @@
       }
     }
 
-     
+
   </script>
+
 
 </body>
 </html>
+
+

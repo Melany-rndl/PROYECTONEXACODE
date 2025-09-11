@@ -7,13 +7,32 @@
 <style>
     body{
         display: grid;
-        grid-template-rows: 100px 100px 730px ;
-        grid-template-columns:80% 20% ;
+        grid-template-rows: 95px 100px 100px 730px ;
+        grid-template-columns:4% 76% 20% ;
         grid-template-areas:
-            "nom nom"
-            "iconos datos"
-            "fondo datos";
+            " iz pag pag"
+            " iz nom nom"
+            "iz iconos datos"
+            "iz fondo datos";
     }
+      @media  (max-width: 768px) {
+  body {
+    grid-template-rows: 115px 200px 400px 100px 600px;
+    grid-template-columns: 99%;
+    grid-template-areas:
+      "  pag "
+      "  nom "
+      "  datos"
+      " iconos "
+      " fondo ";
+  }
+  #img{
+        padding-left: 100px;
+        padding-bottom:50px ;
+        margin-left: 20px;
+    }
+  }
+
 
     #nom{
         grid-area: nom;
@@ -21,12 +40,14 @@
         border-bottom: 2px solid #5c5959;
     }
 
+
     #nom_tarea{
         font-size: 25px;
         color: #5c5959;
         border-right: 2px solid #585858;
         font-family: arial;
     }
+
 
     #letra{
         width: 45px;
@@ -42,11 +63,13 @@
         cursor: pointer;
     }
 
+
     #nom_persona{
         font-size: 25px;
         color: #5c5959;
         font-family: arial;
     }
+
 
     #entregado{
         font-family: arial;
@@ -55,21 +78,27 @@
         margin-left: 20px;
     }
 
+
     #dev{
         font-size: 18px;
         font-family: arial;
         color: white;
         padding: 15px;
-        margin-left: 825px;
+        margin-left: 1220px;
+        margin-bottom:80px;
+       
+     
         border-radius: 30px;
         border: 2px solid #538bab ;
         background-color:#538bab ;
     }
 
+
     #iconos{
         grid-area: iconos;
         background-color: rgb(30, 28, 28);
     }
+
 
     #arch{
         margin-top: 15px;
@@ -77,17 +106,20 @@
         font-size: 35px;
     }
 
+
     #nombre_archivo{
         font-size: 20px;
         color: white;
         font-family: arial;
     }
 
+
     #im{
         font-size: 40px;
-        margin-left: 1100px;
+        margin-left:700px;
         cursor: pointer;
     }
+
 
     #desc{
         font-size: 40px;
@@ -95,35 +127,41 @@
         cursor: pointer;
     }
 
+
     #fondo{
         grid-area: fondo;
         background-color: rgb(30, 28, 28);
     }
 
+
     #img{
-        padding-left: 1200px;
-        padding-bottom:600px ;
-        margin-left: 100px;
+        padding-left: 900px;
+        padding-bottom:400px ;
+        margin-left: 70px;
     }
+
 
     #datos{
         grid-area: datos;
         background-color: white;
     }
 
+
     #ar{
         font-size: 20px;
         color: #5c5959;
-        font-family: arial; 
+        font-family: arial;
         margin-left: 30px;
     }
+
 
     #fecha_entrega{
         font-size: 20px;
         color: #5c5959;
-        font-family: arial; 
+        font-family: arial;
         margin-left: 30px;
     }
+
 
     #barra_arch{
         padding-left: 40px;
@@ -135,6 +173,7 @@
         font-family: arial;
     }
 
+
     #calif{
         padding-left: 40px;
         padding-bottom: 60px;
@@ -143,6 +182,7 @@
         border-bottom: 2px solid #5c5959;
         font-family: arial;
     }
+
 
     #puntaje{
         font-size: 30px;
@@ -153,96 +193,34 @@
         padding-left: 50px;
     }
 
-    /* MEDIA QUERIES */
-    @media (max-width: 1200px){
-        #dev{
-            margin-left: 20px;
-        }
-        #im{
-            margin-left: 20px;
-            font-size: 35px;
-        }
-        #desc{
-            margin-left: 10px;
-            font-size: 35px;
-        }
-        #img{
-            padding-left: 50px;
-            padding-bottom: 400px;
-        }
-    }
 
-    @media (max-width: 992px){
-        body{
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto;
-            grid-template-areas:
-                "nom"
-                "iconos"
-                "fondo"
-                "datos";
-        }
-        #dev{
-            margin-left: 0;
-            margin-top: 10px;
-        }
-        #im, #desc{
-            margin-left: 0;
-            font-size: 30px;
-        }
-        #img{
-            padding-left: 20px;
-            padding-bottom: 300px;
-            margin-left: 0;
-        }
-    }
-
-    @media (max-width: 600px){
-        #nom_tarea, #nom_persona{
-            font-size: 18px;
-        }
-        #letra{
-            width: 35px;
-            height: 35px;
-            font-size: 16px;
-        }
-        #entregado{
-            font-size: 16px;
-            margin-left: 10px;
-        }
-        #arch{
-            font-size: 28px;
-        }
-        #nombre_archivo{
-            font-size: 16px;
-        }
-        #im, #desc{
-            font-size: 28px;
-        }
-        #ar, #fecha_entrega, #barra_arch, #calif, #puntaje{
-            font-size: 16px;
-            padding-left: 20px;
-        }
-        #img{
-            padding-left: 10px;
-            padding-bottom: 200px;
-        }
-    }
+   
 </style>
 </head>
 <body>
+    <header id="pag">
+        <?php  include ("dis_cabezera.php")?>
+        </header>
+        <section id="iz">
+            <?php  include ("dis_menu.php")?>
+  <div id="menuLateral">
+  </div>
+</section>
 <section id="nom">
     <p id="nom_tarea">Nonmbre de la tarea <a id="letra">E</a> <a id="nom_persona">Nombre de la persona</a>    
-    <a id="entregado"> Entregado</a> <button id="dev">Devolver</button></p> 
+    <a id="entregado"> Entregado </a> <button id="dev">Devolver</button></p>
 </section>
+
 
 <section id="iconos">
     <p id="arch">📂<a id="nombre_archivo">Nombre.archivo</a><a id="im">🖨️​</a><a id="desc">📥​</a></p>
 </section>
 
+
 <section id="fondo">
     <button id="img"></button>
 </section>
+
 
 <section id="datos">
     <p id="ar">Archivos</p>
@@ -254,3 +232,5 @@
 </section>
 </body>
 </html>
+
+

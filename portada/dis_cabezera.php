@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-         #pag{
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+
+ header{
          border-bottom: 2px solid #666565;
         background-color: white;
     grid-area: pag;
@@ -30,7 +33,7 @@ nav{
             padding: 8px;
             font-size: 17px;
   position: absolute;
-  margin-left: 1100px;
+  margin-left: 900px;
   margin-top: 10px;
              cursor: pointer;
 }
@@ -40,13 +43,16 @@ nav{
 
 
 
+
+
+
 #mas{
     background-color:white ;
     color: #3f3e57;
     border: none;
     font-size: 50px;
   position: absolute;
-  margin-left: 1350px;
+  margin-left: 1100px;
  cursor: pointer;  
    
 }
@@ -61,14 +67,23 @@ nav{
     font-family: arial;
     font-size: 18px;
   position: absolute;
-  margin-left: 1400px;
+  margin-left: 1060px;
   margin-top: 10px;
   cursor: pointer;
+
+
+
+
 }
  h2{
     color: #42334d;
     font-family: arial;
  }
+
+
+
+
+
 .botonesuperior{
    background-color: white;
             border:none;
@@ -77,53 +92,21 @@ nav{
             color: #4e4c7f;
              cursor: pointer;
 }
- #iz{
-            grid-area: iz;
-             
- 
-        }
-        .iconomenu{
-    background-color: white;
-    border: none;
-    font-size: 25px;
-    color: #3f3e57;
-    cursor: pointer;
-}
-#menuLateral {
-  display: none;
-  flex-direction: column;
-  background-color: #f4f4f4;
-  border-right: 2px solid #ccc;
-  padding: 20px;
-  position: absolute;
-  top: 80px;
-  left: 0;
-  width: 200px;
-  height: calc(100vh - 80px);
-  z-index: 1000;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-}
-#menuLateral a {
-  text-decoration: none;
-  color: #3d3d3d;
-  font-family: Arial, sans-serif;
-  padding: 10px 0;
-  font-size: 18px;
-  border-bottom: 1px solid #ccc;
-}
-#menuLateral a:hover {
-  color: #385da8;
-}
-    </style>
+
+
+
+
+</style>
 </head>
 <body>
-     <header id="pag">
+ <header id="pag">
        
         <strong>NEXA CLASS </strong>  
         <button Id="estudiante">👤<a id="es">ESTUDIANTE</a></button>
         <button id="let">E</button>
         <button id="mas">+</button>
         <nav>
+           
         <button class="botonesuperior">Inicio</button>
          <button class="botonesuperior">Mis cursos</button>
           <button class="botonesuperior">Tablón</button>
@@ -132,4 +115,5 @@ nav{
     </header>
 </body>
 </html>
-        
+
+

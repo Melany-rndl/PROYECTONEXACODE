@@ -7,7 +7,7 @@
     <style>
         body{
             display: grid;
-            grid-template-rows: 90px 90px 200px 60px 1000px ;
+            grid-template-rows: 95px 90px 200px 60px 1000px ;
             grid-template-columns:4% 94% ;
             grid-template-areas:
             "iz pag"
@@ -15,114 +15,63 @@
             "iz caja_conteo"
             "iz espacio"
             "iz caja_tarea"
-            
+           
             ;
         }
-        header{
-         border-bottom: 2px solid #666565;
-        background-color: white;
-    grid-area: pag;
-    font-size: 26px;
-  color: #4e4c7f;
-  text-shadow: 2px 2px 4px #797878;
- 
-}
-nav{
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 20px;
-    flex-direction: row reverse;
-}
-#estudiante{
-  color: white;
-            background:white;
-            border: 2px solid rgb(107, 46, 134);
-            border-radius: 5px;
-            padding: 8px;
-            font-size: 17px;
-  position: absolute;
-  margin-left: 1100px;
-  margin-top: 10px;
-             cursor: pointer;
-}
-#es{
-    color: rgb(107, 46, 134);
-}
-#mas{
-    background-color:white ;
-    color: #3f3e57;
-    border: none;
-    font-size: 50px;
-  position: absolute;
-  margin-left: 1350px;
- cursor: pointer;  
-   
-}
-#let{
-     width: 40px;
-  height: 40px;
-    padding: 10px;
-    background-color:rgb(70, 130, 208) ;
-    border: rgb(70, 130, 208);
-    color: #f9f9f9;
-    border-radius: 50%;
-    font-family: arial;
-    font-size: 18px;
-  position: absolute;
-  margin-left: 1400px;
-  margin-top: 10px;
-  cursor: pointer;
-}
- h2{
-    color: #42334d;
-    font-family: arial;
- }
+      @media  (max-width: 768px) {
+  body {
+    grid-template-rows: 100px 100px 300px 80px 10000px;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "pag"
+      "barra_text"
+      "caja_conteo"
+      "espacio"
+      "caja_tarea";
+  }
 
-.botonesuperior{
-   background-color: white;
-            border:none;
-            font-family: Arial;
-            font-size: 18px;
-            color: #4e4c7f;
-             cursor: pointer;
+
+ 
+
+
+  .cajita_let {
+    margin-left: 10px;
+  }
+
+
+  #enviar {
+    position: relative;
+    top: 20px;
+    font-size: 18px;
+  }
+
+
+  #puntos {
+    position: relative;
+    top: 0px;
+    left: 0;
+    display: block;
+    margin-top: 45px;
+  }
+   .entregado{
+      position: relative;
+     
+        right:40px;
+      }
+      .asignado{
+        position: relative;
+        right:400px;
+       
+     
+      }
+      .evaluado{
+       
+        position: absolute;
+        top:706px;
+        left: 510px;
+      }
 }
- #iz{
-            grid-area: iz;
-        }
-        .iconomenu{
-    background-color: white;
-    border: none;
-    font-size: 25px;
-    color: #3f3e57;
-    cursor: pointer;
-}
-#menuLateral {
-  display: none;
-  flex-direction: column;
-  background-color: #f4f4f4;
-  border-right: 2px solid #ccc;
-  padding: 20px;
-  position: absolute;
-  top: 80px;
-  left: 0;
-  width: 200px;
-  height: calc(100vh - 80px);
-  z-index: 1000;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-}
-#menuLateral a {
-  text-decoration: none;
-  color: #3d3d3d;
-  font-family: Arial, sans-serif;
-  padding: 10px 0;
-  font-size: 18px;
-  border-bottom: 1px solid #ccc;
-}
-#menuLateral a:hover {
-  color: #385da8;
-}
+       
          #barra_text{
             grid-area: barra_text;
             background-color: white;
@@ -130,16 +79,17 @@ nav{
         }
         #enviar{
           padding: 15px;
-          background-color: white;
-          color: #5c5959;
-          border: 2px solid #5c5959;
+         background-color: #583d9cff;
+          color: white;
+          border: 2px solid #583d9cff ;
           border-radius: 24px;
           margin-top: 10px;
           font-size: 20px;
+         
         }
         #puntos{
           position: absolute;
-          top :60px;
+          top :80px;
           left: 190px;
           font-size: 25px;
           color: #5c5959;
@@ -147,6 +97,7 @@ nav{
         #car{
           font-size: 50px;
           margin-left: 10px;
+          margin-top :405px;
         }
         #caja_conteo{
             grid-area: caja_conteo;
@@ -154,7 +105,7 @@ nav{
              border-bottom: 2px solid #585858;
         }
         #descripcion_t{
-              
+             
           font-size: 30px;
              color: #46217f;
         }
@@ -163,22 +114,22 @@ nav{
         color: #5c5959;
         margin-top: 20px;
         margin-left: 50px;
-        border-right: 2px solid #585858;
+       
       }
       .asignado{
         font-size: 25px;
         color: #5c5959;
         position: absolute;
-        top:246px;
-        left: 330px;
-      
+        top:260px;
+        left: 250px;
+     
       }
       .evaluado{
         font-size: 25px;
         color: #5c5959;
         position: absolute;
-        top:246px;
-        left: 510px;
+        top:260px;
+        left: 380px;
       }
       #espacio{
         grid-area: espacio;
@@ -197,30 +148,56 @@ nav{
     ;
     gap: 20px;
         }
+ @media  (max-width: 768px) {
+  #caja_tarea {
+    grid-template-rows: 400px 400px 400px  400px   400px   ;
+    grid-template-columns: 99%;
+    grid-template-areas:
+      "t_uno "
+      "t_dos "
+      "t_tres"
+       "t_cuatro "
+       "t_cinco"
+       
+  ;
+  }
+}
+
+
         #t_uno{
           grid-area: t_uno;
           background-color: rgb(220, 221, 222);
   border: 2px solid #949393;
+  border-radius:30px;
+  transition: all 3s ;
         }
         #t_dos{
           grid-area: t_dos;
          background-color: rgb(220, 221, 222);
   border: 2px solid #949393;
+  border-radius:30px;
+  transition: all 3s ;
         }
         #t_tres{
           grid-area: t_tres;
           background-color: rgb(220, 221, 222);
   border: 2px solid #949393;
+  border-radius:30px;
+   transition: all 3s ;
         }
         #t_cuatro{
           grid-area: t_cuatro;
          background-color: rgb(220, 221, 222);
   border: 2px solid #949393;
+  border-radius:30px;
+  transition: all 3s ;
         }
         #t_cinco{
           grid-area: t_cinco;
           background-color: rgb(220, 221, 222);
   border: 2px solid #949393;
+  border-radius:30px;
+transition: all 3s ;
         }
        .cajita_let{
          width: 45px;
@@ -235,6 +212,7 @@ nav{
   margin-left: 130px;
   margin-top: 17px;
   cursor: pointer;
+
 
        }
        .nom_estudiante{
@@ -259,21 +237,43 @@ nav{
          margin-left: 10px;
         font-family: arial;
         font-size: 20px;
-        color: #1ca445;
+        color:  #25a41cff;
+       }
+
+
+       #t_uno:hover{
+       
+        box-shadow:7px 3px 4px #9980b8ff;
+       }
+        #t_dos:hover{
+       
+        box-shadow:7px 3px 4px #9980b8ff;
+       }
+        #t_tres:hover{
+       
+        box-shadow:7px 3px 4px #9980b8ff;
+       }
+        #t_cuatro:hover{
+       
+        box-shadow:7px 3px 4px #9980b8ff;
+       }
+        #t_cinco:hover{
+       
+        box-shadow:7px 3px 4px #9980b8ff;
        }
     </style>
 </head>
 <body>
-     
         <header id="pag">
-        <?php  include ("cabezera.php")?>
+        <?php  include ("dis_cabezera.php")?>
         </header>
         <section id="iz">
-          <?php  include ("estilo_menu.php")?>
+            <?php  include ("dis_menu.php")?>
   <div id="menuLateral">
-   </section>
+  </div>
+</section>
     <section id="barra_text">
-      <button id="enviar">Enviar</button><p id="puntos">Puntos                <a id="car">✉︎</a></p>
+      <button id="enviar">Enviar </button><p id="puntos">Puntos  <a id="car">✉︎</a></p>
     </section>
     <section id="caja_conteo">
       <p id="descripcion_t">Nombre de la tarea</p>
@@ -306,12 +306,10 @@ nav{
             <p class="num_archivos">Num archivos adjuntos</p>
             <p class="dato_entregado">Entregado</p></section>
      </main>
-         
-
-
-
-
-        
+       
 </body>
 </html>
+
+
+
 
