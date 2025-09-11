@@ -13,23 +13,17 @@
       --marron: #8b5e3c;
       --negro: #333;
     }
-
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
-
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--crema);
       color: var(--negro);
     }
-
-
     header {
       background-color: rgba(0, 84, 135, 0.8);
       backdrop-filter: blur(4px);
@@ -42,33 +36,23 @@
       width: 100%;
       z-index: 1000;
     }
-
-
     .logo {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-
-
     .logo img {
       height: 60px;
     }
-
-
     .logo span {
       font-family: 'Georgia', serif;
       font-size: 1.8rem;
       font-weight: bold;
     }
-
-
     nav {
       display: flex;
       gap: 1.5rem;
     }
-
-
     nav button {
       background: none;
       border: 2px solid white;
@@ -79,14 +63,10 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
-
     nav button:hover {
       background-color: white;
       color: var(--azul-institucional);
     }
-
-
     .menu-toggle {
       display: none;
       background: none;
@@ -95,8 +75,6 @@
       font-size: 1.8rem;
       cursor: pointer;
     }
-
-
     /* Submenú */
     .submenu {
       position: relative;
@@ -126,15 +104,11 @@
     .submenu:hover .submenu-content {
       display: block;
     }
-
-
     .hero {
       position: relative;
       height: 500px;
       overflow: hidden;
     }
-
-
     .carousel {
       position: absolute;
       top: 0;
@@ -143,8 +117,6 @@
       height: 100%;
       z-index: -1;
     }
-
-
     .carousel img {
       width: 100%;
       height: 100%;
@@ -153,13 +125,9 @@
       opacity: 0;
       animation: carouselFade 24s infinite;
     }
-
-
     .carousel img:nth-child(1) { animation-delay: 0s; }
     .carousel img:nth-child(2) { animation-delay: 8s; }
     .carousel img:nth-child(3) { animation-delay: 16s; }
-
-
     @keyframes carouselFade {
       0% { opacity: 0; }
       10% { opacity: 1; }
@@ -167,8 +135,6 @@
       40% { opacity: 0; }
       100% { opacity: 0; }
     }
-
-
     .hero-content {
       height: 100%;
       display: flex;
@@ -178,8 +144,6 @@
       background-color: rgba(0, 0, 0, 0.4);
       color: white;
     }
-
-
     .hero-content h1 {
       font-size: 3rem;
       font-family: 'Georgia', serif;
@@ -187,8 +151,6 @@
       background-color: rgba(255, 255, 255, 0.2);
       border-radius: 10px;
     }
-
-
     /* Sección Banda Estudiantil */
     .banda-section {
       background: white;
@@ -196,31 +158,23 @@
       text-align: center;
       color:rgba(0, 84, 135, 0.8);
     }
-
-
     .banda-section h2 {
       font-size: 2rem;
       font-weight: bold;
       color: rgba(0, 84, 135, 0.8);
       margin-bottom: 1rem;
     }
-
-
     .banda-section p {
       font-size: 1rem;
       max-width: 800px;
       margin: 0 auto 2rem;
       line-height: 1.6;
     }
-
-
     .banda-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
     }
-
-
     .banda-item {
       border-radius: 12px;
       overflow: hidden;
@@ -231,25 +185,17 @@
      transform: scale(1.03);
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
  }
-
-
-
-
     .banda-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-
-
     footer {
       background-color: var(--azul-institucional);
       color: white;
       padding: 3rem 2rem;
     }
-
-
     .footer-container {
       display: flex;
       justify-content: space-between;
@@ -258,22 +204,16 @@
       margin: 0 auto;
       gap: 2rem;
     }
-
-
     .footer-container h3,
     .footer-container h4 {
       font-family: 'Georgia', serif;
       margin-bottom: 0.8rem;
     }
-
-
     .footer-container a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
-
     .footer-container a:hover {
       text-decoration: underline;
     }
@@ -302,9 +242,7 @@
       </div>
     </div>
   </div>
-
 <?php include 'footer.php'; ?>
-
   <script>
     function toggleMenu() {
       const nav = document.getElementById('navMenu');

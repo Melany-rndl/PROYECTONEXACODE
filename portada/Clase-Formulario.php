@@ -3,26 +3,20 @@ session_start();
 if (!isset($_SESSION['id_cuenta'])) { header(header: "Location: Logueo.php"); exit(); }
 $conexion = mysqli_connect(hostname: "localhost", username: "root", password: "", database: "p25");
 if (!$conexion) die("Error de conexión");
-
 date_default_timezone_set(timezoneId: 'America/La_Paz');
-
 $id_cuenta = $_SESSION['id_cuenta'];
-
 $res_rol = mysqli_query(mysql: $conexion, query: "SELECT rol, usuario FROM cuenta WHERE id_cuenta='$id_cuenta'");
 $usuario_actual = mysqli_fetch_assoc(result: $res_rol);
 $rol = $usuario_actual ? $usuario_actual['rol'] : '';
 $nombre_usuario = $usuario_actual ? $usuario_actual['usuario'] : '';
-
 $id_clase = isset($_GET['id']) ? intval(value: $_GET['id']) : 0;
 $clase_actual = null;
 $color = '';
 $es_profesor_clase = false;
-
 $colores = ['celeste', 'azul', 'morado', 'verde', 'verdeO', 'naranja', 'amarillo', 'rosa'];
 function colorClase($nombre, $colores): mixed {
     return $colores[abs(num: crc32(string: strtolower(string: $nombre))) % count(value: $colores)];
 }
-
 if ($id_clase > 0) {
     $sql_clase = "SELECT clase.*, cuenta.usuario AS profesor 
                   FROM clase
@@ -37,7 +31,6 @@ if ($id_clase > 0) {
         }
     }
 }
-
 $sql = "SELECT clase.*, cuenta.usuario AS profesor FROM clase JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase JOIN cuenta ON clase.id_profesor = cuenta.id_cuenta WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC";
 $res = mysqli_query(mysql: $conexion, query: $sql);
 $clases_usuario = [];
@@ -53,8 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_publicacion_
     header(header: "Location: Clase-Formulario.php?id=$id_clase");
     exit();
 }
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nuevo-mensaje'])) {
     $mensaje = trim(string: $_POST['nuevo-mensaje']);
     if ($mensaje !== "" && $id_cuenta && $id_clase) {

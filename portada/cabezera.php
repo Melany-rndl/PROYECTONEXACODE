@@ -64,29 +64,11 @@ nav{
   margin-left: 1400px;
   margin-top: 10px;
   cursor: pointer;
-
-
 }
  h2{
     color: #42334d;
     font-family: arial;
  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .botonesuperior{
    background-color: white;
             border:none;
@@ -95,8 +77,6 @@ nav{
             color: #4e4c7f;
              cursor: pointer;
 }
-
-
  #iz{
             grid-area: iz;
              
@@ -109,10 +89,6 @@ nav{
     color: #3f3e57;
     cursor: pointer;
 }
-
-
-
-
 #menuLateral {
   display: none;
   flex-direction: column;
@@ -127,10 +103,6 @@ nav{
   z-index: 1000;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
-
-
-
-
 #menuLateral a {
   text-decoration: none;
   color: #3d3d3d;
@@ -139,10 +111,6 @@ nav{
   font-size: 18px;
   border-bottom: 1px solid #ccc;
 }
-
-
-
-
 #menuLateral a:hover {
   color: #385da8;
 }
@@ -156,7 +124,6 @@ nav{
         <button id="let">E</button>
         <button id="mas">+</button>
         <nav>
-           
         <button class="botonesuperior">Inicio</button>
          <button class="botonesuperior">Mis cursos</button>
           <button class="botonesuperior">Tablón</button>

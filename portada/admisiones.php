@@ -13,20 +13,17 @@
       --marron: #8b5e3c;
       --negro: #333;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--crema);
       color: var(--negro);
     }
-
     header {
       background-color: rgba(0, 84, 135, 0.8);
       backdrop-filter: blur(4px);
@@ -39,23 +36,19 @@
       width: 100%;
       z-index: 1000;
     }
-
     .logo {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-
     .logo img {
       height: 60px;
     }
-
     .logo span {
       font-family: 'Georgia', serif;
       font-size: 1.8rem;
       font-weight: bold;
     }
-
     .menu-toggle {
       background: none;
       border: none;
@@ -64,12 +57,10 @@
       cursor: pointer;
       display: none;
     }
-
     nav {
       display: flex;
       gap: 1.5rem;
     }
-
     nav a button {
       background: none;
       border: 2px solid white;
@@ -80,24 +71,20 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
     nav a button:hover {
       background-color: white;
       color: var(--azul-institucional);
     }
-
     .hero {
       position: relative;
       height: 450px;
       overflow: hidden;
     }
-
     .section {
       padding: 4rem 2rem;
       max-width: 1200px;
       margin: auto;
     }
-
     .section h2 {
       font-family: 'Georgia', serif;
       font-size: 2.5rem;
@@ -105,7 +92,6 @@
       margin-bottom: 2rem;
       text-align: center;
     }
-
     .grid-area-admisiones {
       display: grid;
       grid-template-rows: 100px 100px auto auto auto;
@@ -118,7 +104,6 @@
         "pie pie pie";
       gap: 1rem;
     }
-
     .img1 { grid-area: img1; }
     .img2 { grid-area: img2; }
     .paso1 { grid-area: paso1; }
@@ -128,7 +113,6 @@
     .paso5 { grid-area: paso5; }
     .paso6 { grid-area: paso6; }
     .pie { grid-area: pie; }
-
     .paso-box {
       background-color: white;
       padding: 1.5rem;
@@ -136,23 +120,19 @@
       box-shadow: 0 0 8px rgba(0,0,0,0.1);
       text-align: center;
     }
-
     .paso-box img {
       height: 60px;
       margin-bottom: 1rem;
     }
-
     .paso-box h3 {
       color: var(--marron);
       margin-bottom: 0.5rem;
     }
-
     footer {
       background-color: var(--azul-institucional);
       color: white;
       padding: 3rem 2rem;
     }
-
     .footer-container {
       display: flex;
       justify-content: space-between;
@@ -161,19 +141,16 @@
       margin: 0 auto;
       gap: 2rem;
     }
-
     .footer-container h3,
     .footer-container h4 {
       font-family: 'Georgia', serif;
       margin-bottom: 0.8rem;
     }
-
     .footer-container a {
       color: white;
       text-decoration: none;
       font-weight: bold;
     }
-
     .footer-container a:hover {
       text-decoration: underline;
     }
@@ -188,15 +165,12 @@
     width: 100%;
     padding: 1rem;
   }
-
   nav.active {
     display: flex;
   }
-
   .menu-toggle {
     display: block;
   }
-
   .grid-area-admisiones {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -211,14 +185,11 @@
       "pie";
   }
 }
-
   </style>
 </head>
 <body>
  
     <?php include 'h.php';?>
-
-
   <section class="section">
     <h2>Proceso de Admisión</h2>
     <div class="grid-area-admisiones">
@@ -261,8 +232,6 @@
   </section>
 
  <?php include 'footer.php'; ?>
-
-
   <script>
     function toggleMenu() {
       document.getElementById('navMenu').classList.toggle('active');

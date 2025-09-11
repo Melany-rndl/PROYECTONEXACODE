@@ -18,9 +18,111 @@
             
             ;
         }
-        
+        header{
+         border-bottom: 2px solid #666565;
+        background-color: white;
+    grid-area: pag;
+    font-size: 26px;
+  color: #4e4c7f;
+  text-shadow: 2px 2px 4px #797878;
+ 
+}
+nav{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 20px;
+    flex-direction: row reverse;
+}
+#estudiante{
+  color: white;
+            background:white;
+            border: 2px solid rgb(107, 46, 134);
+            border-radius: 5px;
+            padding: 8px;
+            font-size: 17px;
+  position: absolute;
+  margin-left: 1100px;
+  margin-top: 10px;
+             cursor: pointer;
+}
+#es{
+    color: rgb(107, 46, 134);
+}
+#mas{
+    background-color:white ;
+    color: #3f3e57;
+    border: none;
+    font-size: 50px;
+  position: absolute;
+  margin-left: 1350px;
+ cursor: pointer;  
+   
+}
+#let{
+     width: 40px;
+  height: 40px;
+    padding: 10px;
+    background-color:rgb(70, 130, 208) ;
+    border: rgb(70, 130, 208);
+    color: #f9f9f9;
+    border-radius: 50%;
+    font-family: arial;
+    font-size: 18px;
+  position: absolute;
+  margin-left: 1400px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+ h2{
+    color: #42334d;
+    font-family: arial;
+ }
 
-       
+.botonesuperior{
+   background-color: white;
+            border:none;
+            font-family: Arial;
+            font-size: 18px;
+            color: #4e4c7f;
+             cursor: pointer;
+}
+ #iz{
+            grid-area: iz;
+        }
+        .iconomenu{
+    background-color: white;
+    border: none;
+    font-size: 25px;
+    color: #3f3e57;
+    cursor: pointer;
+}
+#menuLateral {
+  display: none;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  border-right: 2px solid #ccc;
+  padding: 20px;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 200px;
+  height: calc(100vh - 80px);
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+#menuLateral a {
+  text-decoration: none;
+  color: #3d3d3d;
+  font-family: Arial, sans-serif;
+  padding: 10px 0;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+}
+#menuLateral a:hover {
+  color: #385da8;
+}
          #barra_text{
             grid-area: barra_text;
             background-color: white;
@@ -77,7 +179,6 @@
         position: absolute;
         top:246px;
         left: 510px;
-        
       }
       #espacio{
         grid-area: espacio;
@@ -93,17 +194,13 @@
     "t_uno t_dos t_tres t_cuatro t_cinco"
     "t_uno t_dos t_tres t_cuatro t_cinco"
     "t_uno t_dos t_tres t_cuatro t_cinco"
-    
     ;
     gap: 20px;
         }
-
-
         #t_uno{
           grid-area: t_uno;
           background-color: rgb(220, 221, 222);
   border: 2px solid #949393;
-          
         }
         #t_dos{
           grid-area: t_dos;
@@ -164,8 +261,6 @@
         font-size: 20px;
         color: #1ca445;
        }
-
-       
     </style>
 </head>
 <body>
@@ -179,7 +274,6 @@
    </section>
     <section id="barra_text">
       <button id="enviar">Enviar</button><p id="puntos">Puntos                <a id="car">✉︎</a></p>
-    
     </section>
     <section id="caja_conteo">
       <p id="descripcion_t">Nombre de la tarea</p>
@@ -211,7 +305,6 @@
             <button class="espacio_archivo"></button>
             <p class="num_archivos">Num archivos adjuntos</p>
             <p class="dato_entregado">Entregado</p></section>
-
      </main>
          
 
