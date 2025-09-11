@@ -1,4 +1,14 @@
 <?php
+$servername = "localhost";
+$username   = "root";     
+$password   = "";        
+$database   = "p25";      
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+if (!$conn) {
+    die("Conexión fallida: " . mysqli_connect_error());
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = mysqli_real_escape_string($conn, $_POST["titulo"]);
@@ -18,10 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<a href='Tareas-Formulario.php'>Crear otra tarea</a><br>";
             echo "<a href='Lista-Tareas.php'>Ver lista de tareas</a>";
         } else {
-            echo " Error: " . mysqli_error($conn);
+            echo "Error: " . mysqli_error($conn);
         }
     } else {
         echo "Título, descripción y clase son obligatorios.";
     }
 }
+
+mysqli_close($conn);
 ?>
