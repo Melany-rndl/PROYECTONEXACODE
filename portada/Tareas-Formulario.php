@@ -10,8 +10,7 @@ if ($id_clase <= 0) { echo "Clase no encontrada."; exit(); }
 $res_rol = mysqli_query($conexion, "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
 $rol = ($row = mysqli_fetch_assoc($res_rol)) ? $row['rol'] : '';
 $materias_menu = [];
-$res_materias = mysqli_query($conexion, 
-    "SELECT clase.nombre FROM clase 
+$res_materias = mysqli_query($conexion, "SELECT clase.nombre FROM clase 
      JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase 
      WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC");
 while ($row = mysqli_fetch_assoc($res_materias)) {
@@ -202,7 +201,6 @@ while ($row = mysqli_fetch_assoc($res_tareas)) {
               </div>
               <?php if (!$soy_profesor): ?>
                 <?php
-                // Mostrar el botón solo si NO entregó aún
                 $id_usuario = $_SESSION['id_cuenta'];
                 $id_tarea_alumno = $tarea['id_tarea'];
                 $resEnt = mysqli_query($conexion, "SELECT 1 FROM entrega WHERE tarea_id_tarea='$id_tarea_alumno' AND cuenta_id_cuenta='$id_usuario'");
