@@ -46,7 +46,7 @@ while ($row = mysqli_fetch_assoc($res_tareas)) {
   <title>Tareas - <?= htmlspecialchars($clase['nombre']); ?> - Nexa Classroom</title>
   <style>
     .contenedor-cuerpo-tareas {
-      max-width: 1400px;
+      max-width: 1200px;
       width: 100%;
       margin: 40px auto 0 auto;
       padding: 0 8px 30px 8px;
@@ -73,37 +73,47 @@ while ($row = mysqli_fetch_assoc($res_tareas)) {
     .boton-crear-tarea:hover {
       background: #5743c6;
     }
+    .tarea-btn {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      margin-bottom: 24px;
+      display: block;
+    }
     .tarea-card {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 8px;
-      margin-bottom: 24px;
       padding: 18px 12px;
       box-shadow: 0 2px 8px #0001;
       transition: box-shadow 0.2s;
-      text-decoration: none;
       color: #232323;
-      display: block;
-      position: relative;
       min-height: 80px;
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: block;
     }
     .tarea-card:hover {
       box-shadow: 0 4px 16px #0002;
       background: #f8f8ff;
     }
     .tarea-titulo {
-      font-size: 40px;
+      font-size: 32px;
       font-weight: bold;
       margin-bottom: 8px;
       color: #3c328f;
     }
     .tarea-info {
-      font-size: 20px;
+      font-size: 17px;
       color: #777;
       margin-bottom: 8px;
     }
     .tarea-preview {
-      font-size: 22px;
+      font-size: 19px;
       color: #444;
       white-space: pre-line;
     }
@@ -130,7 +140,6 @@ while ($row = mysqli_fetch_assoc($res_tareas)) {
       background: #e9e9fc;
       border-radius: 50%;
     }
-    /* Botón de entrega */
     .entregar-btn {
       display: inline-block;
       margin-top: 10px;
@@ -162,118 +171,63 @@ while ($row = mysqli_fetch_assoc($res_tareas)) {
       <div class="sin-tareas">No hay tareas aún para esta clase.</div>
     <?php else: ?>
       <?php foreach($tareas as $tarea): ?>
-        <div class="tarea-card">
-          <?php if ($soy_profesor): ?>
-            <a class="editar-tarea-btn" title="Editar tarea" href="Editar-Tareas.php?id_tarea=<?= $tarea['id_tarea'] ?>">✏️</a>
-          <?php endif; ?>
-          <div class="tarea-titulo"><?= htmlspecialchars($tarea['titulo']) ?></div>
-          <?php if (trim($tarea['tema'])): ?>
-            <div class="tarea-info">Tema: <?= htmlspecialchars($tarea['tema']) ?></div>
-          <?php endif; ?>
-          <?php if ($tarea['nota'] !== null): ?>
-            <div class="tarea-info">Nota máxima: <?= htmlspecialchars($tarea['nota']) ?></div>
-          <?php endif; ?>
-          <div class="tarea-preview">
-            <?= htmlspecialchars(mb_strimwidth($tarea['descripcion'], 0, 170, (mb_strlen($tarea['descripcion']) > 170 ? '...' : ''))) ?>
-          </div>
-          <!-- BOTÓN DE ENTREGA (visible solo para alumnos) -->
-          <?php if (!$soy_profesor): ?>
-            <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['clase_id_clase']) ?>">
-              Subir mi entrega
-            </a>
-          <?php endif; ?>
-        </div>
+        <?php
+        // ENLACE DEPENDIENDO DEL ROL
+        if ($soy_profesor) {
+            $form_action = "profesor_ver_entregas.php";
+            $field_name = "id_tarea";
+            $field_value = $tarea['id_tarea'];
+        } else {
+            $form_action = "estudiante_mis_notas.php";
+            $field_name = "id_tarea";
+            $field_value = $tarea['id_tarea'];
+        }
+        ?>
+        <form method="get" action="<?= $form_action ?>" class="tarea-btn" style="margin:0;padding:0;">
+          <input type="hidden" name="<?= $field_name ?>" value="<?= $field_value ?>">
+          <button type="submit" style="all:unset;width:100%;display:block;cursor:pointer;">
+            <div class="tarea-card">
+              <?php if ($soy_profesor): ?>
+                <a class="editar-tarea-btn" title="Editar tarea" href="Editar-Tareas.php?id_tarea=<?= $tarea['id_tarea'] ?>" onclick="event.stopPropagation();">✏️</a>
+              <?php endif; ?>
+              <div class="tarea-titulo"><?= htmlspecialchars($tarea['titulo']) ?></div>
+              <?php if (trim($tarea['tema'])): ?>
+                <div class="tarea-info">Tema: <?= htmlspecialchars($tarea['tema']) ?></div>
+              <?php endif; ?>
+              <?php if ($tarea['nota'] !== null): ?>
+                <div class="tarea-info">Nota máxima: <?= htmlspecialchars($tarea['nota']) ?></div>
+              <?php endif; ?>
+              <div class="tarea-preview">
+                <?= htmlspecialchars(mb_strimwidth($tarea['descripcion'], 0, 170, (mb_strlen($tarea['descripcion']) > 170 ? '...' : ''))) ?>
+              </div>
+              <?php if (!$soy_profesor): ?>
+                <?php
+                // Mostrar el botón solo si NO entregó aún
+                $id_usuario = $_SESSION['id_cuenta'];
+                $id_tarea_alumno = $tarea['id_tarea'];
+                $resEnt = mysqli_query($conexion, "SELECT 1 FROM entrega WHERE tarea_id_tarea='$id_tarea_alumno' AND cuenta_id_cuenta='$id_usuario'");
+                $yaEntrego = mysqli_fetch_assoc($resEnt);
+                $nombreBase = "E-$id_usuario-$id_tarea_alumno";
+                $dir = "./media/";
+                $exts = ["pdf", "jpg", "jpeg", "png", "gif", "webp", "docx", "xlsx", "txt", "zip"];
+                $archivoSubido = false;
+                foreach($exts as $e) {
+                  if (file_exists($dir . $nombreBase . "." . $e)) { $archivoSubido = true; break; }
+                }
+                ?>
+                <?php if (!$archivoSubido): ?>
+                  <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['clase_id_clase']) ?>" onclick="event.stopPropagation();">
+                    Subir mi entrega
+                  </a>
+                <?php else: ?>
+                  <span style="display:inline-block;margin-top:12px;color:#3c328f;font-weight:bold;">Entrega subida</span>
+                <?php endif; ?>
+              <?php endif; ?>
+            </div>
+          </button>
+        </form>
       <?php endforeach; ?>
     <?php endif; ?>
 </div>
-
-<script>
-const botonMenuMaterias = document.querySelector('.iconomenu');
-const menuMaterias = document.getElementById('menuMaterias');
-if (botonMenuMaterias && menuMaterias) {
-  botonMenuMaterias.onclick = function() {
-    menuMaterias.classList.toggle('visible');
-    menuMaterias.classList.toggle('oculto');
-  }
-}
-
-const botonMenuProfesor = document.getElementById('accion-profesor-btn');
-const menuAccionProfesor = document.getElementById('menu-accion-profesor');
-if (botonMenuProfesor && menuAccionProfesor) {
-  botonMenuProfesor.onclick = function(e) {
-    menuAccionProfesor.style.display = (menuAccionProfesor.style.display === 'block') ? 'none' : 'block';
-    e.stopPropagation();
-  }
-  document.onclick = function(e) {
-    if (
-      menuAccionProfesor.style.display === 'block' &&
-      !menuAccionProfesor.contains(e.target) && e.target !== botonMenuProfesor
-    ) {
-      menuAccionProfesor.style.display = 'none';
-    }
-  }
-}
-</script>
-</body>
-</html>
-<?php
-include("Conexion-Clase.php");
-
-// obtener clases disponibles
-$clases = mysqli_query($conn, "SELECT id_clase, nombre, codigo FROM clase");
-?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Tarea</title>
-    <link rel="stylesheet" href="Tareas.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-
-<h2>Crear Tarea</h2>
-
-<form id="formTarea" method="POST" action="Guardar-Tarea.php">
-    <label for="titulo">Título*:</label><br>
-    <input type="text" id="titulo" name="titulo"><br><br>
-
-    <label for="descripcion">Descripción*:</label><br>
-    <textarea id="descripcion" name="descripcion"></textarea><br><br>
-
-    <label for="tema">Tema:</label><br>
-    <input type="text" id="tema" name="tema"><br><br>
-
-    <label for="nota">Nota máxima:</label><br>
-    <input type="number" step="0.01" id="nota" name="nota"><br><br>
-
-    <label for="clase">Clase*:</label><br>
-    <select id="clase" name="clase_id_clase">
-        <option value="">Seleccione una clase</option>
-        <?php while($row = mysqli_fetch_assoc($clases)) { ?>
-            <option value="<?php echo $row['id_clase']; ?>">
-                <?php echo $row['nombre'] ?: 'Sin nombre'; ?> (<?php echo $row['codigo']; ?>)
-            </option>
-        <?php } ?>
-    </select><br><br>
-
-    <button type="submit">Guardar Tarea</button>
-</form>
-
-<script>
-$(document).ready(function(){
-    $("#formTarea").on("submit", function(e){
-        let titulo = $("#titulo").val().trim();
-        let descripcion = $("#descripcion").val().trim();
-        let clase = $("#clase").val();
-
-        if(titulo === "" || descripcion === "" || clase === ""){
-            alert("Título, descripción y clase son obligatorios.");
-            e.preventDefault();
-        }
-    });
-});
-</script>
-
 </body>
 </html>
