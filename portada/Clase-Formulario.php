@@ -83,6 +83,8 @@ if ($id_clase > 0) {
         <button class="boton-superior-menu" onclick="window.location.href='Pagina-Principal.php'">Inicio</button>
         <button class="boton-superior-menu" onclick="window.location.href='Pagina-Principal.php'">Mis cursos</button>
         <button class="boton-superior-menu" onclick="window.location.href='Tareas-Formulario.php?id=<?= $id_clase ?>'">Tareas</button>
+        <button class="boton-superior-menu" onclick="window.location.href='Mostrar-Personas-Clase.php?id_clase=<?= $id_clase ?>'">Personas</button>
+        
     </nav>
 </header>
 <div class="seccion-hero-clase <?= $color ?>">  
