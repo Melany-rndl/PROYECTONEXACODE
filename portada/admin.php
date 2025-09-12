@@ -4,15 +4,20 @@ $direccion="localhost";
 $usuario="root";
 $contrasena="";
 $dbname="p25"; 
+
 $conn = new mysqli($direccion, $usuario, $contrasena, $dbname);
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
+
+// Solo admin
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
     header("Location: login.php"); 
     exit;
 }
-$sql = "SELECT c.id_cuenta, c.usuario, c.rol,
+
+// Traer todos los usuarios con su información
+$sql = "SELECT c.id_cuenta, c.usuario, c.rol, c.bloqueado,
                i.nombre, i.apellido, i.direccion, i.fecha_nac, i.telefono, i.ci
         FROM cuenta c
         LEFT JOIN informacion i ON c.id_cuenta = i.cuenta_id_cuenta";
@@ -32,13 +37,14 @@ $result = $conn->query($sql);
         a.btn { padding: 6px 10px; border-radius: 4px; text-decoration: none; color: #fff; }
         a.profesor { background: #007bff; }  /* Botón azul */
         a.estudiante { background: #28a745; } /* Botón verde */
+        a.bloquear { background: #dc3545; }   /* Botón rojo */
+        a.desbloquear { background: #6c757d; } /* Botón gris */
     </style>
 </head>
 <body>
     <h1>Panel de Administrador</h1>
     <table>
         <tr>
-            <!-- Encabezados de la tabla -->
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Apellido</th>
@@ -47,14 +53,12 @@ $result = $conn->query($sql);
             <th>Teléfono</th>
             <th>CI</th>
             <th>Rol</th>
+            <th>Bloqueo</th>
             <th>Acción</th>
         </tr>
         <?php if ($result->num_rows > 0): ?> 
-            <!-- Si hay resultados en la consulta -->
             <?php while($row = $result->fetch_assoc()): ?> 
-                <!-- Recorremos cada fila -->
                 <tr>
-                    <!-- Mostramos los datos del usuario -->
                     <td><?= htmlspecialchars($row['usuario']) ?></td>
                     <td><?= htmlspecialchars($row['nombre']) ?></td>
                     <td><?= htmlspecialchars($row['apellido']) ?></td>
@@ -63,20 +67,24 @@ $result = $conn->query($sql);
                     <td><?= htmlspecialchars($row['telefono']) ?></td>
                     <td><?= htmlspecialchars($row['ci']) ?></td>
                     <td><?= htmlspecialchars($row['rol']) ?></td>
+                    <td><?= $row['bloqueado'] ? 'Bloqueado' : 'Activo' ?></td>
                     <td>
-                        <!-- Si es estudiante, mostramos botón para hacerlo profesor -->
                         <?php if ($row['rol'] == 'estudiante'): ?>
                             <a class="btn profesor" href="cambiarRol.php?id=<?= $row['id_cuenta'] ?>&rol=profesor">Hacer Profesor</a>
-                        <!-- Si es profesor, mostramos botón para hacerlo estudiante -->
                         <?php elseif ($row['rol'] == 'profesor'): ?>
                             <a class="btn estudiante" href="cambiarRol.php?id=<?= $row['id_cuenta'] ?>&rol=estudiante">Hacer Estudiante</a>
+                        <?php endif; ?>
+
+                        <?php if ($row['bloqueado'] == 0): ?>
+                            <a class="btn bloquear" href="bloquear.php?id=<?= $row['id_cuenta'] ?>">Bloquear</a>
+                        <?php else: ?>
+                            <a class="btn desbloquear" href="desbloquear.php?id=<?= $row['id_cuenta'] ?>">Desbloquear</a>
                         <?php endif; ?>
                     </td>
                 </tr>
             <?php endwhile; ?>
         <?php else: ?>
-            <!-- Si no hay usuarios registrados -->
-            <tr><td colspan="9">No hay usuarios registrados</td></tr>
+            <tr><td colspan="10">No hay usuarios registrados</td></tr>
         <?php endif; ?>
     </table>
 </body>

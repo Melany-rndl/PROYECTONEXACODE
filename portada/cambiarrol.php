@@ -1,19 +1,22 @@
 <?php
-$direccion="localhost";
-$usuario="root";
-$contrasena="";
-$dbname="p25"; 
+include 'conexion.php';
 
-$conn = new mysqli($direccion, $usuario, $contrasena, $dbname);
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+if (isset($_GET['id']) && isset($_GET['rol'])) {
+    $id = intval($_GET['id']);
+    $rol = $_GET['rol'];
 
-$id_cuenta = $_GET['id']; 
-$rol = $_GET['rol']; 
-$sql = "UPDATE cuenta SET rol='$rol' WHERE id_cuenta='$id_cuenta'";
-if ($conn->query($sql)) {
-    header("Location: admin.php");
-} else {
-    echo "Error: " . $conn->error;
+    $nuevoRol = ($rol == "profesor") ? "estudiante" : "profesor";
+
+    $sql = "UPDATE cuenta SET rol = ? WHERE id_cuenta = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("si", $nuevoRol, $id);
+
+    if ($stmt->execute()) {
+        header("Location: usuarios.php");
+        exit();
+    } else {
+        echo "Error al cambiar rol: " . $conexion->error;
+    }
 }
+?>
+

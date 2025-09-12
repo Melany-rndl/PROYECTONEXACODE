@@ -1,24 +1,18 @@
 <?php
-$direccion="localhost";
-$usuario="root";
-$contrasena="";
-$dbname="p25"; 
-$conn = new mysqli($direccion, $usuario, $contrasena, $dbname);
+include 'conexion.php';
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+
+    $sql = "UPDATE cuenta SET bloqueado = 0 WHERE id_cuenta = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        header("Location: usuarios.php");
+        exit();
+    } else {
+        echo "Error al desbloquear: " . $conexion->error;
+    }
 }
-
-$ci = $_GET['ci'];
-
-$sql = "UPDATE cuenta c
-        INNER JOIN informacion i ON c.id_cuenta = i.cuenta_id_cuenta
-        SET c.bloqueado = 0
-        WHERE i.ci = ?";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $ci);
-$stmt->execute();
-
-header("Location: admin.php");
-exit;
+?>
