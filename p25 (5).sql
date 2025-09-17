@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-09-2025 a las 21:25:46
+-- Tiempo de generación: 17-09-2025 a las 06:22:51
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,13 @@ CREATE TABLE `clase` (
   `grado` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `clase`
+--
+
+INSERT INTO `clase` (`id_clase`, `nombre`, `codigo`, `id_profesor`, `grado`) VALUES
+(2, 'dcwdxcqwx', 'ED7TJY', 6, 'PrimeroS');
+
 -- --------------------------------------------------------
 
 --
@@ -55,8 +62,8 @@ CREATE TABLE `cuenta` (
 
 INSERT INTO `cuenta` (`id_cuenta`, `usuario`, `clave`, `rol`, `bloqueado`) VALUES
 (4, 'melany', '12777715', 'admin', 0),
-(5, 'miranda', '987654321', 'profesor', 0),
-(6, 'andrea', 'poveda12345', 'profesor', 0);
+(6, 'andrea', 'poveda12345', 'profesor', 0),
+(10, 'jose', 'poveda12777715', 'estudiante', 0);
 
 -- --------------------------------------------------------
 
@@ -69,6 +76,35 @@ CREATE TABLE `cuenta_has_clase` (
   `clase_id_clase` int(11) NOT NULL,
   `cuenta_id_cuenta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cuenta_has_clase`
+--
+
+INSERT INTO `cuenta_has_clase` (`id_chc`, `clase_id_clase`, `cuenta_id_cuenta`) VALUES
+(2, 2, 6),
+(3, 2, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `entrega`
+--
+
+CREATE TABLE `entrega` (
+  `id_entrega` int(11) NOT NULL,
+  `cuenta_id_cuenta` int(11) NOT NULL,
+  `tarea_id_tarea` int(11) NOT NULL,
+  `nota` int(3) DEFAULT NULL,
+  `fecha_entrega` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `entrega`
+--
+
+INSERT INTO `entrega` (`id_entrega`, `cuenta_id_cuenta`, `tarea_id_tarea`, `nota`, `fecha_entrega`) VALUES
+(1, 10, 2, NULL, '2025-09-17 00:17:43');
 
 -- --------------------------------------------------------
 
@@ -93,8 +129,8 @@ CREATE TABLE `informacion` (
 
 INSERT INTO `informacion` (`id_info`, `nombre`, `apellido`, `direccion`, `fecha_nac`, `telefono`, `ci`, `cuenta_id_cuenta`) VALUES
 (3, 'melany', 'valera', 'mi casa', '2025-09-10', '68478066', '1277715', 4),
-(4, 'miranda', 'valera', 'mi casa', '2025-09-05', '68478066', '12121212', 5),
-(5, 'andrea', 'valera', 'wsfdsdsd', '2025-09-18', '43546653', '13575496', 6);
+(5, 'andrea', 'valera', 'wsfdsdsd', '2025-09-18', '43546653', '13575496', 6),
+(6, 'mirandas', 'valera', 'pedropoveda', '2025-09-17', '68478066', '11111111', 10);
 
 -- --------------------------------------------------------
 
@@ -124,8 +160,17 @@ CREATE TABLE `tarea` (
   `titulo` varchar(200) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   `tema` int(100) NOT NULL,
-  `nota` int(20) NOT NULL
+  `nota` int(20) NOT NULL,
+  `id_clase` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tarea`
+--
+
+INSERT INTO `tarea` (`id_tarea`, `titulo`, `descripcion`, `tema`, `nota`, `id_clase`) VALUES
+(1, 'qedfwe', 'wefwef', 0, 100, 2),
+(2, 'sfgfgesrfger', 'ergergsergverv', 0, 34, 2);
 
 --
 -- Índices para tablas volcadas
@@ -156,6 +201,15 @@ ALTER TABLE `cuenta_has_clase`
   ADD KEY `cuenta_id_cuenta_idx` (`cuenta_id_cuenta`);
 
 --
+-- Indices de la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  ADD PRIMARY KEY (`id_entrega`),
+  ADD UNIQUE KEY `unico_entrega` (`cuenta_id_cuenta`,`tarea_id_tarea`),
+  ADD KEY `fk_entrega_cuenta_idx` (`cuenta_id_cuenta`),
+  ADD KEY `fk_entrega_tarea_idx` (`tarea_id_tarea`);
+
+--
 -- Indices de la tabla `informacion`
 --
 ALTER TABLE `informacion`
@@ -175,7 +229,8 @@ ALTER TABLE `publicacion`
 -- Indices de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  ADD PRIMARY KEY (`id_tarea`);
+  ADD PRIMARY KEY (`id_tarea`),
+  ADD KEY `fk_tarea_clase` (`id_clase`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -185,25 +240,31 @@ ALTER TABLE `tarea`
 -- AUTO_INCREMENT de la tabla `clase`
 --
 ALTER TABLE `clase`
-  MODIFY `id_clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_clase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  MODIFY `id_cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `cuenta_has_clase`
 --
 ALTER TABLE `cuenta_has_clase`
-  MODIFY `id_chc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_chc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  MODIFY `id_entrega` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `informacion`
 --
 ALTER TABLE `informacion`
-  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `publicacion`
@@ -215,7 +276,7 @@ ALTER TABLE `publicacion`
 -- AUTO_INCREMENT de la tabla `tarea`
 --
 ALTER TABLE `tarea`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -235,6 +296,13 @@ ALTER TABLE `cuenta_has_clase`
   ADD CONSTRAINT `fk_chc_cuenta` FOREIGN KEY (`cuenta_id_cuenta`) REFERENCES `cuenta` (`id_cuenta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  ADD CONSTRAINT `fk_entrega_cuenta` FOREIGN KEY (`cuenta_id_cuenta`) REFERENCES `cuenta` (`id_cuenta`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_entrega_tarea` FOREIGN KEY (`tarea_id_tarea`) REFERENCES `tarea` (`id_tarea`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `informacion`
 --
 ALTER TABLE `informacion`
@@ -246,6 +314,12 @@ ALTER TABLE `informacion`
 ALTER TABLE `publicacion`
   ADD CONSTRAINT `fk_publicacion_clase` FOREIGN KEY (`clase_id_clase`) REFERENCES `clase` (`id_clase`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_publicacion_cuenta` FOREIGN KEY (`cuenta_id_cuenta`) REFERENCES `cuenta` (`id_cuenta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tarea`
+--
+ALTER TABLE `tarea`
+  ADD CONSTRAINT `fk_tarea_clase` FOREIGN KEY (`id_clase`) REFERENCES `clase` (`id_clase`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
