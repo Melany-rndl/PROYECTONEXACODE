@@ -24,122 +24,11 @@
       background-color: var(--crema);
       color: var(--negro);
     }
-    header {
-      background-color: rgba(0, 84, 135, 0.8);
-      backdrop-filter: blur(4px);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: absolute;
-      width: 100%;
-      z-index: 1000;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-    .logo span {
-      font-family: 'Georgia', serif;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    nav button {
-      background: none;
-      border: 2px solid white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    nav button:hover {
-      background-color: white;
-      color: var(--azul-institucional);
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    .submenu {
-      position: relative;
-      display: inline-block;
-    }
-    .submenu-content {
-      display: none;
-      position: absolute;
-      background-color: var(--azul-institucional);
-      min-width: 220px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .submenu-content a {
-      color: white;
-      padding: 0.7rem 1rem;
-      display: block;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .submenu-content a:hover {
-      background-color: white;
-      color: var(--azul-institucional);
-    }
-    .submenu:hover .submenu-content {
-      display: block;
-    }
 
     .hero {
       position: relative;
       height: 500px;
       overflow: hidden;
-    }
-
-    .carousel {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-    .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      opacity: 0;
-      animation: carouselFade 24s infinite;
-    }
-    .carousel img:nth-child(1) { animation-delay: 0s; }
-    .carousel img:nth-child(2) { animation-delay: 8s; }
-    .carousel img:nth-child(3) { animation-delay: 16s; }
-    @keyframes carouselFade {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      30% { opacity: 1; }
-      40% { opacity: 0; }
-      100% { opacity: 0; }
     }
     .hero-content {
       height: 100%;
@@ -173,37 +62,6 @@
       height: 40px;
       background-color: white;
       margin: 2rem 0;
-    }
-
-
-    footer {
-      background-color: var(--azul-institucional);
-      color: white;
-      padding: 3rem 2rem;
-    }
-
-
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
-      gap: 2rem;
-    }
-
-    .footer-container h3,
-    .footer-container h4 {
-      font-family: 'Georgia', serif;
-      margin-bottom: 0.8rem;
-    }
-    .footer-container a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .footer-container a:hover {
-      text-decoration: underline;
     }
 
 .directores-section {
@@ -281,7 +139,7 @@
       <p>DIRECTOR PRIMARIA<br>TURNO MAÑANA</p>
     </div>
     <div class="director-card">
-      <img class="director-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShp_V6nEnDCHAJ-4pdfDaY_AYq6O-TgYQbnYw5zmGO_z6y18gvRfHHlLllD4OEVGUeFAk&usqp=CAU" alt="Humberto Guarachi">
+      <img class="director-img" src="../imagenespro/director1.jpg" alt="Humberto Guarachi">
       <h3>Nombre de la persona</h3>
       <p>DIRECTOR U.E.<br>Bolivar</p>
     </div>

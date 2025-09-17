@@ -25,36 +25,6 @@
       background-color: var(--crema);
       color: var(--negro);
     }
-
-    header {
-      background-color: rgba(0, 84, 135, 0.8);
-      backdrop-filter: blur(4px);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: absolute;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    .logo span {
-      font-family: 'Georgia', serif;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
     nav {
       display: flex;
       gap: 1.5rem;
@@ -69,25 +39,6 @@
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease;
-    }
-
-    nav a button:hover {
-      background-color: white;
-      color: var(--azul-institucional);
-    }
-
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-    }
-
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
     }
 
     .hero {
@@ -125,7 +76,7 @@
     }
 
     .infra-box:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
 
@@ -147,37 +98,6 @@
     .infra-box .info p {
       font-size: 0.95rem;
       line-height: 1.4;
-    }
-
-    footer {
-      background-color: var(--azul-institucional);
-      color: white;
-      padding: 3rem 2rem;
-    }
-
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
-      gap: 2rem;
-    }
-
-    .footer-container h3,
-    .footer-container h4 {
-      font-family: 'Georgia', serif;
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-container a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .footer-container a:hover {
-      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
@@ -220,44 +140,44 @@
     <h2>Infraestructura</h2>
     <div class="infraestructura-grid">
       <div class="infra-box">
-        <img src="../imagenespro/colegiobolivar.jpg" />
+        <img src="../imagenespro/alumnos.jpg" />
         <div class="info">
           <h3>Aulas Modernas</h3>
           <p>Contamos con aulas amplias, iluminadas y equipadas con recursos tecnológicos para una educación de calidad.</p>
         </div>
       </div>
       <div class="infra-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5nLLhaqwL_CtK2qE7C5-9icn4zSCIAvZLKW7J_YabUxCh177VfZOD8b2wWVM4xFsZJi4&usqp=CAU" />
+        <img src="../imagenespro/patio5.jpg"/>
         <div class="info">
           <h3>Patio Central</h3>
           <p>Espacio de recreación y actos cívicos, rodeado de áreas verdes y árboles frondosos.</p>
         </div>
       </div>
       <div class="infra-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3yA-ahfj8_Eaeai4rJlB1jhK65Jbquao2Jg&s" />
+        <img src="../imagenespro/director1.jpg"/>
         <div class="info">
-          <h3>Biblioteca Escolar</h3>
-          <p>Zona tranquila con una gran variedad de libros, revistas y materiales de estudio para todas las edades.</p>
+          <h3>Sala de trofeos </h3>
+          <p>Zona de trofeos acumulados por la unidad educativa.</p>
         </div>
       </div>
       <div class="infra-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5nLLhaqwL_CtK2qE7C5-9icn4zSCIAvZLKW7J_YabUxCh177VfZOD8b2wWVM4xFsZJi4&usqp=CAU" />
+        <img src="../imagenespro/patio3.jpg"/>
         <div class="info">
           <h3>Laboratorios</h3>
           <p>Ambientes dedicados a la experimentación científica en física, química y biología.</p>
         </div>
       </div>
       <div class="infra-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSdW_R1XosXoa1ZiE6gfhw5E7-cv6KkJLbwJiIexc_jQt5UPQIagu_i32LwpW2DKEpGr8&usqp=CAU" />
+        <img src="../imagenespro/patio6.jpg"/>
         <div class="info">
           <h3>Cancha Polifuncional</h3>
           <p>Espacio deportivo para practicar fútbol, voleibol, básquet y más.</p>
         </div>
       </div>
       <div class="infra-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgPB7qqzhCN7q6-3qnUC31SACXdQR5FoeCtGwbRubkKymXXfxCTr7V31WHiwLZG3z2hlA&usqp=CAU" />
+        <img src="../imagenespro/edufisica.jpg" />
         <div class="info">
-          <h3>Salón de Música</h3>
+          <h3>Salón de educacion fisica</h3>
           <p>Equipado para ensayos de la Banda Bojanowski y clases de instrumentos musicales.</p>
         </div>
       </div>

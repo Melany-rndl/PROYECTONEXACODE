@@ -90,14 +90,6 @@
         }
 
 
-               footer {
-      background-color: var(--azul-institucional);
-      color: white;
-      padding: 3rem 2rem;
-    }
-
-
-
 
     .footer-container {
       display: flex;
@@ -107,45 +99,6 @@
       margin: 0 auto;
       gap: 2rem;
     }
-
-
-
-
-    .footer-container h3,
-    .footer-container h4 {
-      font-family: 'Georgia', serif;
-      margin-bottom: 0.8rem;
-    }
-
-
-
-
-    .footer-container a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-
-
-
-    .footer-container a:hover {
-      text-decoration: underline;
-    }
-
-
-     #espacio {
-      height: 40px;
-      background-color: #f5f7fa;
-      margin: 2rem 0;
-    }
-     #espacio {
-      height: 40px;
-      background-color: #f5f7fa;
-      margin: 2rem 0;
-    }
-
-
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -188,7 +141,7 @@
 
 
         <div class="card">
-            <img src="https://images.pexels.com/photos/5905700/pexels-photo-5905700.jpeg" alt="Primero de primaria">
+            <img src="../imagenespro/alumnos6.jpg" alt="Primero de primaria">
             <div class="card-content">
                 <h2>1ro de Primaria</h2>
                 <p>Introducción a la lectura, escritura y operaciones matemáticas básicas, fomentando el trabajo en equipo y la curiosidad.</p>
@@ -201,7 +154,7 @@
 
 
         <div class="card">
-            <img src="https://images.pexels.com/photos/8612924/pexels-photo-8612924.jpeg" alt="Segundo de primaria">
+            <img src="../imagenespro/alumnos5.jpg" alt="Segundo de primaria">
             <div class="card-content">
                 <h2>2do de Primaria</h2>
                 <p>Refuerzo en lectura comprensiva, suma y resta avanzada, iniciación en ciencias naturales y formación cívica.</p>
@@ -214,7 +167,7 @@
 
 
         <div class="card">
-            <img src="https://images.pexels.com/photos/5905715/pexels-photo-5905715.jpeg" alt="Tercero de primaria">
+            <img src="../imagenespro/alumnos4.jpg"alt="Tercero de primaria">
             <div class="card-content">
                 <h2>3ro de Primaria</h2>
                 <p>Multiplicación, división, ciencias, historia y talleres creativos que fortalecen el pensamiento lógico y la expresión oral.</p>
@@ -227,7 +180,7 @@
 
 
         <div class="card">
-            <img src="https://images.pexels.com/photos/5212326/pexels-photo-5212326.jpeg" alt="Cuarto de primaria">
+            <img src="../imagenespro/alumnos3.jpg" alt="Cuarto de primaria">
             <div class="card-content">
                 <h2>4to de Primaria</h2>
                 <p>Desarrollo de proyectos de ciencias, lectura avanzada, fracciones y geografía, fortaleciendo el trabajo en equipo.</p>
@@ -240,7 +193,7 @@
 
 
         <div class="card">
-            <img src="https://images.pexels.com/photos/8500306/pexels-photo-8500306.jpeg" alt="Quinto de primaria">
+            <img src="../imagenespro/alumnos9.jpg" alt="Quinto de primaria">
             <div class="card-content">
                 <h2>5to de Primaria</h2>
                 <p>Énfasis en pensamiento crítico, resolución de problemas matemáticos, ciencias experimentales e historia.</p>
@@ -253,7 +206,7 @@
 
 
         <div class="card">
-            <img src= "quinto-sexto-de-primaria-w.jpg" alt="Sexto de primaria">
+            <img src="../imagenespro/alumnos7.jpg" alt="Sexto de primaria">
             <div class="card-content">
                 <h2>6to de Primaria</h2>
                 <p>Preparación para secundaria, pensamiento analítico, redacción avanzada y proyectos integradores interdisciplinarios.</p>
@@ -264,17 +217,10 @@
             </div>
         </div>
 
-
     </div>
      <div id="espacio"> </div>
 
-
-
 <?php include 'footer.php'; ?>
-
-
-
-
 
   <script>
     function toggleMenu() {

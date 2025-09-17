@@ -1,18 +1,13 @@
 <?php
-include 'conexion.php';
+include("conexion.php");
 
-if (isset($_GET['id'])) {
-    $id = intval($_GET['id']);
+$ci = $_GET['ci'];
 
-    $sql = "UPDATE cuenta SET bloqueado = 0 WHERE id_cuenta = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $id);
+$sql = "UPDATE cuenta SET bloqueado = 0  WHERE id_cuenta = (SELECT id_cuenta FROM informacion WHERE ci='$ci' LIMIT 1)AND rol != 'admin'";
 
-    if ($stmt->execute()) {
-        header("Location: usuarios.php");
-        exit();
-    } else {
-        echo "Error al desbloquear: " . $conexion->error;
-    }
+if (mysqli_query($conn, $sql)) {
+    header("Location: admin.php");
+} else {
+    echo "Error: " . mysqli_error($conn);
 }
 ?>

@@ -27,14 +27,14 @@ $clase = mysqli_fetch_assoc($res);
 if (!$clase) { echo "No tienes acceso a esta clase."; exit(); }
 $soy_profesor = ($clase['id_profesor'] == $id_cuenta);
 
-$sql_tareas = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota, t.clase_id_clase
+$sql_tarea = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota, t.id_clase
                FROM tarea t
-               WHERE t.clase_id_clase = '$id_clase'
+               WHERE t.id_clase = '$id_clase'
                ORDER BY t.id_tarea DESC";
-$res_tareas = mysqli_query($conexion, $sql_tareas);
-$tareas = [];
-while ($row = mysqli_fetch_assoc($res_tareas)) {
-    $tareas[] = $row;
+$res_tarea = mysqli_query($conexion, $sql_tarea);
+$tarea = [];
+while ($row = mysqli_fetch_assoc($res_tarea)) {
+    $tarea[] = $row;
 }
 ?>
 <!DOCTYPE html>
@@ -166,10 +166,10 @@ while ($row = mysqli_fetch_assoc($res_tareas)) {
       <a class="boton-crear-tarea" href="Formulario-Crear-Publicacion.php?id=<?= $id_clase ?>">+ Crear tarea</a>
     <?php endif; ?>
 
-    <?php if (count($tareas) == 0): ?>
+    <?php if (count($tarea) == 0): ?>
       <div class="sin-tareas">No hay tareas aún para esta clase.</div>
     <?php else: ?>
-      <?php foreach($tareas as $tarea): ?>
+      <?php foreach($tarea as $tarea): ?>
         <?php
         // ENLACE DEPENDIENDO DEL ROL
         if ($soy_profesor) {
@@ -214,7 +214,7 @@ while ($row = mysqli_fetch_assoc($res_tareas)) {
                 }
                 ?>
                 <?php if (!$archivoSubido): ?>
-                  <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['clase_id_clase']) ?>" onclick="event.stopPropagation();">
+                  <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['id_clase']) ?>" onclick="event.stopPropagation();">
                     Subir mi entrega
                   </a>
                 <?php else: ?>

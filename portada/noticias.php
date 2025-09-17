@@ -178,15 +178,15 @@
   <section class="section">
     <h2>Últimas Noticias</h2>
     <div class="noticias-grid">
-      <div class="noticia"><img src="../imagenespro/patio5.jpg" /><div class="noticia-content"><h3>Feria Científica Escolar 2025</h3><p>Los estudiantes presentaron proyectos innovadores en ciencia, tecnología y medio ambiente.</p></div></div>
-      <div class="noticia"><img src="../imagenespro/edufisica.jpg" /><div class="noticia-content"><h3>Celebración del Día del Maestro</h3><p>El colegio rindió homenaje a los docentes con actos y reconocimientos especiales.</p></div></div>
-      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Semana de la Lectura</h3><p>Actividades de fomento a la lectura con participación de escritores locales.</p></div></div>
-      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Competencia Intercolegial de Matemáticas</h3><p>Estudiantes de secundaria obtuvieron el primer lugar en el torneo regional.</p></div></div>
-      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Campaña de Reciclaje</h3><p>El colegio recolectó más de 300 kg de residuos reutilizables en una semana.</p></div></div>
-      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Convivencia Estudiantil</h3><p>Jornada de integración para fortalecer los lazos entre estudiantes y profesores.</p></div></div>
+      <div class="noticia"><img src="../imagenespro/feria.jpg" /><div class="noticia-content"><h3>Feria de Inclusion Escolar 2025</h3><p>Los estudiantes presentaron proyectos innovadores en inclusion</p></div></div>
+      <div class="noticia"><img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Celebración del Día del Maestro</h3><p>El colegio rindió homenaje a los docentes con actos y reconocimientos especiales.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/banda.jpg" /><div class="noticia-content"><h3>Desfiel De La Banda </h3><p>Actividades de fomento a la partcipacion activa de eventos musicales civicos.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/campeonatoh.jpg" /><div class="noticia-content"><h3>Competencia Intercolegial de Deportes Varones</h3><p>Estudiantes de secundaria obtuvieron el primer lugar en el torneo intercolegial.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/campeonatom.jpg" /><div class="noticia-content"><h3>Competencia Intercolegial de Deportes Damas</h3><p>Estudiantes de secundaria obtuvieron el primer lugar en el torneo intercolegial.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/estudiantes.jpg" /><div class="noticia-content"><h3>Campaña de Reciclaje</h3><p>El colegio recolectó más de 300 kg de residuos reutilizables en una semana.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/alumnos5.jpg" /><div class="noticia-content"><h3>Convivencia Estudiantil</h3><p>Jornada de integración para fortalecer los lazos entre estudiantes y profesores.</p></div></div>
       <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Festival de Teatro Escolar</h3><p>Los cursos presentaron obras teatrales promoviendo el arte y la expresión cultural.</p></div></div>
-      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Visita de la Banda Bojanowski</h3><p>La banda del colegio deleitó con una presentación especial para toda la comunidad.</p></div></div>
-      <div class="noticia"> <img src="../imagenespro/imgtinku.jpg" /><div class="noticia-content"><h3>Expo Arte y Cultura</h3><p>Los estudiantes expusieron trabajos de arte, música y danza inspirados en la identidad nacional.</p></div></div>
+      <div class="noticia"> <img src="../imagenespro/banda.jpg" /><div class="noticia-content"><h3>Visita de la Banda Bolivar</h3><p>La banda del colegio deleitó con una presentación especial para toda la comunidad.</p></div></div>
     </div>
   </section>
 <?php include 'footer.php'; ?>

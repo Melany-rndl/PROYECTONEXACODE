@@ -9,7 +9,7 @@ $id_tarea = isset($_GET['id_tarea']) ? intval($_GET['id_tarea']) : 0;
 
 $consulta_tarea = "SELECT tarea.*, clase.id_profesor 
         FROM tarea
-        JOIN clase ON tarea.clase_id_clase = clase.id_clase
+        JOIN clase ON tarea.id_clase = clase.id_clase
         WHERE tarea.id_tarea = $id_tarea";
 $resultado_tarea = mysqli_query($conexion, $consulta_tarea);
 $datos_tarea = mysqli_fetch_assoc($resultado_tarea);

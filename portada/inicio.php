@@ -27,34 +27,6 @@
       color: var(--negro);
     }
 
-    header {
-      background-color: rgba(0, 84, 135, 0.8);
-      backdrop-filter: blur(4px);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: absolute;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo img {
-      height: 60px;
-    }
-
-    .logo span {
-      font-family: 'Georgia', serif;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
 
     nav {
       display: flex;
@@ -194,8 +166,6 @@
       margin: 0 auto;
       padding: 2rem;
     }
-
-    /* NUEVO BLOQUE Historia */
     .bloque-historia {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -272,15 +242,16 @@
   <div class="bloque-grid">
     <div>
       <h2>Misión</h2>
-      <p>Nuestra misión es educar integralmente a los estudiantes, fomentando el desarrollo académico, ético y social mediante una formación basada en valores sólidos y principios democráticos. Nos comprometemos a crear un ambiente educativo inclusivo y estimulante que promueva el pensamiento crítico, la creatividad y el respeto por la diversidad cultural.</p>
+      <p>Optimizar la calidad educativa articulando las áreas de conocimientos (contenidos,estrategias,técnicas, métodos, objetivos) y la práctica de valores (inclusión, respetó, responsabilidad,puntualidad,honestidad y solidaridad) para lograr los perfiles de salida y asegurar una educación integral,competitiva, dinámica, democrática, técnica, científica, tecnológica, pacífica fundamentada en el buen trato ,en la cultura de la paz libre de toda forma de violencia en la comunidad educativa Bolívar.
+</p>
     </div>
-    <img src="https://stowarzyszeniedobroc.pl/wp-content/uploads/2019/07/edmund-bez-napisu.jpg" alt="mision" />
+    <img src="../imagenespro/bolivar.jpg" alt="mision" />
   </div>
 
   <div class="separador"></div>
 
   <div class="bloque-grid">
-    <img src="https://siostry-maryi.pl/images/jch-optimize/ng/images_Aktualnosci_2112904874.webp" alt="vision" />
+    <img src="../imagenespro/logo.jpg" alt="vision" />
     <div>
       <h2>Visión</h2>
       <p>Ser una institución educativa líder y referente a nivel regional y nacional, destacada por su excelencia pedagógica, innovación educativa y compromiso con la formación integral de sus estudiantes. Aspiramos a ser reconocidos por promover valores éticos, sociales y culturales.</p>
@@ -290,10 +261,10 @@
   <div class="separador"></div>
 
   <div class="bloque-grid">
-    <img src="https://colegiotiquipaya.edu.bo/wp-content/uploads/2025/04/promo-2.png" alt="comunidad" />
+    <img src="../imagenespro/alumnos3.jpg" alt="comunidad" />
     <div>
       <h2>Nuestra Comunidad</h2>
-      <p>La Unidad Educativa Bojanowski está compuesta por estudiantes, docentes y familias comprometidas con una formación integral. Somos una comunidad viva, unida por los valores del respeto, la solidaridad y el amor al aprendizaje.</p>
+      <p>La Unidad Educativa Bolivar está compuesta por estudiantes, docentes y familias comprometidas con una formación integral. Somos una comunidad viva, unida por los valores del respeto, la solidaridad y el amor al aprendizaje.</p>
     </div>
   </div>
 
@@ -304,7 +275,7 @@
     <div>
       <h2>Historia del Colegio</h2>
       <p>
-        Fundado hace más de 50 años, el Colegio Bojanowski ha sido un pilar en la educación tradicional de la región. Nuestra historia se caracteriza por un compromiso constante con la excelencia académica y la formación de valores que han forjado generaciones responsables y comprometidas con la sociedad.
+        La Unidad  Educativa “BOLIVAR”, fue fundado el 21 de Enero del año 1913, durante la presidencia del Dr. ELEODORO VILLAZON,  en la gestión del Dr. JUAN MISAEL SARACHO, como Ministro de Instrucción y del Dr. RAFAEL CAÑEDO, como Rector de la Universidad Mayor de San Simón, quienes posesionaron al primer Director Profesor  Víctor Rojas.
       </p>
     </div>
   </div>

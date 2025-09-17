@@ -27,7 +27,7 @@ if ($id_entrega > 0) {
             c.nombre AS clase, c.id_clase AS clase_id_clase, e.fecha_entrega, e.nota, e.tarea_id_tarea
         FROM entrega e
         JOIN tarea t ON e.tarea_id_tarea = t.id_tarea
-        JOIN clase c ON t.clase_id_clase = c.id_clase
+        JOIN clase c ON t.id_clase = c.id_clase
         WHERE e.id_entrega=? AND e.cuenta_id_cuenta=?
     ";
     $stmt = $conn->prepare($sql);
@@ -37,9 +37,9 @@ if ($id_entrega > 0) {
     $datos = $result->fetch_assoc();
     $entrega = $datos;
 } elseif ($id_tarea > 0) {
-    $sqlT = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota AS nota_maxima, c.nombre AS clase, c.id_clase AS clase_id_clase
+    $sqlT = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota AS nota_maxima, c.nombre AS clase, c.id_clase AS id_clase
              FROM tarea t
-             JOIN clase c ON t.clase_id_clase = c.id_clase
+             JOIN clase c ON t.id_clase = c.id_clase
              WHERE t.id_tarea=?";
     $stmt = $conn->prepare($sqlT);
     $stmt->bind_param("i", $id_tarea);

@@ -7,7 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 </head>
-<body>
+<body> 
+
 <div class="Inicio-Sesion">
     <form id="form-login" action="Usuario.php" method="post">
         <h1>INICIAR SESIÓN</h1>

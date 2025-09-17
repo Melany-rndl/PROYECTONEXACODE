@@ -1,48 +1,42 @@
 <?php
 session_start();
 if (!isset($_SESSION['id_cuenta'])) {
-    header(header: "Location: Logueo.php");
+    header("Location: Logueo.php");
     exit();
 }
 
-$conexion = mysqli_connect(hostname: "localhost", username: "root", password: "", database: "p25");
+$conexion = mysqli_connect("localhost", "root", "", "p25");
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
 $id_cuenta = $_SESSION['id_cuenta'];
-$id_clase = isset($_POST['id_clase']) ? intval(value: $_POST['id_clase']) : 0;
-$asunto = trim(string: $_POST['asunto'] ?? '');
-$contenido = trim(string: $_POST['contenido'] ?? '');
-$fecha = $_POST['fecha'] ?? '';
+$id_clase = isset($_POST['id_clase']) ? intval($_POST['id_clase']) : 0;
 
-if ($id_clase <= 0 || strlen(string: $asunto) < 3 || strlen(string: $asunto) > 80 || strlen($contenido) < 5 || strlen($contenido) > 1000) {
+$titulo = trim($_POST['titulo'] ?? '');
+$descripcion = trim($_POST['descripcion'] ?? '');
+$tema = trim($_POST['tema'] ?? '');
+$nota = isset($_POST['nota']) && $_POST['nota'] !== '' ? floatval($_POST['nota']) : null;
+
+if ($id_clase <= 0 || strlen($titulo) < 3 || strlen($titulo) > 80 || strlen($descripcion) < 5 || strlen($descripcion) > 1000) {
     echo "Datos no válidos.<br><a href='Formulario-Crear-Publicacion.php?id=$id_clase'>Volver</a>";
     exit();
 }
 
-$res = mysqli_query(mysql: $conexion, query: "SELECT 1 FROM cuenta_has_clase WHERE cuenta_id_cuenta='$id_cuenta' AND clase_id_clase='$id_clase'");
-if (mysqli_num_rows(result: $res) == 0) {
+$res = mysqli_query($conexion, "SELECT 1 FROM cuenta_has_clase WHERE cuenta_id_cuenta='$id_cuenta' AND clase_id_clase='$id_clase'");
+if (mysqli_num_rows($res) == 0) {
     echo "No tienes permisos en esta clase.<br><a href='Pagina-Principal.php'>Volver</a>";
     exit();
 }
 
-$sql = "INSERT INTO publicacion (asunto, contenido, fecha, cuenta_id_cuenta, clase_id_clase) VALUES ('$asunto', '$contenido', '$fecha', '$id_cuenta', '$id_clase')";
-if (mysqli_query(mysql: $conexion, query: $sql)) {
-    echo "Publicación creada correctamente.<br>";
+$sql = "INSERT INTO tarea (titulo, descripcion, tema, nota, id_clase) 
+        VALUES ('$titulo', '$descripcion', '$tema', " . ($nota !== null ? "'$nota'" : "NULL") . ", '$id_clase')";
+
+if (mysqli_query($conexion, $sql)) {
+    echo "✅ Tarea creada correctamente.<br>";
 } else {
-    echo "Error al crear la publicación.<br>";
-}
-echo "<a href='Tareas-Formulario.php?id=$id_clase'>Volver a la clase</a>";
-function darLike($id){
-    global $conexion;
-    $sql = "UPDATE publicaciones SET likes = likes + 1 WHERE id = $id";
-    mysqli_query($conexion, $sql);
+    echo "❌ Error al crear la tarea: " . mysqli_error($conexion) . "<br>";
 }
 
-if(isset($_GET['id'])){
-    darLike($_GET['id']);
-    header("Location: Pagina-Principal.php");
-}
-?>
+echo "<a href='Tareas-Formulario.php?id=$id_clase'>Volver a la clase</a>";
 ?>
