@@ -71,18 +71,17 @@ $result = $conn->query($sql);
                     <td>
                         <?php if ($row['rol'] != 'admin'): ?>
                             <?php if ($row['rol'] == 'estudiante'): ?>
-                                <a class="btn profesor" href="cambiarRol.php?ci=<?= urlencode($row['ci']) ?>&rol=profesor">Hacer Profesor</a>
+                                <a class="btn profesor" href="cambiarrol.php?ci=<?= urlencode($row['ci']) ?>&rol=profesor">Hacer Profesor</a>
                             <?php elseif ($row['rol'] == 'profesor'): ?>
-                                <a class="btn estudiante" href="cambiarRol.php?ci=<?= urlencode($row['ci']) ?>&rol=estudiante">Hacer Estudiante</a>
+                                <a class="btn estudiante" href="cambiarrol.php?ci=<?= urlencode($row['ci']) ?>&rol=estudiante">Hacer Estudiante</a>
                             <?php endif; ?>
-
                             <?php if ($row['bloqueado'] == 0): ?>
                                 <a class="btn bloquear" href="bloquear.php?ci=<?= urlencode($row['ci']) ?>">Bloquear</a>
                             <?php else: ?>
                                 <a class="btn desbloquear" href="desbloquear.php?ci=<?= urlencode($row['ci']) ?>">Desbloquear</a>
                             <?php endif; ?>
                         <?php else: ?>
-                            <!-- El admin no se puede tocar -->
+                       
                             <em>Protegido</em>
                         <?php endif; ?>
                     </td>
