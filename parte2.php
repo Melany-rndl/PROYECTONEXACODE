@@ -1,0 +1,2 @@
+<?php
+$nota=$_POST
