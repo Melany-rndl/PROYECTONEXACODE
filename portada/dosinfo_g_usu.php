@@ -24,7 +24,7 @@
    @media(max-width:730px){
     body{
     display: grid;
-    grid-template-rows: 100px 200px 200px 300px 850px;
+    grid-template-rows: 100px 200px 200px 400px ;
     grid-template-columns:   99%;
     grid-template-areas:
     " pag"
@@ -32,13 +32,33 @@
     " presentacion "
     " dato_uno";
    
-   
+   #dato_uno {
+    border: 2px solid #585858;
+    border-radius: 15px; /* menos redondeado en móvil */
+    margin: 10px;        /* espacio para que no pegue con los lados */
+    padding: 15px;       /* más compacto */
+  }
+
+  .datos-grid {
+    grid-template-columns: 1fr; /* una sola columna en móvil */
+  }
+}
        }
 
+ #dato_uno {
+    border: 2px solid #585858;
+    border-radius: 15px; /* menos redondeado en móvil */
+    margin: 15px;        /* espacio para que no pegue con los lados */
+    padding: 19px;       /* más compacto */
+  }
+
+  .datos-grid {
+    grid-template-columns: 1fr; /* una sola columna en móvil */
+  }
 
 
 
-}
+
 
     #tit{
         grid-area: tit;
@@ -119,7 +139,45 @@
   height: 50;
     }
 
+#dato_uno {
+  grid-area: dato_uno;
+  border: 3px solid #585858;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+}
 
+#dato_uno .d_uno {
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #385da8;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.datos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* dos columnas */
+  gap: 12px 30px;
+}
+
+.campo {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #282727;
+}
+
+.label {
+  font-weight: bold;
+  color: #585858;
+}
+
+.valor {
+  margin-left: 8px;
+  color: #385da8;
+}
 
 
 
@@ -149,26 +207,26 @@
      <p class="t_cinco">Analista contable   </p> 
       <p class="t_cinco">activo</p>
 
-      <div id="personita">
-  <img src="icono_personas.jpg" alt="imag icono persona" >
-</div>
+      
 
 </section>
 
 
 
-    <section id="dato_uno"><p class="d_uno">Datos basicos </p>
-   
-    <p class="dere">Tipo de usuario <a class="is"> Resp Con accesor</a></p>
-     <p class="dere">Codigo de usuario <a class="is"> Resp Con accesor</a></p>
-      <p class="dere">Usuario de acceso <a class="is"> Resp Con accesor</a></p>
-       <p class="dere">Usuario  <a class="is"> Resp Con accesor</a></p>
-         <p class="dere">Genero <a class="is"> Resp Con accesor</a></p>
-        <p class="dere">Cedula de identidad <a class="is"> Resp Con accesor</a></p>
-         <p class="dere">Correo <a class="is"> Resp Con accesor</a></p>
-          <p class="dere">Ubicacion<a class="is"> Resp Con accesor</a></p>
-             <p class="dere">Cuenta vinculada<a class="is"> Resp Con accesor</a></p>
-        </section>
+  <section id="dato_uno">
+  <h2 class="d_uno">Datos básicos</h2>
+  <div class="datos-grid">
+    <div class="campo"><span class="label">Tipo de usuario:</span> <span class="valor">Resp Con accesor</span></div>
+    <div class="campo"><span class="label">Código de usuario:</span> <span class="valor">123456</span></div>
+    <div class="campo"><span class="label">Usuario de acceso:</span> <span class="valor">ingrid.vzq</span></div>
+    <div class="campo"><span class="label">Usuario:</span> <span class="valor">IngridV</span></div>
+    <div class="campo"><span class="label">Género:</span> <span class="valor">Femenino</span></div>
+    <div class="campo"><span class="label">Cédula de identidad:</span> <span class="valor">6789012</span></div>
+    <div class="campo"><span class="label">Correo:</span> <span class="valor">ingrid@email.com</span></div>
+    <div class="campo"><span class="label">Ubicación:</span> <span class="valor">Cochabamba</span></div>
+    <div class="campo"><span class="label">Cuenta vinculada:</span> <span class="valor">Google</span></div>
+  </div>
+</section>
    
     
  
