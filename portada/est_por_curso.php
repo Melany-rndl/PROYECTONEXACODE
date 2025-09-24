@@ -7,48 +7,63 @@
   <style>
     body {
        display: grid;
-            grid-template-rows: 90px 300px  650px ;
+            grid-template-rows: 95px 400px  650px ;
             grid-template-columns:4% 96% ;
             grid-template-areas:
             "iz pag"
             "iz alumnos "
             "iz profesores"
-           
-           
+            
+            
             ;
         font-family: Arial;
       background: white;
-     
+      
     }
-     
-   
-   
-
-
-    h2 {
-      margin-bottom: 10px;
-      color: #333;
+      
+      @media (max-width: 768px) {
+    body {
+      grid-template-columns: 100%;
+      grid-template-rows: auto auto auto auto;
+      grid-template-areas:
+        "pag"
+        "alumnos"
+        "profesores"
+        "iz";
+      padding: 10px;
     }
-
 
     section {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin-bottom: 15px;
     }
 
+    #profesores li, #alumnos li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    #alumnos form {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    #alumnos p, #profesores a, button {
+      font-size: 0.9em;
+    }
+  }
+
+  
 
     /* ===== PROFESORES ===== */
     #profesores ul {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      
       padding: 0;
-      list-style: none;
+   
     }
-
 
     #profesores li {
       display: flex;
@@ -59,23 +74,20 @@
       border-radius: 6px;
     }
 
-
     #profesores a, #profesores button {
       margin-top: 15px;
       display: inline-block;
       text-decoration: none;
     }
 
-
     button {
-      background: #4285f4;
+      background: #664480ff;
       border: none;
       color: white;
       padding: 10px 16px;
       border-radius: 6px;
       cursor: pointer;
     }
-
 
     /* ===== ALUMNOS ===== */
     #alumnos header {
@@ -85,7 +97,6 @@
       margin-bottom: 15px;
     }
 
-
     #alumnos ul {
       display: flex;
       flex-direction: column;
@@ -93,7 +104,6 @@
       list-style: none;
       padding: 0;
     }
-
 
     #alumnos li {
       display: flex;
@@ -104,18 +114,15 @@
       border-radius: 6px;
     }
 
-
-    #alumnos li a {
+    #alumnos li  {
       color: #4285f4;
       text-decoration: none;
       font-size: 0.9em;
     }
 
-
     #alumnos li a:hover {
       text-decoration: underline;
     }
-
 
   </style>
 </head>
@@ -137,9 +144,8 @@
       <li><span>Liz Mariela Jaimez Cossio</span> <em>(Invitado)</em></li>
     </ul>
     <a href="#">Ver todo</a><br>
-    <button>Habilitar el acceso para padres, madres o tutores</button>
+    <button>Ver tareas</button>
   </section>
-
 
   <!-- Sección Alumnos -->
   <section id="alumnos">
@@ -155,24 +161,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-   
+    
    
       <h2>Alumnos</h2>
       <p>38 alumnos</p>
-   
-
+    
 
     <form>
       <label>
@@ -181,22 +174,21 @@
       <button type="submit">Acciones</button>
     </form>
 
-
     <ul>
-      <li><span>Alvarez Tejada Alejandro</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Prado Pereira Anahi</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Uribe Guillen Andres</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Garcia Ortulio Angel</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Solis Saavedra Araceli</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Morisett Rojas Ariana</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Escobari Aguilar Asel</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Torrico Pinto Camila</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Mejia Romero Carmen</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Olivera Cortez Clariss</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Quiroga Saavedra Cristin</span> <a href="#">Invitar a padres</a></li>
-      <li><span>Molina Vidaurre Denira</span> <a href="#">Invitar a padres</a></li>
+      <li><span>Alvarez Tejada Alejandro</span> </li>
+      <li><span>Prado Pereira Anahi</span></li>
+      <li><span>Uribe Guillen Andres</span> </li>
+      <li><span>Garcia Ortulio Angel</span> </li>
+      <li><span>Solis Saavedra Araceli</span> </li>
+      <li><span>Morisett Rojas Ariana</span></li>
+      <li><span>Escobari Aguilar Asel</span> </li>
+      <li><span>Torrico Pinto Camila</span> </li>
+      <li><span>Mejia Romero Carmen</span> </li>
+      <li><span>Olivera Cortez Clariss</span> </li>
+      <li><span>Quiroga Saavedra Cristin</span> </li>
+      <li><span>Molina Vidaurre Denira</span> </li>
     </ul>
   </section>
- 
+  
 </body>
 </html>

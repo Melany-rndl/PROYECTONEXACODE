@@ -6,7 +6,6 @@
     <title>Document</title>
     <style>
 
-
 :root {
       --celeste: #385da8;
       --gris-claro: #f4f4f4;
@@ -16,7 +15,6 @@
       --blanco: #fff;
       --morado: rgb(35, 91, 245);
     }
-
 
           body{
             display: grid;
@@ -32,7 +30,6 @@
     ;
    
         }
-
 
       @media(max-width:730px){
     body{
@@ -52,15 +49,11 @@
        }
 
 
-
-
 }
        
 
-
-     
-   
-
+      
+    
 
 
 
@@ -69,16 +62,7 @@
 
 
 
-
-
-
-
-
-
-
-       
-
-
+        
 
 
     #barratextouno{
@@ -87,13 +71,12 @@
         border-bottom: 2px solid #666565;
     }
     #t{
-      font-size: 36px;
-      border: none;
+      font-size: 36px; 
+      border: none; 
       background-color: white;
        margin-top: 30px;
        margin-left: 28px;
     }
-
 
     #nomprof{
         font-family: arial;
@@ -115,7 +98,6 @@
         margin-left: 900px;
    }
 
-
    #espacio{
     grid-area:espacio;
    }
@@ -125,7 +107,6 @@
         font-size: 20px;
         margin-left: 30px;
    }
-
 
     #barratextodos{
         grid-area: barratextodos;
@@ -139,7 +120,7 @@
     grid-template-areas:
     "cajauno"
     "cajados"
-   
+    
     ;
      gap: 50px;
         }
@@ -185,7 +166,7 @@
         padding-top: 60px;
         border-radius:30px;
     }
-   
+    
     #marcar{
         color: white;
             background:rgb(86, 59, 98);
@@ -200,20 +181,11 @@
               transition: all 3s ;
     }
 
-
     #marcar:hover{
 color:  rgb(86, 59, 98);
  background-color:white;
 
-
     }
-
-
-
-
-
-
-
 
 
 
@@ -264,14 +236,12 @@ color:  rgb(86, 59, 98);
       gap: 2rem;
     }
 
-
     .class-card, .materials, .tasks {
       background-color: white;
       border-radius: 12px;
       padding: 1.5rem;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-
 
     .class-card h3,
     .materials h3,
@@ -280,13 +250,11 @@ color:  rgb(86, 59, 98);
       margin-bottom: 1rem;
     }
 
-
     .comment-box {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 1rem;
     }
-
 
     .comment-box textarea {
       padding: 0.6rem;
@@ -296,7 +264,6 @@ color:  rgb(86, 59, 98);
       resize: vertical;
       font-family: 'Roboto', sans-serif;
     }
-
 
     .comment-box button {
       background-color: var(--azul);
@@ -308,18 +275,15 @@ color:  rgb(86, 59, 98);
       font-weight: bold;
     }
 
-
     .comment-box button:hover {
       background-color: var(--morado);
     }
-
 
     .comment-list {
       margin-top: 1rem;
       display: grid;
       gap: 1rem;
     }
-
 
     .comment-item {
       background-color: var(--gris-claro);
@@ -333,8 +297,6 @@ color:  rgb(86, 59, 98);
       width: 100%;
       overflow: hidden;
     }
-
-
 
 
 #menuLateral {
@@ -352,7 +314,6 @@ color:  rgb(86, 59, 98);
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
-
 #menuLateral a {
   text-decoration: none;
   color: #3d3d3d;
@@ -362,11 +323,9 @@ color:  rgb(86, 59, 98);
   border-bottom: 1px solid #ccc;
 }
 
-
 #menuLateral a:hover {
   color: #385da8;
 }
-
 
     </style>
 </head>
@@ -388,14 +347,12 @@ color:  rgb(86, 59, 98);
         <p id="ins"> Instrucciones de la tarea</p><br>
         <br>
         <br>
-       
+        
         <buton id="arch"></buton>
     </section>
    <section id="barratextodos">
 
-
    <div class="container">
-
 
     <div class="class-card">
       <h3>👥 nombre de la persona</h3><h3>• fecha publicadion</h3>
@@ -409,14 +366,12 @@ color:  rgb(86, 59, 98);
 
 
 
-
-
-
    </section>
    <main id="general">
     <section id="cajauno">
         <p id="trabajo">Tu entrega</p>
-        <button id="adjunt"><strong> + Añadir o crear</strong></button>
+        <a href="subir_t.php"> <button id="adjunt"><strong> + Añadir o crear</strong></button></a>
+       
         <button id="marcar"> Marcar como completado</button>
     </section>
     <section id="cajados">
@@ -424,16 +379,13 @@ color:  rgb(86, 59, 98);
     <p id="vale">vale por :</p>
     <p id="puntos">100 puntos</p>
     </section>
-   
+    
    </main>
    <footer id="pie">
     © 2025 Nexa Classroom. Todos los derechos reservados.
   </footer>
 
-
  
-
-
 
 
   <script>
@@ -449,11 +401,7 @@ color:  rgb(86, 59, 98);
       }
     }
 
-
   </script>
-
 
 </body>
 </html>
-
-
