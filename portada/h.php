@@ -77,8 +77,6 @@
       font-size: 1.8rem;
       cursor: pointer;
     }
-
-    /* Submenú */
     .submenu {
       position: relative;
       display: inline-block;
@@ -107,8 +105,6 @@
     .submenu:hover .submenu-content {
       display: block;
     }
-
-    /* Hero y resto */
     .hero {
       position: relative;
       height: 500px;

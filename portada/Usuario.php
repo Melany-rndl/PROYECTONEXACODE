@@ -16,15 +16,23 @@ $clave = $_POST['contraseña'];
 $sql = "SELECT * FROM cuenta WHERE usuario = '$usuario' AND clave = '$clave'";
 $resultado = mysqli_query($conexion, $sql);
 
+
+
 if ($resultado && mysqli_num_rows($resultado) > 0) {
     $fila = mysqli_fetch_assoc($resultado);
 
-    $_SESSION['id_cuenta'] = $fila['id_cuenta'];
-    $_SESSION['usuario'] = $fila['usuario'];
-
-    header("Location: Cuenta.php");
+    if (isset($fila['bloqueado']) && $fila['bloqueado'] == 1) {
+        header("Location: verbloqueo.php");
+        exit();
+    }
+    else{
+        $_SESSION['id_cuenta'] = $fila['id_cuenta'];
+        $_SESSION['usuario'] = $fila['usuario'];
+        header("Location: Cuenta.php");
     exit();
-} else {
+    }   
+}
+ else {
     echo "Datos incorrectos. <a href='Logueo.php'>Intentar nuevamente</a>";
 }
 ?>
