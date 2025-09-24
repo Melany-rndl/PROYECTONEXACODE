@@ -153,7 +153,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
       <div class="formulario-editar-tarea-acciones">
         <button type="submit" class="formulario-editar-tarea-btn">Guardar cambios</button>
-        <a href="Tareas-Formulario.php?id=<?= intval($datos_tarea['clase_id_clase']) ?>" class="formulario-editar-tarea-cancelar">Cancelar</a>
       </div>
     </form>
 </div>
