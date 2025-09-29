@@ -171,7 +171,7 @@ if (!isset($materias_menu)) {
         "siete ocho nueve mtre";
         gap: 70px;
     }
-    @media(max-width:800px){
+    @media(max-width:350px){
         #caja{
             display: grid;
             grid-template-rows: repeat(12, 80px);
