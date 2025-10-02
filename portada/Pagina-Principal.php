@@ -12,6 +12,8 @@ $_SESSION['rol'] = $rol;
 $sql = "SELECT clase.*, cuenta.usuario AS profesor FROM clase JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase JOIN cuenta ON clase.id_profesor = cuenta.id_cuenta WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC";
 $res = mysqli_query($conexion, $sql);
 
+
+
 $colores = ['celeste', 'azul', 'morado', 'verde', 'verdeO', 'naranja', 'amarillo', 'rosa'];
 function colorClase($nombre, $colores): mixed {
     return $colores[abs(num: crc32(string: strtolower(string: $nombre))) % count(value: $colores)];
