@@ -29,16 +29,46 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <title>Panel de Administrador</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f9; }
-        h1 { text-align: center; color: #333; }
-        table { width: 95%; margin: 20px auto; border-collapse: collapse; background: #fff; }
-        th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
-        th { background: #333; color: #fff; }
-        a.btn { padding: 6px 10px; border-radius: 4px; text-decoration: none; color: #fff; }
-        a.profesor { background: #007bff; }
-        a.estudiante { background: #28a745; }
-        a.bloquear { background: #dc3545; }
-        a.desbloquear { background: #6c757d; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f4f4f9; 
+        }
+        h1 {
+             text-align: center; 
+             color: #333;
+             }
+        table { 
+            width: 95%; 
+            margin: 20px auto; 
+            border-collapse: collapse; 
+            background: #fff; 
+        }
+        th, td { 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            text-align: center; 
+        }
+        th { 
+            background: #333; 
+            color: #fff;
+         }
+        a.btn {
+             padding: 6px 10px; 
+             border-radius: 4px; 
+             text-decoration: none; 
+             color: #fff; 
+            }
+        a.profesor { 
+            background: #007bff; }
+        a.estudiante { 
+            background: #28a745;
+         }
+        a.bloquear { 
+            background: #dc3545; 
+        }
+        a.desbloquear { 
+            background: #67b2f3ff; 
+        }
     </style>
 </head>
 <body>
