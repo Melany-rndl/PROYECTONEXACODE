@@ -1,18 +1,54 @@
 <?php
 session_start();
+if (!isset($_SESSION['id_cuenta'])) {
+    header("Location: Logueo.php");
+    exit();
+}
 $conexion = mysqli_connect("localhost", "root", "", "p25");
+if (!$conexion) {
+    die("Error de conexión");
+}
 
 $id_profesor = $_SESSION['id_cuenta'];
 $id_tarea = isset($_GET['id_tarea']) ? intval($_GET['id_tarea']) : 0;
+if ($id_tarea <= 0) {
+    echo "Tarea no encontrada.";
+    exit();
+}
 
+$resT = mysqli_query(
+    $conexion,
+    "SELECT titulo, clase_id_clase, nombre AS clase 
+     FROM tarea 
+     JOIN clase ON tarea.clase_id_clase = clase.id_clase 
+     WHERE tarea.id_tarea='$id_tarea'"
+);
 $tarea = mysqli_fetch_assoc($resT);
 
+if (!$tarea) {
+    echo "Tarea no encontrada.";
+    exit();
+}
+
+$id_clase = $tarea['clase_id_clase'];
+
+$sqlEst = "SELECT id_cuenta, usuario
+           FROM cuenta
+           JOIN cuenta_has_clase ON cuenta.id_cuenta = cuenta_has_clase.cuenta_id_cuenta
+           WHERE cuenta_has_clase.clase_id_clase = '$id_clase' AND cuenta.rol='estudiante'
+           ORDER BY usuario ASC";
 $resEst = mysqli_query($conexion, $sqlEst);
 $estudiantes = [];
+while ($row = mysqli_fetch_assoc($resEst)) {
+    $estudiantes[] = $row;
+}
 
 $sqlEnt = "SELECT * FROM entrega WHERE tarea_id_tarea='$id_tarea'";
 $resEnt = mysqli_query($conexion, $sqlEnt);
 $entregas = [];
+while ($row = mysqli_fetch_assoc($resEnt)) {
+    $entregas[$row['cuenta_id_cuenta']] = $row;
+}
 
 $exts = ["pdf", "jpg", "jpeg", "png", "gif", "webp", "docx", "xlsx", "txt", "zip"];
 $dir = "./media/";
@@ -270,6 +306,18 @@ include "cabecera.php";
                 $total_estudiantes = count($estudiantes);
                 $total_entregados = 0;
                 $total_evaluados = 0;
+                foreach($estudiantes as $est)
+                {
+                    $id_est = $est['id_cuenta'];
+                    $entrego = isset($entregas[$id_est]) ? $entregas[$id_est] : null;
+                    if ($entrego)
+                    {
+                        $total_entregados++;
+                        if (!is_null($entrego['nota']))
+                        {
+                            $total_evaluados++;
+                        }
+                    }
                 }
               ?>
               <div class="caja-resumen">
@@ -289,6 +337,7 @@ include "cabecera.php";
         </div>
     </div>
     <main id="caja-tareas-estudiantes">
+      <?php foreach($estudiantes as $index => $est): 
         $id_est = $est['id_cuenta'];
         $entrego = isset($entregas[$id_est]) ? $entregas[$id_est] : null;
         $archivo = null;
@@ -300,6 +349,18 @@ include "cabecera.php";
             if (file_exists($dir . $nombreBase . "." . $e)) {
               $archivo = $dir . $nombreBase . "." . $e;
               break;
+=======
+        if ($entrego)
+        {
+            $nombreBase = "Entrega-$id_est-$id_tarea";
+            foreach ($exts as $e)
+            {
+                if (file_exists($dir . $nombreBase . "." . $e))
+                {
+                    $archivo = $dir . $nombreBase . "." . $e;
+                    break;
+                }
+>>>>>>> 94a1123d579afd8ef198bc40b98d8ff40ecde5a9
             }
         }
       ?>
@@ -307,268 +368,75 @@ include "cabecera.php";
         <button class="cajita_let"><?= strtoupper(substr(trim($est['usuario']),0,1)) ?></button>
         <p class="nom_estudiante"><?= htmlspecialchars($est['usuario']) ?></p>
         <div class="espacio_archivo">
+          <?php 
+          if ($archivo)
+          { 
               $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+              if (in_array($extension, ["jpg", "jpeg", "png", "gif", "webp"]))
+              {
+                  echo "<a href='$archivo' target='_blank'><img src='$archivo' alt='Archivo' width='48'></a>";
               }
+              elseif ($extension == "pdf")
+              {
+                  echo "<a href='$archivo' target='_blank'>Ver PDF</a>";
+              }
+              else
+              {
+                  echo "<a href='$archivo' download>Descargar</a>";
+              }
+          } 
+          else 
+          { ?>
               <span style="color:#b00;">Sin archivo</span>
+          <?php } ?>
         </div>
         <p class="num_archivos">
           <?= $archivo ? "1 archivo adjunto" : "0 archivos adjuntos" ?>
         </p>
+        <?php 
+        if ($entrego)
+        { ?>
           <p class="dato_entregado">Entregó</p>
+        <?php 
+        }
+        else
+        { ?>
           <p class="dato_noentregado">No entregó</p>
+        <?php 
+        }
+        ?>
         <div class="nota_box">
+<<<<<<< HEAD
           <?php if ($entrego): ?>
             <?php if (is_null($entrego['nota'])): ?>
               <!-- ✅ corregido: id_tareas -->
               <a class="btn-asignar" href="profesor_calificar.php?id_entrega=<?= urlencode($entrego['id_entrega']) ?>&id_tarea=<?= urlencode($id_tarea) ?>">Asignar</a>
             <?php else: ?>
+=======
+          <?php 
+          if ($entrego)
+          {
+            if (is_null($entrego['nota']))
+            { ?>
+              <a class="btn-asignar" href="profesor_calificar.php?id_entrega=<?= urlencode($entrego['id_entrega']) ?>&id_tarea=<?= urlencode($id_tarea) ?>">Asignar</a>
+            <?php 
+            }
+            else
+            { ?>
+>>>>>>> 94a1123d579afd8ef198bc40b98d8ff40ecde5a9
               Nota: <?= htmlspecialchars($entrego['nota']) ?>
+            <?php
+            }
+          }
+          else
+          { ?>
             Nota: -
+          <?php 
+          }
+          ?>
         </div>
         <div style="height:1px;"></div>
       </section>
       <?php endforeach; ?>
     </main>
 </div>
-
-<style>
-#contenedor-tarea-entregas {
-    max-width: 1240px;
-    width: 94%;
-    margin: 28px auto 0 auto;
-    padding: 0 0 0 0;
-    box-sizing: border-box;
-}
-#bloque-resumen-titulo {
-    width: 100%;
-    margin: 0;
-    margin-bottom: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-}
-
-#titulo-tarea-entregas {
-    font-size: 2.7rem;
-    font-family: Arial, sans-serif;
-    color: #43207c;
-    font-weight: bold;
-    margin: 0 0 8px 0;
-    letter-spacing: 0.5px;
-    word-break: break-word;
-    line-height: 1.12;
-    text-align: left;
-    display: block;
-}
-
-#fila-cajas-boton {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 0;
-    gap: 8px;
-}
-
-#contenedor-cajas-resumen {
-    display: flex;
-    flex-direction: row;
-    gap: 18px;
-}
-.caja-resumen {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 2px 8px #0002;
-    border: 2px solid #d8d7e6;
-    min-width: 140px;
-    min-height: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 24px 14px 24px;
-    transition: box-shadow 0.19s;
-}
-.caja-resumen h3 {
-    font-size: 1.17rem;
-    color: #5c5959;
-    font-family: Arial;
-    font-weight: 700;
-    margin: 0 0 8px 0;
-}
-.caja-resumen .numero {
-    font-size: 2.4rem;
-    color: #583d9c;
-    font-family: Arial Black, Arial, sans-serif;
-    font-weight: bold;
-    margin: 0;
-    line-height: 1;
-}
-.btn-volver {
-  background:#3c328f;
-  color:#fff;
-  padding:10px 26px;
-  border:none;
-  border-radius:10px;
-  text-decoration:none;
-  font-size:17px;
-  display:inline-block;
-  min-width: 0;
-  text-align: center;
-  font-family: inherit;
-  font-weight: bold;
-  transition: background 0.18s;
-  box-shadow: 0 2px 8px #0001;
-  z-index: 2;
-  align-self: flex-end;
-  margin-left: 24px;
-}
-.btn-volver:hover { background:#5743c6; }
-
-@media (max-width: 1300px){
-    #contenedor-tarea-entregas { max-width: 99vw; width: 99vw; }
-}
-@media (max-width: 900px){
-    #contenedor-tarea-entregas { width: 99vw; }
-    #titulo-tarea-entregas { font-size: 1.45rem; }
-    #contenedor-cajas-resumen { gap: 10px; }
-    .caja-resumen { min-width: 90px; font-size: 13px; padding: 8px 7px 7px 7px;}
-    .btn-volver { font-size: 15px; padding:7px 11px; }
-}
-@media (max-width: 650px){
-    #contenedor-tarea-entregas { width: 100vw; padding: 0;}
-    #fila-cajas-boton { flex-direction: column; align-items: stretch; gap: 8px;}
-    .btn-volver { margin-left: 0; margin-top: 13px;}
-}
-
-#caja-tareas-estudiantes {
-    width: 100%;
-    margin: 18px auto 60px auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px 20px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 120px;
-    box-sizing: border-box;
-}
-
-.tarjeta_estudiante{
-    background: rgb(220, 221, 222);
-    border: 2px solid #949393;
-    border-radius: 18px;
-    min-height: 300px;
-    max-width: 260px;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    transition: box-shadow 0.18s;
-    padding: 13px 10px 13px 10px;
-    gap: 4px;
-    margin: 0;
-    flex: 0 1 220px;
-}
-.cajita_let{
-    width: 30px;
-    height: 30px;
-    padding: 2px;
-    background-color:rgb(127, 80, 230) ;
-    color: #f9f9f9;
-    border-radius: 50%;
-    font-family: arial;
-    font-size: 1.3rem;
-    margin-left: 2px;
-    margin-top: 2px;
-    margin-bottom: 0px;
-    cursor: pointer;
-    font-weight: bold;
-    border:none;
-    display: inline-block;
-    text-align: center;
-    box-shadow: 0 1px 6px #aaa1;
-    vertical-align: middle;
-}
-.nom_estudiante{
-  margin-left: 40px;
-  margin-top: -27px;
-  font-family: arial;
-  font-size: 1.09rem;
-  color: #524f4f;
-  font-weight: bold;
-  margin-bottom: 2px;
-  vertical-align: middle;
-  line-height: 1.1;
-}
-.espacio_archivo{
-  margin-left: 40px;
-  margin-top: 3px;
-  background: #fff;
-  border: 1.5px solid #949393;
-  border-radius: 10px;
-  min-height: 18px;
-  min-width: 60px;
-  padding: 3px 6px;
-  font-size: 0.98rem;
-  color: #583d9c;
-  display: inline-block;
-  box-shadow: 0 1px 4px #aaa1;
-}
-.num_archivos{
-  margin-left: 40px;
-  font-family: arial;
-  font-size: 0.93rem;
-  color: #524f4f;
-  margin-top: 2px;
-  line-height: 1;
-}
-.dato_entregado{
-  margin-left: 40px;
-  font-family: arial;
-  font-size: 0.93rem;
-  color:  #25a41cff;
-  margin-top: 2px;
-  font-weight: bold;
-  line-height: 1;
-}
-.dato_noentregado{
-  margin-left: 40px;
-  font-family: arial;
-  font-size: 0.93rem;
-  color: #b00;
-  margin-top: 2px;
-  font-weight: bold;
-  line-height: 1;
-}
-.nota_box{
-  margin-left: 40px;
-  margin-top: 4px;
-  font-size: 0.98rem;
-  color: #3c328f;
-  font-family: arial;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap:7px;
-  line-height: 1;
-}
-.btn-asignar {
-  background: #2196f3;
-  color: #fff;
-  border: none;
-  border-radius: 7px;
-  padding: 2px 8px;
-  font-size: 0.93rem;
-  cursor: pointer;
-  text-decoration: none;
-  margin-left: 0;
-  transition: background 0.18s;
-}
-.btn-asignar:hover { background:#1976d2; }
-</style>
