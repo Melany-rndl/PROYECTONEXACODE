@@ -34,16 +34,17 @@
       @media(max-width:730px){
     body{
     display: grid;
-    grid-template-rows: 100px 200px 200px 300px 40px;
-    grid-template-columns:  1% 99%;
+    grid-template-rows: 50px 100px 200px 200px 300px 40px;
+    grid-template-columns:   99%;
     grid-template-areas:
-    " iz pag "
-    " iz barratextouno  "
-    "  iz espacio "
-    "  iz barratextodos "
-    " iz general "
-    " iz general  "
-     " iz pie  ";
+    "iz"
+    "pag "
+    "barratextouno  "
+    "espacio "
+    "barratextodos "
+    "general "
+    "general  "
+    "pie  ";
    
    
        }
