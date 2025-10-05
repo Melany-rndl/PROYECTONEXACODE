@@ -19,7 +19,7 @@ if ($id_entrega <= 0) { echo "Entrega no especificada."; exit(); }
 $sql = "SELECT e.*, t.nota AS nota_maxima, t.titulo, i.nombre, i.apellido
 FROM entrega e
 JOIN tarea t ON e.tarea_id_tarea = t.id_tarea
-JOIN clase c ON t.clase_id_clase = c.id_clase
+JOIN clase c ON t.id_clase = c.id_clase
 JOIN informacion i ON e.cuenta_id_cuenta = i.cuenta_id_cuenta
 WHERE e.id_entrega = $id_entrega AND c.id_profesor = $id_profesor";
 $res = $conn->query($sql);
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->query("UPDATE entrega SET nota=$nota WHERE id_entrega=$id_entrega");
     echo "<div style='max-width:400px;margin:70px auto;background:white;padding:30px;border-radius:12px;box-shadow:0 2px 12px #0002;'>
             <h2 style='color:#3c328f'>Nota guardada correctamente</h2>
-            <a href='". ($volver ? htmlspecialchars($volver) : "profesor_ver_entregas.php") ."' style='color:#3c328f;'>Volver</a>
+            <a href='". ($volver ? htmlspecialchars($volver) : "clase-Formulario.php") ."' style='color:#3c328f;'>Volver</a>
           </div>";
     exit();
 }

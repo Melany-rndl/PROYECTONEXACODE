@@ -272,7 +272,6 @@ if (!isset($materias_menu)) {
 
     <?php endif; ?>
     <nav>
-        <button class="botonesuperior" onclick="window.location.href='Pagina-Principal.php'">Inicio</button>
         <button class="botonesuperior" onclick="window.location.href='Pagina-Principal.php'">Mis cursos</button>
     </nav>
 </header>

@@ -36,6 +36,7 @@ $sql_estudiantes = "SELECT c.usuario
                     FROM cuenta c
                     JOIN cuenta_has_clase chc ON c.id_cuenta = chc.cuenta_id_cuenta
                     WHERE chc.clase_id_clase = '$id_clase' AND c.rol = 'estudiante'";
+                    
 $res_estudiantes = mysqli_query($conexion, $sql_estudiantes);
 $estudiantes = [];
 while ($row = mysqli_fetch_assoc($res_estudiantes)) $estudiantes[] = $row;
@@ -200,7 +201,7 @@ while ($row = mysqli_fetch_assoc($res_estudiantes)) $estudiantes[] = $row;
             <?php foreach($estudiantes as $e): ?>
                 <li>
                     <span><?= htmlspecialchars($e['usuario']) ?></span>
-                    <a href="#">Invitar a padres</a>
+                    
                 </li>
             <?php endforeach; ?>
         </ul>

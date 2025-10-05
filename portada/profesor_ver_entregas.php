@@ -317,7 +317,7 @@ include "cabecera.php";
         $archivo = null;
         if ($entrego) {
           // ✅ corregido: $id_tareas (con "s")
-          $nombreBase = "E-$id_est-$id_tarea";
+          $nombreBase = "Entrega-$id_est-$id_tarea";
           foreach ($exts as $e) {
             if (file_exists($dir . $nombreBase . "." . $e)) {
               $archivo = $dir . $nombreBase . "." . $e;
@@ -355,7 +355,7 @@ include "cabecera.php";
           <?php if ($entrego): ?>
             <?php if (is_null($entrego['nota'])): ?>
               <!-- ✅ corregido: id_tareas -->
-              <a class="btn-asignar" href="profesor-calificar.php?id_entrega=<?= urlencode($entrego['id_entrega']) ?>&id_tarea=<?= urlencode($id_tarea) ?>">Asignar</a>
+              <a class="btn-asignar" href="profesor_calificar.php?id_entrega=<?= urlencode($entrego['id_entrega']) ?>&id_tarea=<?= urlencode($id_tarea) ?>">Asignar</a>
             <?php else: ?>
               Nota: <?= htmlspecialchars($entrego['nota']) ?>
             <?php endif; ?>

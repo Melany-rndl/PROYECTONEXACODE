@@ -1,4 +1,12 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
 $conexion = mysqli_connect("localhost", "root", "", "p25");
 if (!$conexion) {
     die("Error de conexión a la base de datos.");
@@ -35,20 +43,41 @@ if (
                      VALUES ('$nombre', '$apellido', '$direccion', '$fecha_nac', '$telefono', '$ci', $id_cuenta)";
 
         if (mysqli_query($conexion, $sql_info)) {
-            echo "Cuenta creada exitosamente.<br>";
+            echo "<script>Swal.fire({
+  title: 'Cuenta creada exitosamente!',
+  icon: 'success',
+  draggable: true
+});</script>";
             echo "<a href='Logueo.php'>Iniciar sesión</a>";
         } else {
             // Si falla la información personal, elimina la cuenta para no dejar registros huérfanos
             mysqli_query($conexion, "DELETE FROM cuenta WHERE id_cuenta = $id_cuenta");
-            echo "Error al guardar la información personal: " . mysqli_error($conexion) . "<br>";
+            echo "<script>
+        Swal.fire({
+  icon: 'error',
+  title: Oops...',
+  text: 'Hubo un error al guardar la informacion!',
+});</script> " . mysqli_error($conexion) . "<br>";
             echo "<a href='Crear-Cuenta.php'>Volver</a>";
         }
     } else {
-        echo "Error al crear la cuenta: " . mysqli_error($conexion) . "<br>";
+        echo "<script>
+        Swal.fire({
+  icon: 'error',
+  title: Oops...',
+  text: 'No se pdo crear la cuenta correctamente, intenta de nuevo!',
+});</script>" . mysqli_error($conexion) . "<br>";
         echo "<a href='Crear-Cuenta.php'>Volver</a>";
     }
 } else {
-    echo "Todos los campos son obligatorios.<br>";
-    echo "<a href='Crear-Cuenta.php'>Volver</a>";
+    echo "<script>
+        Swal.fire({
+  icon: 'info',
+  title: Oops...',
+  text: 'Todos os datos son necesarios!',
+  footer: '<a href='Crear-Cuenta.php'>Volver</a>'
+});</script>";
 }
 ?>
+</body>
+</html>
