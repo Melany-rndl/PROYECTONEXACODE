@@ -33,17 +33,26 @@ if (!isset($materias_menu)) {
         "iz caja";
         gap:10px
     }
-    @media(max-width:500px){
-        body{
-            grid-template-rows: 50px 100px 200px 10px;
-            grid-template-columns: 30% 50% 20%;
-            grid-template-areas:
-            "iz pag"
-            "iz cero"
-            "iz espacio"
-            "iz caja";
-        }
+    
+    @media(max-width:730px){
+    body{
+    display: grid;
+    grid-template-rows: 100px 80px 250px 70px 80px;
+    grid-template-columns: 100%;
+    grid-template-areas:
+    " pag "
+    " iz "
+    " cero "
+    "espacio  "
+    " caja  ";
+   
+   
+       }
+    .mensajemenu{
+        display: flex;
+        flex-direction: row;
     }
+}
     header{
         border-bottom: 2px solid #666565;
         background: white;
@@ -171,7 +180,7 @@ if (!isset($materias_menu)) {
         "siete ocho nueve mtre";
         gap: 70px;
     }
-    @media(max-width:350px){
+    @media(max-width:730px){
         #caja{
             display: grid;
             grid-template-rows: repeat(12, 80px);
