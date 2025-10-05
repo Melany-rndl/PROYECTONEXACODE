@@ -1,31 +1,18 @@
 <?php
 session_start();
-if (!isset($_SESSION['id_cuenta'])) { header("Location: Logueo.php"); exit(); }
 $conexion = mysqli_connect("localhost", "root", "", "p25");
-if (!$conexion) die("Error de conexión");
 
 $id_profesor = $_SESSION['id_cuenta'];
 $id_tarea = isset($_GET['id_tarea']) ? intval($_GET['id_tarea']) : 0;
-if ($id_tarea <= 0) { echo "Tarea no encontrada."; exit(); }
 
-$resT = mysqli_query($conexion, "SELECT t.titulo, t.id_clase, c.nombre AS clase FROM tarea t JOIN clase c ON t.id_clase=c.id_clase WHERE t.id_tarea='$id_tarea'");
 $tarea = mysqli_fetch_assoc($resT);
-if (!$tarea) { echo "Tarea no encontrada."; exit(); }
-$id_clase = $tarea['id_clase'];
 
-$sqlEst = "SELECT cu.id_cuenta, cu.usuario
-           FROM cuenta cu
-           JOIN cuenta_has_clase chc ON cu.id_cuenta = chc.cuenta_id_cuenta
-           WHERE chc.clase_id_clase = '$id_clase' AND cu.rol='estudiante'
-           ORDER BY cu.usuario ASC";
 $resEst = mysqli_query($conexion, $sqlEst);
 $estudiantes = [];
-while ($row = mysqli_fetch_assoc($resEst)) $estudiantes[] = $row;
 
 $sqlEnt = "SELECT * FROM entrega WHERE tarea_id_tarea='$id_tarea'";
 $resEnt = mysqli_query($conexion, $sqlEnt);
 $entregas = [];
-while ($row = mysqli_fetch_assoc($resEnt)) $entregas[$row['cuenta_id_cuenta']] = $row;
 
 $exts = ["pdf", "jpg", "jpeg", "png", "gif", "webp", "docx", "xlsx", "txt", "zip"];
 $dir = "./media/";
@@ -274,10 +261,8 @@ include "cabecera.php";
 .btn-asignar:hover { background:#1976d2; }
 </style>
 
-
 <div id="contenedor-tarea-entregas">
     <div id="bloque-resumen-titulo">
-        <!-- ✅ corregido: $tareas['titulo'] -->
         <div id="titulo-tarea-entregas"><?= htmlspecialchars($tarea['titulo']) ?></div>
         <div id="fila-cajas-boton">
             <div id="contenedor-cajas-resumen">
@@ -285,13 +270,6 @@ include "cabecera.php";
                 $total_estudiantes = count($estudiantes);
                 $total_entregados = 0;
                 $total_evaluados = 0;
-                foreach($estudiantes as $est){
-                  $id_est = $est['id_cuenta'];
-                  $entrego = isset($entregas[$id_est]) ? $entregas[$id_est] : null;
-                  if ($entrego) {
-                    $total_entregados++;
-                    if (!is_null($entrego['nota'])) $total_evaluados++;
-                  }
                 }
               ?>
               <div class="caja-resumen">
@@ -311,10 +289,10 @@ include "cabecera.php";
         </div>
     </div>
     <main id="caja-tareas-estudiantes">
-      <?php foreach($estudiantes as $index => $est):
         $id_est = $est['id_cuenta'];
         $entrego = isset($entregas[$id_est]) ? $entregas[$id_est] : null;
         $archivo = null;
+<<<<<<< HEAD
         if ($entrego) {
           // ✅ corregido: $id_tareas (con "s")
           $nombreBase = "Entrega-$id_est-$id_tarea";
@@ -323,34 +301,21 @@ include "cabecera.php";
               $archivo = $dir . $nombreBase . "." . $e;
               break;
             }
-          }
         }
       ?>
       <section class="tarjeta_estudiante">
         <button class="cajita_let"><?= strtoupper(substr(trim($est['usuario']),0,1)) ?></button>
         <p class="nom_estudiante"><?= htmlspecialchars($est['usuario']) ?></p>
         <div class="espacio_archivo">
-          <?php if ($archivo): 
               $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
-              if (in_array($extension, ["jpg", "jpeg", "png", "gif", "webp"])) {
-                echo "<img src='$archivo' alt='Archivo' width='48'>";
-              } elseif ($extension == "pdf") {
-                echo "<a href='$archivo' target='_blank'>Ver PDF</a>";
-              } else {
-                echo "<a href='$archivo' download>Descargar</a>";
               }
-            else: ?>
               <span style="color:#b00;">Sin archivo</span>
-          <?php endif; ?>
         </div>
         <p class="num_archivos">
           <?= $archivo ? "1 archivo adjunto" : "0 archivos adjuntos" ?>
         </p>
-        <?php if ($entrego): ?>
           <p class="dato_entregado">Entregó</p>
-        <?php else: ?>
           <p class="dato_noentregado">No entregó</p>
-        <?php endif; ?>
         <div class="nota_box">
           <?php if ($entrego): ?>
             <?php if (is_null($entrego['nota'])): ?>
@@ -358,10 +323,7 @@ include "cabecera.php";
               <a class="btn-asignar" href="profesor_calificar.php?id_entrega=<?= urlencode($entrego['id_entrega']) ?>&id_tarea=<?= urlencode($id_tarea) ?>">Asignar</a>
             <?php else: ?>
               Nota: <?= htmlspecialchars($entrego['nota']) ?>
-            <?php endif; ?>
-          <?php else: ?>
             Nota: -
-          <?php endif; ?>
         </div>
         <div style="height:1px;"></div>
       </section>
