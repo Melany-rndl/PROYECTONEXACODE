@@ -284,7 +284,7 @@
 
   <section class="container">
     <h2>Ubicación</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.851040770192!2d-66.12644082391658!3d-17.370899363748848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e376bbe30b52e5%3A0x1abf2b6db82f1fd0!2sEdmundo%20Bojanowski!5e0!3m2!1ses!2sbo!4v1750825704196!5m2!1ses!2sbo" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.3876287077046!2d-66.15613852391586!3d-17.393175564353474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e373f77dbd64c1%3A0xc21f43e4049f90dd!2sNal.%20Bolivar!5e0!3m2!1ses!2sbo!4v1759679300548!5m2!1ses!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </section>
 
 <?php include 'footer.php'; ?>

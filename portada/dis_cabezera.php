@@ -1,119 +1,110 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
+if (!isset($_SESSION['id_cuenta'])) {
+    header("Location: Logueo.php");
+    exit();
+}
+
+if (!isset($rol)) {
+    if (!isset($conexion)) {
+        $conexion = mysqli_connect("localhost", "root", "", "p25");
+    }
+    $id_cuenta = $_SESSION['id_cuenta'];
+    $obtener_rol = mysqli_query($conexion, "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
+    $rol = ($row = mysqli_fetch_assoc($obtener_rol)) ? $row['rol'] : '';
+}
+
+if (!isset($materias_menu)) {
+    $materias_menu = [];
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Funcional</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
+        /* Botón menú */
+        .iconomenu {
+            background-color: white;
+            border: none;
+            font-size: 25px;
+            color: #3f3e57;
+            cursor: pointer;
+            position: relative;
+        }
 
- header{
-         border-bottom: 2px solid #666565;
-        background-color: white;
-    grid-area: pag;
-    font-size: 26px;
-  color: #4e4c7f;
-  text-shadow: 2px 2px 4px #797878;
- 
-}
-nav{
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 20px;
-    flex-direction: row reverse;
-}
-#estudiante{
-  color: white;
-            background:white;
-            border: 2px solid rgb(107, 46, 134);
-            border-radius: 5px;
-            padding: 8px;
-            font-size: 17px;
-  position: absolute;
-  margin-left: 900px;
-  margin-top: 10px;
-             cursor: pointer;
-}
-#es{
-    color: rgb(107, 46, 134);
-}
+        /* Menú lateral */
+        #menuMaterias {
+            display: none;
+            flex-direction: column;
+            background-color: #f4f4f4;
+            border-right: 2px solid #ccc;
+            padding: 20px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 220px;
+            max-height: calc(100vh - 50px);
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 999;
+            border-radius: 0 10px 10px 0;
+        }
 
+        #menuMaterias div {
+            margin-bottom: 15px;
+        }
 
-
-
-
-
-#mas{
-    background-color:white ;
-    color: #3f3e57;
-    border: none;
-    font-size: 50px;
-  position: absolute;
-  margin-left: 1100px;
- cursor: pointer;  
-   
-}
-#let{
-     width: 40px;
-  height: 40px;
-    padding: 10px;
-    background-color:rgb(70, 130, 208) ;
-    border: rgb(70, 130, 208);
-    color: #f9f9f9;
-    border-radius: 50%;
-    font-family: arial;
-    font-size: 18px;
-  position: absolute;
-  margin-left: 1060px;
-  margin-top: 10px;
-  cursor: pointer;
-
-
-
-
-}
- h2{
-    color: #42334d;
-    font-family: arial;
- }
-
-
-
-
-
-.botonesuperior{
-   background-color: white;
-            border:none;
+        .mensajemenu{
             font-family: Arial;
-            font-size: 18px;
-            color: #4e4c7f;
-             cursor: pointer;
-}
+            font-size: 16px;
+            color: #3f3e57;
+            cursor: pointer;
+            border-radius: 10px;
+            background: #d8daea;
+            padding: 8px 12px;
+        }
 
-
-
-
-</style>
+        .mensajemenu:hover {
+            background: #c7c9e2;
+        }
+    </style>
 </head>
 <body>
- <header id="pag">
-       
-        <strong>NEXA CLASS </strong>  
-        <button Id="estudiante">👤<a id="es">ESTUDIANTE</a></button>
-        <button id="let">E</button>
-        <button id="mas">+</button>
-        <nav>
-           
-        <button class="botonesuperior">Inicio</button>
-         <button class="botonesuperior">Mis cursos</button>
-          <button class="botonesuperior">Tablón</button>
-           <button class="botonesuperior">Trabajo de clase</button>
-        </nav>
-    </header>
+
+    <button class="iconomenu" onclick="toggleMenu()">☰</button>
+
+    <div id="menuMaterias">
+        <hr>
+        <?php if(is_array($materias_menu) && count($materias_menu) > 0): ?>
+            <?php foreach($materias_menu as $materia): ?>
+                <div><span class="mensajemenu"><strong><?= htmlspecialchars($materia); ?></strong></span></div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div><span class="mensajemenu">No hay materias disponibles</span></div>
+        <?php endif; ?>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menuMaterias");
+            if(menu.style.display === "flex" || menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "flex";
+            }
+        }
+    </script>
+
 </body>
 </html>
-
 

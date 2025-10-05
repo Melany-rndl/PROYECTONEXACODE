@@ -149,24 +149,9 @@
 
   <!-- Sección Alumnos -->
   <section id="alumnos">
-
-
-
-
-
-
-
-
-
-
-
-
-    
-   
       <h2>Alumnos</h2>
       <p>38 alumnos</p>
-    
-
+  
     <form>
       <label>
         <input type="checkbox" name="seleccionar_todos"> Seleccionar todos

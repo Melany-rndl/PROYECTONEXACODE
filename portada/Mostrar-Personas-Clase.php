@@ -164,16 +164,6 @@ while ($row = mysqli_fetch_assoc($res_estudiantes)) $estudiantes[] = $row;
 </head>
 <body>
     <?php include "cabecera.php"; ?>
-    <section id="iz">
-        <button class="iconomenu" onclick="toggleMenu()">☰</button>
-        <div id="menuLateral">
-            <a href="#">Matemáticas</a>
-            <a href="#">Química</a>
-            <a href="#">Geografía</a>
-            <a href="#">Literatura</a>
-            <a href="#">Informática</a>
-        </div>
-    </section>
 
     <!-- Sección Profesores -->
     <section id="profesores">
@@ -214,3 +204,4 @@ while ($row = mysqli_fetch_assoc($res_estudiantes)) $estudiantes[] = $row;
     </script>
 </body>
 </html>
+

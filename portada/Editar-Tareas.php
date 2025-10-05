@@ -54,72 +54,116 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <meta charset="UTF-8" />
   <title>Editar Tarea - Nexa Classroom</title>
   <link rel="stylesheet" href="Tareas.css">
-  <style>
-    .formulario-editar-tarea-container { 
-        max-width: 520px; 
-        margin: 40px auto; 
-        background: #fff; 
-        border-radius: 8px; 
-        box-shadow: 0 2px 10px #0002; 
-        padding: 32px 20px;
+<style>
+/* Contenedor del formulario */
+.formulario-editar-tarea-container { 
+    max-width: 650px;        /* Más ancho que antes */
+    margin: 50px auto;       /* Más espacio arriba */
+    background: #fff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
+    padding: 40px 30px;      /* Padding más generoso */
+}
+
+/* Header del formulario */
+.formulario-editar-tarea-header { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+    margin-bottom: 40px;
+}
+.formulario-editar-tarea-header .icono-editar { 
+    font-size: 2.4rem; 
+}
+
+/* Grupos de campos */
+.formulario-editar-tarea-grupo { 
+    margin-bottom: 22px; 
+}
+.formulario-editar-tarea-grupo label { 
+    display: block; 
+    margin-bottom: 6px; 
+    color: #3c328f; 
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+.formulario-editar-tarea-grupo input, 
+.formulario-editar-tarea-grupo textarea { 
+    width: 100%; 
+    padding: 14px 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+.formulario-editar-tarea-grupo input:focus,
+.formulario-editar-tarea-grupo textarea:focus {
+    border-color: #3c328f;
+    outline: none;
+}
+.formulario-editar-tarea-grupo textarea { 
+    min-height: 120px;   /* Más alto */
+}
+
+/* Acciones */
+.formulario-editar-tarea-acciones { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 10px;
+}
+.formulario-editar-tarea-btn { 
+    background: #3c328f; 
+    color: #fff; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 14px 28px; 
+    font-size: 1.1rem; 
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.formulario-editar-tarea-btn:hover { 
+    background: #5743c6;
+}
+
+/* Mensajes */
+.mensaje-resultado { 
+    margin-bottom: 12px; 
+    color: #229422; 
+}
+.mensaje-error { 
+    margin-bottom: 12px; 
+    color: #c00; 
+}
+
+/* Media Queries */
+@media(max-width: 900px){
+    .formulario-editar-tarea-container {
+        max-width: 90%;
+        padding: 35px 20px;
     }
-    .formulario-editar-tarea-header { 
-        display: flex; 
-        align-items: center; 
-        gap: 7px;
-        margin-bottom: 40px;
+}
+
+@media(max-width: 600px){
+    .formulario-editar-tarea-container {
+        padding: 25px 15px;
+        margin: 30px auto;
     }
-    .formulario-editar-tarea-header .icono-editar { 
-        font-size: 2.1rem; 
+    .formulario-editar-tarea-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
-    .formulario-editar-tarea-grupo { 
-        margin-bottom: 18px; 
+    .formulario-editar-tarea-btn {
+        width: 100%;
+        text-align: center;
     }
-    .formulario-editar-tarea-grupo label { 
-        display: block; 
-        margin-bottom: 4px; 
-        color: #3c328f; 
-        font-weight: 500;
+    .formulario-editar-tarea-acciones {
+        flex-direction: column;
+        gap: 12px;
     }
-    .formulario-editar-tarea-grupo input, .formulario-editar-tarea-grupo textarea { 
-        width: 100%; 
-        padding: 10px; 
-        border: 1px solid #ccc; 
-        border-radius: 5px;
-    }
-    .formulario-editar-tarea-grupo textarea { 
-        min-height: 80px;
-    }
-    .formulario-editar-tarea-acciones { 
-        display: flex; 
-        gap: 10px; 
-    }
-    .formulario-editar-tarea-btn { 
-        background: #3c328f; 
-        color: #fff; 
-        border: none; 
-        border-radius: 6px; 
-        padding: 12px 25px; 
-        font-size: 1.1rem; 
-        cursor: pointer;
-    }
-    .formulario-editar-tarea-btn:hover { 
-        background: #5743c6;
-    }
-    .formulario-editar-tarea-cancelar { 
-        color: #666; 
-        text-decoration: none; 
-        padding: 12px 18px;
-    }
-    .mensaje-resultado { 
-        margin-bottom: 10px; 
-        color: #229422; 
-    }
-    .mensaje-error { 
-        margin-bottom: 10px; 
-        color: #c00; 
-    }
-  </style>
+}
+</style>
+
 </head>
 <body>
 <?php include 'cabecera.php'; ?>

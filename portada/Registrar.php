@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <?php
@@ -43,12 +45,15 @@ if (
                      VALUES ('$nombre', '$apellido', '$direccion', '$fecha_nac', '$telefono', '$ci', $id_cuenta)";
 
         if (mysqli_query($conexion, $sql_info)) {
-            echo "<script>Swal.fire({
-  title: 'Cuenta creada exitosamente!',
+            echo "<script>
+Swal.fire({
   icon: 'success',
-  draggable: true
-});</script>";
-            echo "<a href='Logueo.php'>Iniciar sesión</a>";
+  title: '¡Cuenta creada exitosamente!',
+  text: 'Tu cuenta ha sido registrada correctamente.',
+  footer: '<a href=\"Logueo.php\">Iniciar sesión</a>'
+});
+</script>
+";
         } else {
             // Si falla la información personal, elimina la cuenta para no dejar registros huérfanos
             mysqli_query($conexion, "DELETE FROM cuenta WHERE id_cuenta = $id_cuenta");
@@ -57,6 +62,7 @@ if (
   icon: 'error',
   title: Oops...',
   text: 'Hubo un error al guardar la informacion!',
+    footer: '<a href=\"Crear-Cuenta.php\">Intentar de nuevo </a>'
 });</script> " . mysqli_error($conexion) . "<br>";
             echo "<a href='Crear-Cuenta.php'>Volver</a>";
         }
@@ -65,16 +71,18 @@ if (
         Swal.fire({
   icon: 'error',
   title: Oops...',
-  text: 'No se pdo crear la cuenta correctamente, intenta de nuevo!',
+  text: 'No se pudo crear la cuenta correctamente, intenta de nuevo!',
+      footer: '<a href=\"Crear-Cuenta.php\">Intentar de nuevo </a>'
+
 });</script>" . mysqli_error($conexion) . "<br>";
-        echo "<a href='Crear-Cuenta.php'>Volver</a>";
+        
     }
 } else {
     echo "<script>
         Swal.fire({
   icon: 'info',
   title: Oops...',
-  text: 'Todos os datos son necesarios!',
+  text: 'Todos los datos son necesarios!',
   footer: '<a href='Crear-Cuenta.php'>Volver</a>'
 });</script>";
 }

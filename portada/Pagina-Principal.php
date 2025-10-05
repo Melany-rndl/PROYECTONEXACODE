@@ -9,10 +9,8 @@ $obtener_rol = mysqli_query($conexion,  "SELECT rol FROM cuenta WHERE id_cuenta=
 $rol = ($row = mysqli_fetch_assoc( $obtener_rol)) ? $row['rol'] : '';
 $_SESSION['rol'] = $rol;
 
-$sql = "SELECT clase.*, cuenta.usuario AS profesor FROM clase JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase JOIN cuenta ON clase.id_profesor = cuenta.id_cuenta WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC";
+$sql = "SELECT clase.*,cuenta.usuario AS profesor FROM clase JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase JOIN cuenta ON clase.id_profesor = cuenta.id_cuenta WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta' ORDER BY clase.nombre ASC";
 $res = mysqli_query($conexion, $sql);
-
-
 
 $colores = ['celeste', 'azul', 'morado', 'verde', 'verdeO', 'naranja', 'amarillo', 'rosa'];
 function colorClase($nombre, $colores): mixed {
@@ -48,7 +46,7 @@ $grid_ids = ["uno", "dos", "tres", "mun", "cuatro", "cinco", "seis", "mdo", "sie
          <?php elseif($rol === 'admin'): ?>
         <button id="botonuno" onclick="window.location.href='admin.php'">Ver Personas </button>
     <?php endif; ?>
-    <button id="botondos" onclick="window.location.href='uno.php'">Ver página web</button>
+    <button id="botondos" onclick="window.location.href='inicio.php'">Ver página web</button>
 </section>
 <section id="espacio"><h2>Mis Cursos</h2></section>
 <main id="caja">

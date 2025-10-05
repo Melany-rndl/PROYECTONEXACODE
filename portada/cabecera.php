@@ -85,7 +85,7 @@ if (!isset($materias_menu)) {
         width: 40px;
         height: 40px;
         padding: 10px;
-        background:rgb(70, 130, 208) ;
+        background:rgba(47, 110, 192, 1) ;
         border: rgb(70, 130, 208);
         color: #f9f9f9;
         border-radius: 50%;
@@ -262,7 +262,7 @@ if (!isset($materias_menu)) {
     <a href="Cuenta.php" id="estudiante">
         👤<span id="es"><?= htmlspecialchars(strtoupper($rol)); ?></span>
     </a>
-    <button id="let" onclick="window.location.href='Cerrar-Sesion.php';">E</button>
+    <button id="let" onclick="window.location.href='Cerrar-Sesion.php';">🗑</button>
     <?php if($rol === 'profesor'): ?>
         <div style="display:inline-block; position:absolute; margin-left:1350px; top:0;">
             <div id="menu-accion-profesor" style="position:absolute;right:-10px;top:35px;z-index:9;display:none; background:#fff; border:1px solid #ccc; border-radius:7px;">

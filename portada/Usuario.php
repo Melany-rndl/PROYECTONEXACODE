@@ -13,7 +13,10 @@ if (empty($_POST['usuario']) || empty($_POST['contraseña'])) {
 $usuario = $_POST['usuario'];
 $clave = $_POST['contraseña'];
 
-$sql = "SELECT * FROM cuenta WHERE usuario = '$usuario' AND clave = '$clave'";
+$sql = "SELECT * FROM cuenta WHERE usuario = ? AND clave = ?";
+$stmt=$conexion prepare($sql),
+$stmt bind_param("ss"$usuario,$clave);
+$stmt execute();
 $resultado = mysqli_query($conexion, $sql);
 
 

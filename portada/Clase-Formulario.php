@@ -166,14 +166,7 @@ if ($id_clase > 0) {
                 echo '<div class="tarea-item">No hay tareas asignadas.</div>';
             }
             ?>
-        </div>
-
-        <div class="materiales-clase">
-            <h3>Materiales</h3>
-            <div class="material-item-clase">📄 Apuntes de la clase 1</div>
-            <div class="material-item-clase">📄 Apuntes de la clase 2</div>
-        </div>
-    </div>
+       
 </section>
 <section id="seccion-lateral-menu">
     <button class="boton-icono-menu">☰</button>
