@@ -43,7 +43,7 @@
       background-image: url("imagenespro/logo.jpg");
     }
     .logo img {
-      height: 60px;
+      height: 70px;
     }
     .logo span {
       font-family: 'Georgia', serif;
@@ -246,8 +246,7 @@
       <div class="submenu">
         <button>Nosotros ▾</button>
         <div class="submenu-content">
-          <a href="inicial.php">Inicial</a>
-          <a href="primaria.php">Primaria</a>
+          
           <a href="secundaria.php">Secundaria</a>
           <a href="banda.php">Banda</a>
           <a href="plantel-docente.php">Plantel docente</a>
