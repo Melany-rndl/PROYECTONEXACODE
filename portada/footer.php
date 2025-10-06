@@ -73,20 +73,20 @@
 
   <div class="footer-container">
     <div>
-      <h3>Colegio Bojanowski</h3>
+      <h3>Colegio Bolivar</h3>
       <p>Educando con valores para transformar el mundo.</p>
     </div>
     <div>
       <h4>Contacto</h4>
-      <p>📍 Calle Ficticia 123, Cochabamba - Bolivia</p>
-      <p>✉️ <a href="mailto:contacto@colegiobojanowski.edu.bo">contacto@colegiobojanowski.edu.bo</a></p>
+      <p>📍 Calle San Martin y Sucre, Cochabamba - Bolivia</p>
+      <p>✉️ <a href="mailto:contacto@colegiobolivar.edu.bo">contacto@colegiobolivar.edu.bo</a></p>
     </div>
     <div>
       <h4>Redes Sociales</h4>
       <p>
-        <a href="https://facebook.com" target="_blank">📘 Facebook</a><br />
+        <a href="https://www.facebook.com/groups/298483426879108/?locale=es_LA" target="_blank">📘 Facebook</a><br />
         <a href="https://instagram.com" target="_blank">📸 Instagram</a><br />
-        <a href="mailto:contacto@colegiobojanowski.edu.bo">📩 Correo</a>
+        <a href="mailto:contacto@colegiobolivar.edu.bo">📩 Correo</a>
       </p>
     </div>
 
@@ -104,6 +104,6 @@
   </div>
   <hr />
   <p style="text-align:center; margin-top:1rem;">
-    &copy; 2025 Colegio Bojanowski. Todos los derechos reservados.
+    &copy; 2025 Colegio Bolivar. Todos los derechos reservados.
   </p>
 </footer>

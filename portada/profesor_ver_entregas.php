@@ -18,9 +18,9 @@ if ($id_tarea <= 0) {
 
 $resT = mysqli_query(
     $conexion,
-    "SELECT titulo, clase_id_clase, nombre AS clase 
+    "SELECT tarea.titulo, tarea.id_clase, tarea.descripcion AS clase 
      FROM tarea 
-     JOIN clase ON tarea.clase_id_clase = clase.id_clase 
+     JOIN clase ON tarea.id_clase = clase.id_clase 
      WHERE tarea.id_tarea='$id_tarea'"
 );
 $tarea = mysqli_fetch_assoc($resT);
@@ -30,7 +30,7 @@ if (!$tarea) {
     exit();
 }
 
-$id_clase = $tarea['clase_id_clase'];
+$id_clase = $tarea['id_clase'];
 
 $sqlEst = "SELECT id_cuenta, usuario
            FROM cuenta
@@ -341,15 +341,7 @@ include "cabecera.php";
         $id_est = $est['id_cuenta'];
         $entrego = isset($entregas[$id_est]) ? $entregas[$id_est] : null;
         $archivo = null;
-<<<<<<< HEAD
-        if ($entrego) {
-          // ✅ corregido: $id_tareas (con "s")
-          $nombreBase = "Entrega-$id_est-$id_tarea";
-          foreach ($exts as $e) {
-            if (file_exists($dir . $nombreBase . "." . $e)) {
-              $archivo = $dir . $nombreBase . "." . $e;
-              break;
-=======
+
         if ($entrego)
         {
             $nombreBase = "Entrega-$id_est-$id_tarea";
@@ -360,7 +352,6 @@ include "cabecera.php";
                     $archivo = $dir . $nombreBase . "." . $e;
                     break;
                 }
->>>>>>> 94a1123d579afd8ef198bc40b98d8ff40ecde5a9
             }
         }
       ?>
@@ -406,13 +397,6 @@ include "cabecera.php";
         }
         ?>
         <div class="nota_box">
-<<<<<<< HEAD
-          <?php if ($entrego): ?>
-            <?php if (is_null($entrego['nota'])): ?>
-              <!-- ✅ corregido: id_tareas -->
-              <a class="btn-asignar" href="profesor_calificar.php?id_entrega=<?= urlencode($entrego['id_entrega']) ?>&id_tarea=<?= urlencode($id_tarea) ?>">Asignar</a>
-            <?php else: ?>
-=======
           <?php 
           if ($entrego)
           {
@@ -423,7 +407,6 @@ include "cabecera.php";
             }
             else
             { ?>
->>>>>>> 94a1123d579afd8ef198bc40b98d8ff40ecde5a9
               Nota: <?= htmlspecialchars($entrego['nota']) ?>
             <?php
             }

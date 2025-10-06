@@ -27,6 +27,7 @@
 </head>
 <body>
 <h2>💬 Comentarios recibidos</h2>
+<a href="inicio.php" class="volver-link">⬅️ Volver al Inicio</a>
 <?php
 $archivo = fopen("punto.txt", "r");
 $contenido = "";
@@ -50,6 +51,7 @@ while (!feof($archivo)) {
     }
 }
 fclose($archivo);
+
 ?>
 </body>
 </html>
