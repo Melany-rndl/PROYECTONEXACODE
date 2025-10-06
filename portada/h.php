@@ -235,7 +235,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="../imagenespro/logo.jpg" alt="Logo" />
+      <img src="BOLIVAR.png" alt="Logo" />
 
       <span>Colegio Bolivar</span>
     </div>
