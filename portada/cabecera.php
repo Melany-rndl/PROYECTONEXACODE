@@ -54,14 +54,18 @@ if (!isset($materias_menu)) {
     }
 }
     header{
-        border-bottom: 2px solid #666565;
+        border-bottom: 0.6px solid #666565;
         background: white;
         grid-area: pag;
         font-size: 26px;
         color: #4e4c7f;
-        text-shadow: 2px 2px 4px #797878;
         position: relative;
+        font-family:Arial, Helvetica, sans-serif;
+        
     }
+     #nexaclass{
+    text-shadow: 2px 2px 4px #d2f0fcff;
+ }
     nav{
         padding: 20px;
         display: flex;
@@ -70,16 +74,16 @@ if (!isset($materias_menu)) {
         flex-direction: row reverse;
     }
     #estudiante{
-        background:white;
-        border: 2px solid rgb(107, 46, 134);
+        background:rgba(70, 86, 146, 1);
         border-radius: 5px;
         padding: 8px;
         font-size: 17px;
         position: absolute;
-        margin-left: 1100px;
-        margin-top: 10px;
+        left: 1450px;
+        top: 10px;
         cursor: pointer;
-        color: rgb(107, 46, 134);
+        color: rgba(255, 255, 255, 1);
+        text-decoration: none;
     }
     #mas, #accion-profesor-btn{
         background:white ;
@@ -91,16 +95,16 @@ if (!isset($materias_menu)) {
         cursor: pointer;  
     }
     #let{
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         padding: 10px;
-        background:rgba(47, 110, 192, 1) ;
+        background:rgb(70, 130, 208) ;
         border: rgb(70, 130, 208);
         color: #f9f9f9;
         border-radius: 50%;
         font-size: 18px;
         position: absolute;
-        margin-left: 1250px;
+        left: 1650px;
         margin-top: 10px;
         cursor: pointer;
     }
@@ -267,7 +271,7 @@ if (!isset($materias_menu)) {
 </style>
 
 <header id="pag">
-    <strong>NEXA CLASS</strong>
+    <strong id="nexaclass">NEXA CLASS</strong>
     <a href="Cuenta.php" id="estudiante">
         👤<span id="es"><?= htmlspecialchars(strtoupper($rol)); ?></span>
     </a>
