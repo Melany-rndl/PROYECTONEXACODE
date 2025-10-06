@@ -33,36 +33,104 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contenido'])) {
 <head>
     <meta charset="UTF-8">
     <title>Editar publicación</title>
-    <link rel="stylesheet" href="Tareas.css">
     <style>
-    .form-editar-publicacion {
-        max-width: 500px;
-        margin: 40px auto;
-        background: #fff;
-        padding: 24px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px #ddd;
-        font-family: Arial, sans-serif;
-    }
-    .form-editar-publicacion textarea {
-        width: 100%;
-        padding: 12px;
-        min-height: 120px;
-        border-radius: 8px;
-        border: 1px solid #bbb;
-        margin-bottom: 16px;
-        font-size: 16px;
-        font-family: Arial;
-    }
-    .form-editar-publicacion button {
-        background: var(--azul);
-        color: #fff;
-        padding: 10px 24px;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8ecff, #f5f7ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .form-editar-publicacion {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .form-editar-publicacion:hover {
+            transform: translateY(-3px);
+        }
+
+        .form-editar-publicacion h2 {
+            color: #3c328f;
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .form-editar-publicacion textarea {
+            width: 100%;
+            padding: 15px 18px;
+            min-height: 160px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-editar-publicacion textarea:focus {
+            border-color: #3c328f;
+            box-shadow: 0 0 6px rgba(60, 50, 143, 0.3);
+            outline: none;
+        }
+
+        .form-editar-publicacion button {
+            background: #3c328f;
+            color: #fff;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .form-editar-publicacion button:hover {
+            background: #5743c6;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .form-editar-publicacion {
+                padding: 30px 20px;
+                border-radius: 12px;
+            }
+
+            .form-editar-publicacion h2 {
+                font-size: 1.6rem;
+            }
+
+            .form-editar-publicacion textarea {
+                min-height: 130px;
+                font-size: 0.95rem;
+            }
+
+            .form-editar-publicacion button {
+                width: 100%;
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>

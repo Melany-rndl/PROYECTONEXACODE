@@ -57,7 +57,7 @@ if ($id_entrega > 0) {
 
 $archivoEncontrado = null;
 if ($datos) {
-    $nombreBase = "E-$id_estudiante-" . $datos['id_tarea'];
+    $nombreBase = "Entrega-$id_estudiante-" . $datos['id_tarea'];
     $directorio = "./media/";
     $extensiones = ["pdf", "jpg", "jpeg", "png", "gif", "webp", "docx", "xlsx", "txt", "zip"];
     foreach ($extensiones as $ext) {
@@ -115,7 +115,7 @@ if ($datos) {
 <?php else: ?>
     <div class="info-box" style="color:#b00;">No se encontró información de la tarea.</div>
 <?php endif; ?>
-    <a href="tareas-formulario.php?id=<?= urlencode($datos['clase_id_clase'] ?? '') ?>" style="color:#3c328f;">&larr; Volver a tareas</a>
+    <a href="Pagina-Principal.php?id=<?= urlencode($datos['clase_id_clase'] ?? '') ?>" style="color:#3c328f;">&larr; Volver a mis cursos.</a>
 </div>
 </body>
 </html>

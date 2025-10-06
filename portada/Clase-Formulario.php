@@ -77,7 +77,7 @@ if ($id_clase > 0) {
 <header id="encabezado-principal">
     <strong>NEXA CLASS</strong>
     <a href="Cuenta.php" id="boton-cuenta-usuario">👤<span id="rol-usuario"><?= htmlspecialchars(strtoupper($rol));?></span></a>
-    <button id="boton-cerrar-sesion" onclick="window.location.href='Cerrar-Sesion.php';">E</button>
+    <button id="boton-cerrar-sesion" onclick="window.location.href='Cerrar-Sesion.php';">🗑</button>
     <a href="Formulario-Crear-Clase.php" id="boton-crear-clase" title="Agregar Clase">+</a>
     <nav>
         <button class="boton-superior-menu" onclick="window.location.href='Pagina-Principal.php'">Mis cursos</button>
