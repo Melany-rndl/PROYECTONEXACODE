@@ -124,20 +124,16 @@
   <h2>NUESTRO PLANTEL DOCENTE ESTA CONFORMADO POR </h2>
   <div class="directores-grid">
     <div class="director-card">
-      <img class="director-img" src="https://educacion.editorialaces.com/wp-content/uploads/2020/08/El-director-de-la-escuela-ENTRADA.jpg" alt="Padre Juan Aparicio">
+      <img class="director-img" src="profe1.jpg" alt="Padre Juan Aparicio">
       <h3>Nombre de la persona</h3>
       <p>DIRECTOR GENERAL<br>U.E. Bolivar</p>
     </div>
     <div class="director-card">
-      <img class="director-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBqtLrRfI5z7_O_tjEz_D2mjxbJTKTWNGtxw&s" alt="Gonzalo Osinaga">
+      <img class="director-img" src="profesor2.jpg" alt="Gonzalo Osinaga">
       <h3>Nombre de la persona</h3>
       <p>DIRECTOR SECUNDARIA<br>TURNO MAÑANA</p>
     </div>
-    <div class="director-card">
-      <img class="director-img" src="https://uneg.edu.mx/wp-content/uploads/2023/06/P4-min.jpg" alt="German Sucre">
-      <h3>Nombre de la persona</h3>
-      <p>DIRECTOR PRIMARIA<br>TURNO MAÑANA</p>
-    </div>
+   
     <div class="director-card">
       <img class="director-img" src="../imagenespro/director1.jpg" alt="Humberto Guarachi">
       <h3>Nombre de la persona</h3>
@@ -155,6 +151,13 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
