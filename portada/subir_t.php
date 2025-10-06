@@ -92,6 +92,20 @@
     font-size: 14px;
     margin-top: 10px;
   }
+  #volver{
+    margin-top:50px;
+    padding:15px;
+    border-radius: 15px;
+    color: white;
+    border: none;
+     background-color: #4285f4;
+     font-size: 14px;
+ transition: background 0.3s;
+  }
+  #volver:hover {
+    background: #3367d6;
+  }
+  
 </style>
 </head>
 <body>
@@ -101,19 +115,18 @@
   
   <div class="drive-tabs">
     <a class="active">Reciente</a>
-    <a> Subir</a>
-    <a> Mi unidad</a>
-    <a> Unidades compartidas</a>
-    <a> Destacados</a>
-    <a> Compartido conmigo</a>
+    <a> Adjunta tu tarea</a>
+   
+   
   </div>
 
   <div class="drive-dropzone">
     <img src="https://www.gstatic.com/images/icons/material/system/2x/cloud_upload_grey600_48dp.png" alt="Cloud Icon">
     <br>
-    <button>Examinar</button>
-    <p>o arrastra archivos aquí</p>
+    <button>Subir Archivos </button>
+   
   </div>
+  <button id="volver">Volver a la clase</button>
 </div>
 
 </body>
