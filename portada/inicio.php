@@ -58,7 +58,7 @@
       cursor: pointer;
     }
 
-    /* Submenú */
+    
     .submenu {
       position: relative;
       display: inline-block;
@@ -125,10 +125,7 @@
       box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
     }
-    .bloque-grid :hover {
-      color:#005487;
-      font-size: 20px;
-    }
+   
 
     .bloque-grid img {
       width: 100%;
@@ -284,7 +281,7 @@
 
   <section class="container">
     <h2>Ubicación</h2>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.3876287077046!2d-66.15613852391586!3d-17.393175564353474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e373f77dbd64c1%3A0xc21f43e4049f90dd!2sNal.%20Bolivar!5e0!3m2!1ses!2sbo!4v1759679300548!5m2!1ses!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.387522147999!2d-66.156138524835!3d-17.393180683494908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e373f77dbd64c1%3A0xc21f43e4049f90dd!2sNal.%20Bolivar!5e0!3m2!1ses-419!2sbo!4v1759700200732!5m2!1ses-419!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </section>
 
 <?php include 'footer.php'; ?>
