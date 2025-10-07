@@ -1,15 +1,39 @@
 body {
-    background-color: #121212;
+    background: linear-gradient(270deg, #140103, #065177);
+    background-size: 400% 400%;
+    animation: moverFondo 8s ease infinite;
     color: #ffffff;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
+    
+}
+@keyframes moverFondo {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 50% 0%; }
+}
+.animacion-inicial {
+    animation: movimiento 0.8s ease-out forwards;
+    opacity: 0;
+}
+@keyframes movimiento {
+    0%{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
+
 form {
-    background-color: #2c2c2c;
+    background-color: #100f0f;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(118, 199, 240, 0.2);
@@ -43,19 +67,22 @@ input[type="submit"],
 input[type="reset"] {
     width: 48%;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
     background-color: #76c7f0;
     border: none;
     border-radius: 5px;
     color: black;
     font-weight: bold;
     cursor: pointer;
+    transition: transform 0.5s ease;
+
 }
 
 input[type="submit"]:hover,
 input[type="reset"]:hover {
     background-color: #ffffff;
     color: #121212;
+    transform: scale(1.1);
 }
 
 a {
@@ -70,7 +97,7 @@ a:hover {
     text-decoration: underline;
 }
 .Bienvenida {
-    background-color: #444;
+    background-color: #100f0f;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -101,7 +128,26 @@ a:hover {
     border-radius: 8px;
 }
 .Empezar a{
-    font-size: 20px;
-    color: white;
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+}
+button{
+    width: 48%;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 27%;
+    background-color: #76c7f0;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+button :hover{
+    background-color: #ffffff;
+    color: #121212;
+    transform: scale(1.1);
 }
 
