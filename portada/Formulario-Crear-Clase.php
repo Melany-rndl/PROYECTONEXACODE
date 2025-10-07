@@ -4,6 +4,7 @@
     <title>Crear Clase</title>
     <link rel="stylesheet" href="Diseño-Login.css">
 </head>
+<div class="animacion-inicial">
 <body>
     <form action="Clave-Crear-Clase.php" method="post">
         <h1>Crear Nueva Clase</h1>
@@ -54,5 +55,6 @@ $(document).ready(function() {
 });
 </script>
 </body>
+</div>
 </html>
 </html>
