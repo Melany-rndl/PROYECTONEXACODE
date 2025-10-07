@@ -5,6 +5,7 @@
     <title>Unirse a Clase</title>
     <link rel="stylesheet" href="Diseño-Login.css">
 </head>
+<div class="animacion-inicial">
 <body>
     <form action="Conexion-Clase.php" method="post">
         <h1>Unirse a una Clase</h1>
@@ -33,4 +34,5 @@ $(document).ready(function() {
 });
 </script>
 </body>
+</div>
 </html>
