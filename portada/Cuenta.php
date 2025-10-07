@@ -34,7 +34,7 @@ if($resultado->num_rows > 0){
     $nombre = $apellido = $direccion = $fecha_nac = $telefono = $ci = '';
 }
 
-echo "<div class='Contenedor-Cuenta'>";
+echo "<div class='animacion-inicial'>";
 echo "<div class='Bienvenida'>";
 echo "<h1>Bienvenido, " . $nombre . " " . $apellido . "</h1>";
 echo "<div class='Datos'>";
