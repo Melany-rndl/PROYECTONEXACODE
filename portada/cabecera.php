@@ -1,293 +1,261 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+if (session_status() == PHP_SESSION_NONE) session_start();
+if (!isset($_SESSION['id_cuenta'])) { header("Location: Logueo.php"); exit(); }
 
-if (!isset($_SESSION['id_cuenta'])) {
-    header("Location: Logueo.php");
-    exit();
+if (!isset($conexion) || !$conexion) {
+    $conexion = mysqli_connect("localhost", "root", "", "p25");
 }
+$id_cuenta = $_SESSION['id_cuenta'];
+$obtener_rol = mysqli_query($conexion, "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
+$rol = ($row = mysqli_fetch_assoc($obtener_rol)) ? $row['rol'] : '';
 
-if (!isset($rol)) {
-    if (!isset($conexion)) {
-        $conexion = mysqli_connect("localhost", "root", "", "p25");
-    }
-    $id_cuenta = $_SESSION['id_cuenta'];
-    $obtener_rol = mysqli_query($conexion, "SELECT rol FROM cuenta WHERE id_cuenta='$id_cuenta'");
-    $rol = ($row = mysqli_fetch_assoc($obtener_rol)) ? $row['rol'] : '';
-}
-
-if (!isset($materias_menu)) {
-    $materias_menu = [];
+$materias_menu = [];
+$sql_materias = "SELECT clase.id_clase, clase.nombre 
+    FROM clase 
+    JOIN cuenta_has_clase ON clase.id_clase = cuenta_has_clase.clase_id_clase 
+    WHERE cuenta_has_clase.cuenta_id_cuenta = '$id_cuenta'
+    ORDER BY clase.nombre ASC";
+$res_materias = mysqli_query($conexion, $sql_materias);
+while ($row = mysqli_fetch_assoc($res_materias)) {
+    $materias_menu[] = $row;
 }
 ?>
 <style>
-    body{
-        display: grid;
-        grid-template-rows: 80px 200px 50px 400px 60px;
-        grid-template-columns: 6% 94% ;
-        grid-template-areas:
-        "iz pag "
-        "iz cero "
-        "iz espacio"
-        "iz caja";
-        gap:10px
-    }
-    
-    @media(max-width:730px){
-    body{
-    display: grid;
-    grid-template-rows: 100px 80px 250px 70px 80px;
-    grid-template-columns: 100%;
-    grid-template-areas:
-    " pag "
-    " iz "
-    " cero "
-    "espacio  "
-    " caja  ";
-   
-   
-       }
-    .mensajemenu{
-        display: flex;
-        flex-direction: row;
-    }
+header{
+    border-bottom: 2px solid #666565;
+    background: white;
+    grid-area: pag;
+    font-size: 26px;
+    color: #4e4c7f;
+    text-shadow: 2px 2px 4px #797878;
+    position: relative;
+    z-index: 10;
 }
-    header{
-        border-bottom: 0.6px solid #666565;
-        background: white;
-        grid-area: pag;
-        font-size: 26px;
-        color: #4e4c7f;
-        position: relative;
-        font-family:Arial, Helvetica, sans-serif;
-        
+.nexaclass-move-right {
+    margin-left: 90px;
+}
+nav{
+    padding: 20px;
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+    flex-direction: row reverse;
+    margin-left: 90px;
+}
+.botonesuperior, .boton-superior-menu{
+    background: white;
+    border: none;
+    font-family: Arial;
+    font-size: 18px;
+    color: #4e4c7f;
+    cursor: pointer;
+}
+#estudiante{
+    background:white;
+    border: 2px solid rgb(107, 46, 134);
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 17px;
+    position: absolute;
+    margin-left: 1100px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: rgb(107, 46, 134);
+}
+#mas, #accion-profesor-btn{
+    background:white ;
+    color: #3f3e57;
+    border: none;
+    font-size: 50px;
+    position: absolute;
+    margin-left: 1350px;
+    cursor: pointer;  
+}
+#let{
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    background:rgb(70, 130, 208);
+    border: rgb(70, 130, 208);
+    color: #f9f9f9;
+    border-radius: 50%;
+    font-size: 18px;
+    position: absolute;
+    margin-left: 1250px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.menu-lateral-btn {
+    background: white;
+    border: none;
+    font-size: 27px;
+    color: #3f3e57;
+    cursor: pointer;
+    margin: 15px 0 0 18px;
+    border-radius: 7px;
+    padding: 4px 13px 3px 10px;
+    transition: background 0.13s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1300;
+}
+.menu-lateral-btn:hover {
+    background: #e7e7f6;
+}
+.menu-lateral-panel {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    min-width: 240px;
+    max-width: 92vw;
+    width: 280px;
+    background: #fff;
+    box-shadow: 2px 0 18px #0003;
+    border-right: 2px solid #b6b3d6;
+    border-radius: 0 18px 18px 0;
+    z-index: 3000;
+    padding: 0 0 12px 0;
+    animation: panelSlideIn 0.18s;
+}
+.menu-lateral-panel.visible {
+    display: flex;
+}
+@keyframes panelSlideIn {
+    from { transform: translateX(-50px); opacity: 0.15; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.menu-lateral-caja {
+    width: 100%;
+    margin-top: 22px;
+    border-radius: 10px;
+    background: #f8f8fa;
+    box-shadow: 0 2px 12px #0001;
+    padding: 17px 0 6px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 6px;
+}
+.menu-lateral-titulo {
+    width: 100%;
+    padding: 0 0 13px 22px;
+    font-size: 1.12em;
+    color: #3c328f;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border-bottom: 1.5px solid #d2d2ef;
+    background: none;
+    margin-bottom: 0.7em;
+    letter-spacing: 0.7px;
+}
+.menu-lateral-lista {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.menu-lateral-link {
+    text-decoration: none;
+    color: #3c328f;
+    font-family: Arial, sans-serif;
+    font-size: 1.07em;
+    padding: 11px 8px 11px 32px;
+    margin: 0 0 2px 0;
+    border-radius: 6px;
+    border-left: 4px solid #e3e3ef;
+    background: none;
+    transition: background 0.13s, color 0.14s, border-left 0.14s;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+.menu-lateral-link:hover,
+.menu-lateral-link:focus {
+    background: #e5eaff;
+    color: #43207c;
+    border-left: 4px solid #3c328f;
+}
+.menu-lateral-sin-clases {
+    color: #a3a3b0;
+    font-size: 15px;
+    padding: 9px 0 9px 32px;
+    margin-top: 12px;
+    font-family: Arial;
+}
+@media(max-width: 500px){
+    .menu-lateral-panel {
+        width: 94vw;
+        min-width: 0;
+        max-width: 99vw;
+        border-radius: 0 10px 10px 0;
+        padding: 0 0 10px 0;
     }
-     #nexaclass{
-    text-shadow: 2px 2px 4px #d2f0fcff;
- }
-    nav{
-        padding: 20px;
-        display: flex;
-        justify-content: left;
-        gap: 20px;
-        flex-direction: row reverse;
-    }
-    #estudiante{
-        background:rgba(70, 86, 146, 1);
-        border-radius: 5px;
-        padding: 8px;
-        font-size: 17px;
-        position: absolute;
-        left: 1450px;
-        top: 10px;
-        cursor: pointer;
-        color: rgba(255, 255, 255, 1);
-        text-decoration: none;
-    }
-    #mas, #accion-profesor-btn{
-        background:white ;
-        color: #3f3e57;
-        border: none;
-        font-size: 50px;
-        position: absolute;
-        margin-left: 1350px;
-        cursor: pointer;  
-    }
-    #let{
-        width: 42px;
-        height: 42px;
-        padding: 10px;
-        background:rgb(70, 130, 208) ;
-        border: rgb(70, 130, 208);
-        color: #f9f9f9;
-        border-radius: 50%;
-        font-size: 18px;
-        position: absolute;
-        left: 1650px;
-        margin-top: 10px;
-        cursor: pointer;
-    }
-    #espacio{ grid-area: espacio; }
-    h2{ color: #42334d; font-family: arial; }
-    .botonesuperior{
-        background: white;
-        border:none;
-        font-family: Arial;
-        font-size: 18px;
-        color: #4e4c7f;
-        cursor: pointer;
-    }
-    #iz{ grid-area: iz; }
-    .iconomenu{
-        background: white;
-        border: none;
-        font-size: 25px;
-        color: #3f3e57;
-        cursor: pointer;
-    }
-    .menu-materias {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-        font-family: Arial;
-        font-size: 16px;
-        color: #3f3e57;
-    }
-    .oculto { display: none; }
-    .visible { display: flex; }
-    .mensajemenu{
-        font-family: arial;
-        font-size: 18px;
-        color: #3a3a48;
-        cursor: pointer;
-        border-radius: 10px;
-        background: #d8daea;
-        padding: 10px;
-    }
-    #Bienvenida-NexaClass{
-        grid-area: cero;
-        background: linear-gradient(to right, #3c328f, #3a57a8 , #4c86d1);
-        border-radius: 16px;
-    }
-    h1{ color: white; font-family: arial; margin-top: 25px; margin-left: 15px; font-size: 40px; }
-    #mensaje{ color: white; font-family: arial; margin-left: 15px; font-size: 20px; }
-    #botonuno{
-        color: #0d61d6;
-        margin-left: 15px;
-        background: white;
-        border:none;
-        border-radius: 5px;
-        font-size: 15px;
-        padding: 9px;
-        cursor: pointer;
-    }
-    #botondos{
-        color: white;
-        background: linear-gradient(to right, #3c328f, #3a57a8);
-        border: 2px solid white;
-        border-radius: 5px;
-        font-size: 15px;
-        padding: 9px;
-        margin-left: 15px;
-        cursor: pointer;
-    }
-    #caja{
-        grid-area: caja;
-        display: grid;
-        grid-template-rows: 250px 250px 250px ;
-        grid-template-columns: 20% 20% 20% 20%;
-        grid-template-areas:
-        "uno dos tres mun"
-        "cuatro cinco seis mdo"
-        "siete ocho nueve mtre";
-        gap: 70px;
-    }
-    @media(max-width:730px){
-        #caja{
-            display: grid;
-            grid-template-rows: repeat(12, 80px);
-            grid-template-columns: 100%;
-            grid-template-areas:
-            "uno"
-            "dos"
-            "tres"
-            "mun"
-            "cuatro"
-            "cinco"
-            "seis"
-            "mdo"
-            "siete"
-            "ocho"
-            "nueve"
-            "mtre";
-            gap: 200px;
-        }
-    }
-    #uno, #dos, #tres, #cuatro, #cinco, #seis, #siete, #ocho, #nueve, #mun, #mdo, #mtre{
-        background: white;
-        border: 2px solid #949393;
-        border-radius: 16px;
-    }
-    .cajitas{
-        padding: 50px;
-        margin: 0px;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
-    .celeste { background: linear-gradient(to bottom,  #6eb8c2,  #5ea1aa , #3e6d72); }
-    .azul {  background: linear-gradient(to bottom, #679dcf, #92c0e6 , #2a578f); }
-    .morado { background: linear-gradient(to bottom,  #b091d3, #b68fd6 , #633f7e); }
-    .verde{ background: linear-gradient(to bottom,  #99b75e, #a1c777 , #435331); }
-    .verdeO { background: linear-gradient(to bottom,  #7f9f70, #749a62 , #3d5632);}
-    .naranja { background: linear-gradient(to bottom,  #efb36d, #eabc87 , #bc7a2e); }
-    .amarillo { background: linear-gradient(to bottom,  #f9df82, #f3db84 ,#eec834); }
-    .rosa { background: linear-gradient(to bottom,  #e9a0d7,#f2a9e0, #c967b2); }
-    .nomcajita{
-        color:white;
-        font-family: arial;
-        position:absolute;
-        margin-top: 20px;
-        font-size: 18px;
-    }
-    .contenidocajsup{
-        font-size: 25px;
-        color: #4e4c7f;
-        font-family: arial;
-    }
-    .contenidocaja{
-        font-size: 15px;
-        margin-top: 5px;
-        font-family: arial;
-        color: #5b5a7b;
-    }
-    .c{
-        border:none;
-        background: white;
-        cursor: pointer;
-        position:relative;
-    }
-    .edit-btn {
-        position: absolute;
-        top: 10px;
-        right: 12px;
-        background: #f5f5f5;
-        border: 1px solid #bbb;
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        font-size: 18px;
-        color: #4e4c7f;
-        cursor: pointer;
-        z-index: 2;
-        transition: background 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-    }
-    .edit-btn:hover { background: #e1e4f2; }
+    .menu-lateral-caja { margin-top: 10px; padding: 10px 0 4px 0; }
+    .menu-lateral-titulo { padding-left: 14px; font-size: 1em; }
+    .menu-lateral-link { font-size: 0.97em; padding-left: 18px; }
+}
 </style>
 
+<button class="menu-lateral-btn" onclick="toggleMenuLateral()" title="Ver clases">☰</button>
+<div class="menu-lateral-panel" id="menuLateralPanel">
+    <div class="menu-lateral-caja">
+        <div class="menu-lateral-titulo">Mis clases</div>
+        <div class="menu-lateral-lista">
+            <?php if(empty($materias_menu)): ?>
+                <span class="menu-lateral-sin-clases">No tienes clases</span>
+            <?php else: ?>
+                <?php foreach($materias_menu as $materia): ?>
+                    <a href="clase-Formulario.php?id=<?= $materia['id_clase'] ?>" class="menu-lateral-link"><?= htmlspecialchars($materia['nombre']) ?></a>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
 <header id="pag">
-    <strong id="nexaclass">NEXA CLASS</strong>
+    <strong class="nexaclass-move-right">NEXA CLASS</strong>
     <a href="Cuenta.php" id="estudiante">
         👤<span id="es"><?= htmlspecialchars(strtoupper($rol)); ?></span>
     </a>
-    <button id="let" onclick="window.location.href='Cerrar-Sesion.php';">🗑</button>
+    <button id="let" onclick="window.location.href='Cerrar-Sesion.php';">E</button>
     <?php if($rol === 'profesor'): ?>
         <div style="display:inline-block; position:absolute; margin-left:1350px; top:0;">
             <div id="menu-accion-profesor" style="position:absolute;right:-10px;top:35px;z-index:9;display:none; background:#fff; border:1px solid #ccc; border-radius:7px;">
                 <a href="Seleccionar-Accion-Profesor.php" style="display:block;padding:10px 18px;color:#444;text-decoration:none;">Crear/Unirse a clase</a>
             </div>
         </div>
-
     <?php endif; ?>
     <nav>
-        <button class="botonesuperior" onclick="window.location.href='Pagina-Principal.php'">Mis cursos</button>
+        <?php
+        if (isset($enlaces_cabecera) && is_array($enlaces_cabecera) && count($enlaces_cabecera) > 0):
+            foreach($enlaces_cabecera as $enlace): ?>
+                <button class="botonesuperior" onclick="window.location.href='<?= htmlspecialchars($enlace['url']) ?>'"><?= htmlspecialchars($enlace['texto']) ?></button>
+        <?php endforeach;
+        else: ?>
+            <button class="botonesuperior" onclick="window.location.href='Pagina-Principal.php'">Inicio</button>
+            <button class="botonesuperior" onclick="window.location.href='Pagina-Principal.php'">Mis cursos</button>
+        <?php endif; ?>
     </nav>
 </header>
+<script>
+function toggleMenuLateral() {
+    var panel = document.getElementById("menuLateralPanel");
+    panel.classList.toggle("visible");
+}
+document.addEventListener("click", function(e) {
+    var panel = document.getElementById("menuLateralPanel");
+    var btn = document.querySelector(".menu-lateral-btn");
+    if (panel && panel.classList.contains("visible") && !panel.contains(e.target) && e.target !== btn) {
+        panel.classList.remove("visible");
+    }
+});
+</script>
 <section id="iz">
     
     <button class="iconomenu">☰</button>
@@ -301,3 +269,4 @@ if (!isset($materias_menu)) {
     </div>
 
 </section>
+
