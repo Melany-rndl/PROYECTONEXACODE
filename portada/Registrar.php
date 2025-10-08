@@ -24,7 +24,7 @@ if (
     isset($_POST['telefono']) && trim($_POST['telefono']) !== "" &&
     isset($_POST['ci']) && trim($_POST['ci']) !== ""
 ) {
-    $usuario    = $_POST['usuario'];
+    $usuario= $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
     $rol        = 'estudiante';
     $nombre     = $_POST['nombre'];
@@ -34,17 +34,31 @@ if (
     $telefono   = $_POST['telefono'];
     $ci         = $_POST['ci'];
 
-    // Registrar en la tabla cuenta (solo usuario, clave, rol)
-    $sql_cuenta = "INSERT INTO cuenta (usuario, clave, rol)
-                   VALUES ('$usuario', '$contrasena', '$rol')";
-    if (mysqli_query($conexion, $sql_cuenta)) {
-        $id_cuenta = mysqli_insert_id($conexion);
+     // 1) INSERT en cuenta (prepared)
+    $sql_cuenta = "INSERT INTO cuenta (usuario, clave, rol) VALUES (?, ?, ?)";
+    $stmt1 = $conexion->prepare($sql_cuenta);
+    if (!$stmt1) {
+        die("Error en prepare (cuenta): " . $conexion->error);
+    }
+    $stmt1->bind_param("sss", $usuario, $contrasena, $rol);
+    if ($stmt1->execute()) {
+        $id_cuenta = $conexion->insert_id;
+        $stmt1->close();
 
         // Registrar en la tabla informacion (datos personales)
         $sql_info = "INSERT INTO informacion (nombre, apellido, direccion, fecha_nac, telefono, ci, cuenta_id_cuenta)
-                     VALUES ('$nombre', '$apellido', '$direccion', '$fecha_nac', '$telefono', '$ci', $id_cuenta)";
+                       VALUES (?, ?, ?, ?, ?, ?, ?)";
+$stmt2 = $conexion->prepare($sql_info);
+        if (!$stmt2) {
+            // Si falla prepare, eliminamos la cuenta creada para no dejar huérfanos
+            $del = $conexion->prepare("DELETE FROM cuenta WHERE id_cuenta = ?");
+            if ($del) { $del->bind_param("i",$id_cuenta); $del->execute(); $del->close(); }
+            die("Error en prepare (informacion): " . $conexion->error);
+        }
+        $stmt2->bind_param("ssssssi", $nombre, $apellido, $direccion, $fecha_nac, $telefono, $ci, $id_cuenta);
 
-        if (mysqli_query($conexion, $sql_info)) {
+        if ($stmt2->execute()) {
+            $stmt2->close();            
             echo "<script>
 Swal.fire({
   icon: 'success',
@@ -56,8 +70,10 @@ Swal.fire({
 ";
         } else {
             // Si falla la información personal, elimina la cuenta para no dejar registros huérfanos
-            mysqli_query($conexion, "DELETE FROM cuenta WHERE id_cuenta = $id_cuenta");
-            echo "<script>
+$stmt2->close();
+            $del = $conexion->prepare("DELETE FROM cuenta WHERE id_cuenta = ?");
+            if ($del) { $del->bind_param("i",$id_cuenta); $del->execute(); $del->close(); }           
+             echo "<script>
         Swal.fire({
   icon: 'error',
   title: Oops...',
