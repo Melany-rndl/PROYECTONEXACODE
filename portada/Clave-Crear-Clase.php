@@ -20,7 +20,7 @@ if ($rol === "profesor") {
     mysqli_query(mysql: $conexion, query: "INSERT INTO clase (nombre, codigo, id_profesor, grado) VALUES ('$nombre', '$codigo', $id_profesor, '$grado')");
     $id_clase = mysqli_insert_id(mysql: $conexion);
     mysqli_query(mysql: $conexion, query: "INSERT INTO cuenta_has_clase (clase_id_clase, cuenta_id_cuenta) VALUES ($id_clase, $id_profesor)");
-    echo "Clase creada. El código para unirse es: <b>$codigo</b><br>";
+    echo "Clase creada! <br>El código para unirse es: <b>$codigo</b><br>";
 } else {
     echo "Solo los profesores pueden crear una clase.<br>";
 }

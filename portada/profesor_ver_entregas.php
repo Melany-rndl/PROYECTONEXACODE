@@ -18,9 +18,9 @@ if ($id_tarea <= 0) {
 
 $resT = mysqli_query(
     $conexion,
-    "SELECT titulo, clase_id_clase, nombre AS clase 
+    "SELECT tarea.titulo, tarea.id_clase, clase.nombre AS clase 
      FROM tarea 
-     JOIN clase ON tarea.clase_id_clase = clase.id_clase 
+     JOIN clase ON tarea.id_clase = clase.id_clase 
      WHERE tarea.id_tarea='$id_tarea'"
 );
 $tarea = mysqli_fetch_assoc($resT);
@@ -30,7 +30,7 @@ if (!$tarea) {
     exit();
 }
 
-$id_clase = $tarea['clase_id_clase'];
+$id_clase = $tarea['id_clase'];
 
 $sqlEst = "SELECT id_cuenta, usuario
            FROM cuenta

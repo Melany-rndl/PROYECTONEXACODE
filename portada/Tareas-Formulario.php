@@ -28,9 +28,9 @@ if (!$clase) { echo "No tienes acceso a esta clase."; exit(); }
 $soy_profesor = ($clase['id_profesor'] == $id_cuenta);
 
 // CORREGIDO: usar t.clase_id_clase
-$sql_tarea = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota, t.clase_id_clase
+$sql_tarea = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota, t.id_clase
                FROM tarea t
-               WHERE t.clase_id_clase = '$id_clase'
+               WHERE t.id_clase = '$id_clase'
                ORDER BY t.id_tarea DESC";
 $res_tarea = mysqli_query($conexion, $sql_tarea);
 $tarea = [];
@@ -233,7 +233,7 @@ $enlaces_cabecera = [
                 }
                 ?>
                 <?php if (!$archivoSubido): ?>
-                  <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['clase_id_clase']) ?>" onclick="event.stopPropagation();">
+                  <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['id_clase']) ?>" onclick="event.stopPropagation();">
                     Subir mi entrega
                   </a>
                 <?php else: ?>

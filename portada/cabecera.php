@@ -223,7 +223,7 @@ nav{
     <a href="Cuenta.php" id="estudiante">
         👤<span id="es"><?= htmlspecialchars(strtoupper($rol)); ?></span>
     </a>
-    <button id="let" onclick="window.location.href='Cerrar-Sesion.php';">E</button>
+    <button id="let" onclick="window.location.href='Cerrar-Sesion.php';">🗑</button>
     <?php if($rol === 'profesor'): ?>
         <div style="display:inline-block; position:absolute; margin-left:1350px; top:0;">
             <div id="menu-accion-profesor" style="position:absolute;right:-10px;top:35px;z-index:9;display:none; background:#fff; border:1px solid #ccc; border-radius:7px;">
@@ -239,7 +239,7 @@ nav{
         <?php endforeach;
         else: ?>
             <button class="botonesuperior" onclick="window.location.href='Pagina-Principal.php'">Inicio</button>
-            <button class="botonesuperior" onclick="window.location.href='Pagina-Principal.php'">Mis cursos</button>
+          
         <?php endif; ?>
     </nav>
 </header>
@@ -256,17 +256,3 @@ document.addEventListener("click", function(e) {
     }
 });
 </script>
-<section id="iz">
-    
-    <button class="iconomenu">☰</button>
-    <div id="menuMaterias" class="menu-materias oculto">
-        <hr>
-        <?php if(is_array($materias_menu)): ?>
-            <?php foreach($materias_menu as $materia): ?>
-                <div><span class="mensajemenu"><strong><?= htmlspecialchars($materia); ?></strong></span></div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
-
-</section>
-

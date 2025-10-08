@@ -174,7 +174,7 @@ $enlaces_cabecera = [
                 <?php foreach($estudiantes as $e): ?>
                     <li>
                         <span><?= htmlspecialchars($e['usuario']) ?></span>
-                        <a href="#">Invitar a padres</a>
+                        
                     </li>
                 <?php endforeach; ?>
             </ul>

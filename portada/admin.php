@@ -36,7 +36,7 @@ $result = $conn->query($sql);
         h1 {
              text-align: center; 
              color: #333;
-             }
+        }
         table { 
             width: 95%; 
             margin: 20px auto; 
@@ -51,23 +51,34 @@ $result = $conn->query($sql);
         th { 
             background: #333; 
             color: #fff;
-         }
+        }
         a.btn {
              padding: 6px 10px; 
              border-radius: 4px; 
              text-decoration: none; 
              color: #fff; 
-            }
+        }
         a.profesor { 
-            background: #007bff; }
+            background: #007bff; 
+        }
         a.estudiante { 
-            background: #28a745;
-         }
+            background: #28a745; 
+        }
         a.bloquear { 
             background: #dc3545; 
         }
         a.desbloquear { 
             background: #67b2f3ff; 
+        }
+        /* Estilo para el botón de Página Principal */
+        a.pagina-principal {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 20px auto;
         }
     </style>
 </head>
@@ -111,7 +122,6 @@ $result = $conn->query($sql);
                                 <a class="btn desbloquear" href="desbloquear.php?ci=<?= urlencode($row['ci']) ?>">Desbloquear</a>
                             <?php endif; ?>
                         <?php else: ?>
-                       
                             <em>Protegido</em>
                         <?php endif; ?>
                     </td>
@@ -121,6 +131,12 @@ $result = $conn->query($sql);
             <tr><td colspan="10">No hay usuarios registrados</td></tr>
         <?php endif; ?>
     </table>
+
+    <!-- Botón simple para ir a Página Principal -->
+    <div style="text-align: center;">
+        <a class="pagina-principal" href="Pagina-Principal.php">Volver a Página Principal</a>
+    </div>
 </body>
 </html>
+
 
