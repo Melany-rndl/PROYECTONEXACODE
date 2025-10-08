@@ -18,9 +18,9 @@ if ($id_tarea <= 0) {
 
 $resT = mysqli_query(
     $conexion,
-    "SELECT tarea.titulo, tarea.id_clase, tarea.descripcion AS clase 
+    "SELECT titulo, clase_id_clase, nombre AS clase 
      FROM tarea 
-     JOIN clase ON tarea.id_clase = clase.id_clase 
+     JOIN clase ON tarea.clase_id_clase = clase.id_clase 
      WHERE tarea.id_tarea='$id_tarea'"
 );
 $tarea = mysqli_fetch_assoc($resT);
@@ -30,7 +30,7 @@ if (!$tarea) {
     exit();
 }
 
-$id_clase = $tarea['id_clase'];
+$id_clase = $tarea['clase_id_clase'];
 
 $sqlEst = "SELECT id_cuenta, usuario
            FROM cuenta
@@ -52,6 +52,25 @@ while ($row = mysqli_fetch_assoc($resEnt)) {
 
 $exts = ["pdf", "jpg", "jpeg", "png", "gif", "webp", "docx", "xlsx", "txt", "zip"];
 $dir = "./media/";
+$enlaces_cabecera = [
+    [
+        'texto' => 'Inicio',
+        'url' => 'Pagina-Principal.php'
+    ],
+    [
+        'texto' => 'Mis cursos',
+        'url' => 'Pagina-Principal.php'
+    ],
+    [
+        'texto' => 'Tareas',
+        'url' => 'Tareas-Formulario.php?id=' . $id_clase
+    ],
+    [
+        'texto' => 'Personas',
+        'url' => 'Mostrar-Personas-Clase.php?id_clase=' . $id_clase
+    ]
+];
+
 
 include "cabecera.php";
 ?>
@@ -341,7 +360,6 @@ include "cabecera.php";
         $id_est = $est['id_cuenta'];
         $entrego = isset($entregas[$id_est]) ? $entregas[$id_est] : null;
         $archivo = null;
-
         if ($entrego)
         {
             $nombreBase = "Entrega-$id_est-$id_tarea";

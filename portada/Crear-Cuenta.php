@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<div class="Inicio-Sesion">
+<div class="animacion-inicial">
     <form id="form-crear" action="Registrar.php" method="post" autocomplete="off">
         <h1>CREAR CUENTA</h1>
 

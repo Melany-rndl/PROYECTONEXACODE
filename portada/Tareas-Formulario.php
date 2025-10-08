@@ -27,15 +27,34 @@ $clase = mysqli_fetch_assoc($res);
 if (!$clase) { echo "No tienes acceso a esta clase."; exit(); }
 $soy_profesor = ($clase['id_profesor'] == $id_cuenta);
 
-$sql_tarea = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota, t.id_clase
+// CORREGIDO: usar t.clase_id_clase
+$sql_tarea = "SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota, t.clase_id_clase
                FROM tarea t
-               WHERE t.id_clase = '$id_clase'
+               WHERE t.clase_id_clase = '$id_clase'
                ORDER BY t.id_tarea DESC";
 $res_tarea = mysqli_query($conexion, $sql_tarea);
 $tarea = [];
 while ($row = mysqli_fetch_assoc($res_tarea)) {
     $tarea[] = $row;
 }
+$enlaces_cabecera = [
+    [
+        'texto' => 'Inicio',
+        'url' => 'Pagina-Principal.php'
+    ],
+    [
+        'texto' => 'Mis cursos',
+        'url' => 'Pagina-Principal.php'
+    ],
+    [
+        'texto' => 'Tareas',
+        'url' => 'Tareas-Formulario.php?id=' . $id_clase
+    ],
+    [
+        'texto' => 'Personas',
+        'url' => 'Mostrar-Personas-Clase.php?id_clase=' . $id_clase
+    ]
+]
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,7 +64,7 @@ while ($row = mysqli_fetch_assoc($res_tarea)) {
   <title>Tareas - <?= htmlspecialchars($clase['nombre']); ?> - Nexa Classroom</title>
   <style>
     .contenedor-cuerpo-tareas {
-      max-width: 1200px;
+      max-width: 1400px;
       width: 100%;
       margin: 40px auto 0 auto;
       padding: 0 8px 30px 8px;
@@ -214,7 +233,7 @@ while ($row = mysqli_fetch_assoc($res_tarea)) {
                 }
                 ?>
                 <?php if (!$archivoSubido): ?>
-                  <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['id_clase']) ?>" onclick="event.stopPropagation();">
+                  <a class="entregar-btn" href="Subir-Tareas.php?id_tarea=<?= urlencode($tarea['id_tarea']) ?>&id_clase=<?= urlencode($tarea['clase_id_clase']) ?>" onclick="event.stopPropagation();">
                     Subir mi entrega
                   </a>
                 <?php else: ?>

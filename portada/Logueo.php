@@ -9,7 +9,7 @@
 </head>
 <body> 
 
-<div class="Inicio-Sesion">
+<div name="Inicio-Sesion" class="animacion-inicial">
     <form id="form-login" action="Usuario.php" method="post">
         <h1>INICIAR SESIÓN</h1>
 
