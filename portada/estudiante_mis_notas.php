@@ -22,8 +22,7 @@ $datos = null;
 $entrega = null;
 
 if ($id_entrega > 0) {
-    $sql = "
-        SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota AS nota_maxima,
+    $sql = " SELECT t.id_tarea, t.titulo, t.descripcion, t.tema, t.nota AS nota_maxima,
             c.nombre AS clase, c.id_clase AS clase_id_clase, e.fecha_entrega, e.nota, e.tarea_id_tarea
         FROM entrega e
         JOIN tarea t ON e.tarea_id_tarea = t.id_tarea

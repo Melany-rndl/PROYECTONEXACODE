@@ -20,7 +20,22 @@ if ($rol === "profesor") {
     mysqli_query(mysql: $conexion, query: "INSERT INTO clase (nombre, codigo, id_profesor, grado) VALUES ('$nombre', '$codigo', $id_profesor, '$grado')");
     $id_clase = mysqli_insert_id(mysql: $conexion);
     mysqli_query(mysql: $conexion, query: "INSERT INTO cuenta_has_clase (clase_id_clase, cuenta_id_cuenta) VALUES ($id_clase, $id_profesor)");
-    echo "Clase creada! <br>El código para unirse es: <b>$codigo</b><br>";
+     $mensaje = 'Te uniste exitosamente a una clase, tu codigo es:'.$codigo;
+
+echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+echo"<script>
+Swal.fire({
+            title: '¡Éxito!',
+            text: '$mensaje',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            // Esto se ejecuta después de que el usuario haga clic en 'Aceptar'
+            if (result.isConfirmed) {
+                window.location.href = 'Pagina-Principal.php'; // Redirige a otro documento
+            }
+        });
+    </script>";
 } else {
     echo "Solo los profesores pueden crear una clase.<br>";
 }
