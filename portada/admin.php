@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 // Verificar que el usuario sea administrador
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'admin') {
-    header("Location: login.php"); 
+    header("Location: Logueo.php"); 
     exit;
 }
 
