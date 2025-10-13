@@ -17,7 +17,7 @@
         <input type="text" name="usuario"><br><br>
 
         <label>Contraseña</label>
-        <input type="password" name="contraseña"><br><br>
+        <input type="password" name="contrasena"><br><br>
 
         <input type="submit" value="Iniciar Sesión">
         <input type="reset" value="🗑">
@@ -48,7 +48,7 @@ $(document).ready(function() {
                 minlength: "Debe tener al menos 3 caracteres",
                 maxlength: "No debe superar 20 caracteres"
             },
-            contraseña: {
+            contrasena: {
                 required: "La contraseña es obligatoria",
                 minlength: "Debe tener al menos 6 caracteres"
             }

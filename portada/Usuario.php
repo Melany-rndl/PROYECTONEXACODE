@@ -5,13 +5,13 @@ if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
  
-if (empty($_POST['usuario']) || empty($_POST['contraseña'])) {
+if (empty($_POST['usuario']) || empty($_POST['contrasena'])) {
     echo "Todos los campos son obligatorios. <a href='Logueo.php'>Volver</a>";
     exit();
 }
 
 $usuario = $_POST['usuario'];
-$clave = $_POST['contraseña'];
+$clave = $_POST['contrasena'];
 
 $sql = "SELECT * FROM cuenta WHERE usuario = ? AND clave = ?";
 $stmt=$conexion ->prepare($sql);
