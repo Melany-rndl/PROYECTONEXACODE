@@ -37,7 +37,7 @@ $(document).ready(function() {
                 minlength: 3,
                 maxlength: 20
             },
-            contraseña: {
+            contrasena: {
                 required: true,
                 minlength: 6
             }
