@@ -1,5 +1,14 @@
-<?php
-session_start();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+</head>
+<body>
+    <?php
+    session_start();
 $conexion = mysqli_connect(hostname: "localhost", username: "root", password: "", database: "p25");
 
 if (!isset($_SESSION['id_cuenta'])) {
@@ -20,9 +29,7 @@ if ($rol === "profesor") {
     mysqli_query(mysql: $conexion, query: "INSERT INTO clase (nombre, codigo, id_profesor, grado) VALUES ('$nombre', '$codigo', $id_profesor, '$grado')");
     $id_clase = mysqli_insert_id(mysql: $conexion);
     mysqli_query(mysql: $conexion, query: "INSERT INTO cuenta_has_clase (clase_id_clase, cuenta_id_cuenta) VALUES ($id_clase, $id_profesor)");
-     $mensaje = 'Te uniste exitosamente a una clase, tu codigo es:'.$codigo;
-
-echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+     $mensaje = 'Creaste exitosamente a una clase, tu codigo es:'.$codigo;
 echo"<script>
 Swal.fire({
             title: '¡Éxito!',
@@ -39,5 +46,7 @@ Swal.fire({
 } else {
     echo "Solo los profesores pueden crear una clase.<br>";
 }
-echo "<a href='Cuenta.php'>Volver</a>";
 ?>
+</body>
+</html>
+

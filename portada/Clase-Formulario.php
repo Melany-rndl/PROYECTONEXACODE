@@ -205,7 +205,6 @@ $enlaces_cabecera = [
         </div>
     </section>
     <section id="seccion-lateral-menu">
-        <button class="boton-icono-menu">☰</button>
         <div id="menu-materias-lateral" class="menu-materias-lateral oculto">
             <hr>
             <?php foreach($materias_menu as $materia): ?>
