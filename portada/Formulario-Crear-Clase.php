@@ -42,12 +42,12 @@ $(document).ready(function() {
             }
         },
         messages: {
-            usuario: {
+            nombre_clase: {
                 required: "Necesitas poner un nombre a la clase",
                 minlength: "Debe tener al menos 3 caracteres",
                 maxlength: "No debe superar 20 caracteres"
             },
-            contraseña: {
+            grado: {
                 required: "Selecciona un grando",
             }
         }
