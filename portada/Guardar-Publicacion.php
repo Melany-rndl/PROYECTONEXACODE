@@ -1,4 +1,14 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    <?php
 session_start();
 if (!isset($_SESSION['id_cuenta'])) {
     header("Location: Logueo.php");
@@ -31,12 +41,23 @@ if (mysqli_num_rows($res) == 0) {
 
 $sql = "INSERT INTO tarea (titulo, descripcion, tema, nota, id_clase) 
         VALUES ('$titulo', '$descripcion', '$tema', " . ($nota !== null ? "'$nota'" : "NULL") . ", '$id_clase')";
-
+$mensajevolver= "Tareas-Formulario.php?id=$id_clase";
 if (mysqli_query($conexion, $sql)) {
-    echo "✅ Tarea creada correctamente.<br>";
+   echo "<script>
+Swal.fire({
+  icon: 'success',
+  title: '¡Tarea creada exitosamente !',
+  text: 'Tu tarea fue creada correctamente.',
+footer: '<a href=\"$mensajevolver\">Volver a la clase</a>'
+});
+</script>
+";
 } else {
     echo "❌ Error al crear la tarea: " . mysqli_error($conexion) . "<br>";
 }
 
 echo "<a href='Tareas-Formulario.php?id=$id_clase'>Volver a la clase</a>";
 ?>
+
+</body>
+</html>

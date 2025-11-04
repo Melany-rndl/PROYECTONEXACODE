@@ -1,4 +1,14 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+ <?php
 session_start();
 $conexion = mysqli_connect("localhost", "root", "", "p25");
 if (!$conexion) {
@@ -36,11 +46,15 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
     }   
 }
  else {
-    echo "Datos incorrectos. <a href='Logueo.php'>Intentar nuevamente</a>";
+    echo "<script>
+        Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Ingrese informacion valida',
+    footer: '<a href=\"Logueo.php\">Intentar de nuevo </a>'
+});</script> ";
 }
 ?>
-
-
-
-
-
+   
+</body>
+</html>
